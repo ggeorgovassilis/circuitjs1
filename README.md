@@ -1,7 +1,5 @@
 # CircuitJS1
 
-## This is a fork
- 
 This repository is a fork of [sharpie7/circuitjs1](https://github.com/sharpie7/circuitjs1).
 
 
