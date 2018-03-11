@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.lushprojects.circuitjs1</groupId>
 	<artifactId>circuitjs</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>gwt-app</packaging>
 
 	<distributionManagement>
@@ -145,6 +145,8 @@
 					<scmBranch>gh-pages</scmBranch>
 					<serverId>github</serverId>
 					<content>${project.build.directory}/site</content>
+					<siteOutputEncoding>UTF-8</siteOutputEncoding>
+					<extraNormalizeExtensions>html,ms</extraNormalizeExtensions>
 				</configuration>
 			</plugin>
 			<!-- github site plugin is too slow, using site publish instead -->
