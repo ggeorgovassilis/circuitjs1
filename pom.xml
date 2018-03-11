@@ -1,14 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.lishprojects.circuitjs1</groupId>
+	<groupId>com.lushprojects.circuitjs1</groupId>
 	<artifactId>circuitjs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>gwt-app</packaging>
 
+	<distributionManagement>
+		<site>
+			<id>circuitjs</id>
+			<url>https://github.com/ggeorgovassilis/circuitjs1/tree/gh-pages</url>
+		</site>
+	</distributionManagement>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<dependency.locations.enabled>false</dependency.locations.enabled>
 	</properties>
 	<dependencies>
 
@@ -52,6 +60,33 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.7</version>
+				<executions>
+					<execution>
+						<id>deploy</id>
+						<phase>deploy</phase>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>true</skip>
+					<siteDirectory>site</siteDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>net.ltgt.gwt.maven</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
 				<version>1.0-rc-9</version>
@@ -67,6 +102,52 @@
 						<compilerArg>PRETTY</compilerArg>
 					</compilerArgs>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>site</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/site</outputDirectory>
+							<resources>
+								<resource>
+									<directory>site</directory>
+								</resource>
+								<resource>
+									<directory>war</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>0.12</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>site-deploy</phase>
+						<configuration>
+							<server>github</server>
+							<message>Building site for my project</message>
+							<path>${site.path}</path>
+							<merge>true</merge>
+							<branch>refs/heads/gh-pages</branch>
+							<repositoryName>circuitjs1</repositoryName>
+							<repositoryOwner>ggeorgovassilis</repositoryOwner>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
