@@ -1,6 +1,9 @@
 # CircuitJS1
 
-This repository is a fork of [sharpie7/circuitjs1](https://github.com/sharpie7/circuitjs1).
+This repository is a fork of [sharpie7/circuitjs1](https://github.com/sharpie7/circuitjs1). Main differences are:
+
+- Hosted at [https://ggeorgovassilis.github.io/circuitjs1/circuitjs.html](https://ggeorgovassilis.github.io/circuitjs1/circuitjs.html)
+- Use Apache Maven as build tool
 
 
 ## Introduction
