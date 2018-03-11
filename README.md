@@ -1,7 +1,6 @@
 # CircuitJS1
 
-Circuitjs1 is an electronic circuit simulator that runs in the browser. Try it here: [https://ggeorgovassilis.github.io/circuitjs1/circuitjs.html](https://ggeorgovassilis.github.io/circuitjs1/circuitjs.html).
-
+## This is a fork
  
 This repository is a fork of [sharpie7/circuitjs1](https://github.com/sharpie7/circuitjs1).
 
