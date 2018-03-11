@@ -1,9 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.github.sharpie7.circuitjs</groupId>
+	<groupId>com.lishprojects.circuitjs1</groupId>
 	<artifactId>circuitjs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>gwt-app</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,15 +24,6 @@
 			<version>2.8.2</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-
-
 	</dependencies>
 
 	<build>
@@ -62,7 +54,19 @@
 			<plugin>
 				<groupId>net.ltgt.gwt.maven</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
+				<version>1.0-rc-9</version>
 				<extensions>true</extensions>
+				<configuration>
+					<moduleName>com.lushprojects.circuitjs1.circuitjs1</moduleName>
+					<localWorkers>0.5C</localWorkers><!-- this is the best setting for a 
+						laptop with 2 cores and HT -->
+					<warName>circuitjs</warName>
+					<optimize>9</optimize>
+					<compilerArgs>
+						<compilerArg>-style</compilerArg>
+						<compilerArg>PRETTY</compilerArg>
+					</compilerArgs>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
