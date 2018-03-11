@@ -9,14 +9,14 @@
 	<distributionManagement>
 		<site>
 			<id>circuitjs</id>
-			<url>https://github.com/ggeorgovassilis/circuitjs1/tree/gh-pages</url>
+			<url>scm:git:https://git@github.com/ggeorgovassilis/circuitjs1.git</url>
 		</site>
 	</distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<dependency.locations.enabled>false</dependency.locations.enabled>
+		<dependency.locations.enabled>false</dependency.locations.enabled><!-- generating dependency report is slow; disable it -->
 	</properties>
 	<dependencies>
 
@@ -24,13 +24,13 @@
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
 			<version>2.8.2</version>
-			<scope>provided</scope>
+			<scope>provided</scope> <!-- this project doesn't generate java artifacts; no need to declare transient dependencies -->
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
 			<version>2.8.2</version>
-			<scope>provided</scope>
+			<scope>provided</scope> <!-- needed only during compilation -->
 		</dependency>
 	</dependencies>
 
@@ -48,7 +48,7 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
+				<artifactId>maven-source-plugin</artifactId> <!-- artifact with sources is easier to handle during development -->
 				<version>3.0.1</version>
 				<executions>
 					<execution>
@@ -59,7 +59,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
+			<plugin> <!-- declaring only in order to skip during site deployment -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.7</version>
@@ -81,12 +81,12 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>2.9</version>
-				<configuration>
+				<configuration><!-- we don't need those reports; disabling speeds up build -->
 					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
 					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
 				</configuration>
 			</plugin>
-			<plugin>
+			<plugin> <!-- gwt compiler -->
 				<groupId>net.ltgt.gwt.maven</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
 				<version>1.0-rc-9</version>
@@ -103,7 +103,7 @@
 					</compilerArgs>
 				</configuration>
 			</plugin>
-			<plugin>
+			<plugin> <!-- copy a few things around before packaging the website -->
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.0.2</version>
 				<executions>
@@ -117,38 +117,44 @@
 							<outputDirectory>${project.build.directory}/site</outputDirectory>
 							<resources>
 								<resource>
-									<directory>site</directory>
+									<directory>war</directory>
 								</resource>
 								<resource>
-									<directory>war</directory>
+									<directory>${project.build.directory}/${project.name}-${project.version}/circuitjs1</directory>
+									<targetPath>circuitjs1</targetPath>
 								</resource>
 							</resources>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>com.github.github</groupId>
-				<artifactId>site-maven-plugin</artifactId>
-				<version>0.12</version>
+			<plugin> <!-- publish html and javascript to github page -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-publish-plugin</artifactId>
+				<version>3.0.0</version>
 				<executions>
 					<execution>
-						<goals>
-							<goal>site</goal>
-						</goals>
+						<id>publish</id>
 						<phase>site-deploy</phase>
-						<configuration>
-							<server>github</server>
-							<message>Building site for my project</message>
-							<path>${site.path}</path>
-							<merge>true</merge>
-							<branch>refs/heads/gh-pages</branch>
-							<repositoryName>circuitjs1</repositoryName>
-							<repositoryOwner>ggeorgovassilis</repositoryOwner>
-						</configuration>
+						<goals>
+							<goal>publish-scm</goal>
+						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<scmBranch>gh-pages</scmBranch>
+					<serverId>github</serverId>
+					<content>${project.build.directory}/site</content>
+				</configuration>
 			</plugin>
+			<!-- github site plugin is too slow, using site publish instead -->
+			<!-- <plugin> <groupId>com.github.github</groupId> <artifactId>site-maven-plugin</artifactId> 
+				<version>0.12</version> <executions> <execution> <goals> <goal>site</goal> 
+				</goals> <phase>site-deploy</phase> <configuration> <server>github</server> 
+				<message>Building site for my project</message> <path>${site.path}</path> 
+				<merge>true</merge> <branch>refs/heads/gh-pages</branch> <repositoryName>circuitjs1</repositoryName> 
+				<repositoryOwner>ggeorgovassilis</repositoryOwner> </configuration> </execution> 
+				</executions> </plugin> -->
 		</plugins>
 	</build>
 
