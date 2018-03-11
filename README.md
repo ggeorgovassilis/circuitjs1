@@ -1,5 +1,10 @@
 # CircuitJS1
 
+## Note on this fork
+This is a fork of [sharpie7/circuitjs1](https://github.com/sharpie7/circuitjs1) which I maintain because the author
+uses a rather [esoteric](https://github.com/sharpie7/circuitjs1/pull/23) project setup.
+
+
 ## Introduction
 
 CircuitJS1 is an electronic circuit simulator that runs in the browser. It was originally written by Paul Falstad as a Java Applet. It was adapted by Iain Sharp to run in the browser using GWT.
