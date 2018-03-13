@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.lushprojects.circuitjs1</groupId>
 	<artifactId>circuitjs</artifactId>
-	<version>1.0.0</version>
+	<version>2.1.15</version>
 	<packaging>gwt-app</packaging>
 
 	<distributionManagement>
@@ -13,24 +13,32 @@
 		</site>
 	</distributionManagement>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.gwt</groupId>
+				<artifactId>gwt</artifactId>
+				<version>2.8.2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<dependency.locations.enabled>false</dependency.locations.enabled><!-- generating dependency report is slow; disable it -->
+		<dependency.locations.enabled>false</dependency.locations.enabled><!-- 
+			generating dependency report is slow; disable it -->
 	</properties>
 	<dependencies>
 
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>2.8.2</version>
-			<scope>provided</scope> <!-- this project doesn't generate java artifacts; no need to declare transient dependencies -->
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
-			<version>2.8.2</version>
-			<scope>provided</scope> <!-- needed only during compilation -->
 		</dependency>
 	</dependencies>
 
@@ -81,7 +89,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>2.9</version>
-				<configuration><!-- we don't need those reports; disabling speeds up build -->
+				<configuration><!-- we don't need those reports; disabling speeds up 
+						build -->
 					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
 					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
 				</configuration>
@@ -101,6 +110,7 @@
 						<compilerArg>-style</compilerArg>
 						<compilerArg>PRETTY</compilerArg>
 					</compilerArgs>
+					<codeServerPort>8888</codeServerPort>
 				</configuration>
 			</plugin>
 			<plugin> <!-- copy a few things around before packaging the website -->

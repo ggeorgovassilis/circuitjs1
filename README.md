@@ -39,6 +39,14 @@ mvn install
 
 Then open the file `/circuitjs1/target/site/circuitjs.html` with a web browser.
 
+You can run GWT devmode with
+
+`mvn gwt:codeserver -pl . -am`
+
+Then open the file `/circuitjs1/target/site/circuitjs.html` with a web browser. If you have the GWT devmode [bookmarklets](http://www.gwtproject.org/articles/superdevmode.html) you can make changes to the Java files and recompile them quickly.
+
+
+Open a browser with that URL.
 ## Further reading
 
 For other options like modifications please refer to the original project [sharpie7/circuitjs1](https://github.com/sharpie7/circuitjs1).
