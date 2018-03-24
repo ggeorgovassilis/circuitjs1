@@ -35,7 +35,6 @@ import com.lushprojects.circuitjs1.client.ui.Scope;
 
 // circuit element class
 public abstract class CircuitElm implements Editable {
-    public static double voltageRange = 5;
     public static int colorScaleCount = 32;
     public static Color colorScale[];
     public static double currentMult, powerMult;
@@ -844,7 +843,7 @@ public abstract class CircuitElm implements Editable {
 		return (whiteColor);
 	    return (g.lastColor);
 	}
-	int c = (int) ((volts + voltageRange) * (colorScaleCount - 1) / (voltageRange * 2));
+	int c = (int) ((volts + sim.voltageRange) * (colorScaleCount - 1) / (sim.voltageRange * 2));
 	if (c < 0)
 	    c = 0;
 	if (c >= colorScaleCount)

@@ -174,6 +174,8 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
     public MenuItem scopeRemovePlotMenuItem;
     public MenuItem scopeSelectYMenuItem;
     static HashMap<String, String> localizationMap;
+    public double voltageRange = 5;
+
 
     String lastCursorStyle;
     boolean mouseWasOverSplitter = false;
@@ -2820,7 +2822,7 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 	f |= (showValuesCheckItem.getState()) ? 0 : 16;
 	// 32 = linear scale in afilter
 	String dump = "$ " + f + " " + timeStep + " " + getIterCount() + " " + currentBar.getValue() + " "
-		+ CircuitElm.voltageRange + " " + powerBar.getValue() + "\n";
+		+ voltageRange + " " + powerBar.getValue() + "\n";
 
 	for (i = 0; i != elmList.size(); i++) {
 	    CircuitElm ce = getElm(i);
@@ -2982,7 +2984,7 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 	    speedBar.setValue(117); // 57
 	    currentBar.setValue(50);
 	    powerBar.setValue(50);
-	    CircuitElm.voltageRange = 5;
+	    voltageRange = 5;
 	    scopeCount = 0;
 	    lastIterTime = 0;
 	}
@@ -3108,7 +3110,7 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 	// int sp2 = (int) (Math.log(sp)*24+1.5);
 	speedBar.setValue(sp2);
 	currentBar.setValue(new Integer(st.nextToken()).intValue());
-	CircuitElm.voltageRange = new Double(st.nextToken()).doubleValue();
+	voltageRange = new Double(st.nextToken()).doubleValue();
 
 	try {
 	    powerBar.setValue(new Integer(st.nextToken()).intValue());

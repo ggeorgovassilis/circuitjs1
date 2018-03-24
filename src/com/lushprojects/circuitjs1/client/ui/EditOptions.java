@@ -22,7 +22,6 @@ package com.lushprojects.circuitjs1.client.ui;
 import com.lushprojects.circuitjs1.client.CirSim;
 import com.lushprojects.circuitjs1.client.dialogs.Editable;
 import com.lushprojects.circuitjs1.client.elements.AudioOutputElm;
-import com.lushprojects.circuitjs1.client.elements.CircuitElm;
 
 public class EditOptions implements Editable {
     CirSim sim;
@@ -35,7 +34,7 @@ public class EditOptions implements Editable {
 	if (n == 0)
 	    return new EditInfo("Time step size (s)", sim.timeStep, 0, 0);
 	if (n == 1)
-	    return new EditInfo("Range for voltage color (V)", CircuitElm.voltageRange, 0, 0);
+	    return new EditInfo("Range for voltage color (V)", sim.voltageRange, 0, 0);
 
 	return null;
     }
@@ -48,6 +47,6 @@ public class EditOptions implements Editable {
 	    AudioOutputElm.okToChangeTimeStep = false;
 	}
 	if (n == 1 && ei.value > 0)
-	    CircuitElm.voltageRange = ei.value;
+	    sim.voltageRange = ei.value;
     }
 };
