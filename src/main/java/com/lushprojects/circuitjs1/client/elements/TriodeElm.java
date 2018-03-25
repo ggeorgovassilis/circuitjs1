@@ -71,31 +71,31 @@ public class TriodeElm extends CircuitElm {
 
     public void setPoints() {
 	super.setPoints();
-	plate = newPointArray(4);
-	grid = newPointArray(8);
-	cath = newPointArray(4);
+	plate = CircuitElementSupport.newPointArray(4);
+	grid = CircuitElementSupport.newPointArray(8);
+	cath = CircuitElementSupport.newPointArray(4);
 	grid[0] = point1;
 	int nearw = 8;
-	interpPoint(point1, point2, plate[1], 1, nearw);
+	CircuitElementSupport.interpPoint(point1, point2, plate[1], 1, nearw);
 	int farw = 32;
-	interpPoint(point1, point2, plate[0], 1, farw);
+	CircuitElementSupport.interpPoint(point1, point2, plate[0], 1, farw);
 	int platew = 18;
-	interpPoint2(point2, plate[1], plate[2], plate[3], 1, platew);
+	CircuitElementSupport.interpPoint2(point2, plate[1], plate[2], plate[3], 1, platew);
 
 	circler = 24;
-	interpPoint(point1, point2, grid[1], (dn - circler) / dn, 0);
+	CircuitElementSupport.interpPoint(point1, point2, grid[1], (dn - circler) / dn, 0);
 	int i;
 	for (i = 0; i != 3; i++) {
-	    interpPoint(grid[1], point2, grid[2 + i * 2], (i * 3 + 1) / 4.5, 0);
-	    interpPoint(grid[1], point2, grid[3 + i * 2], (i * 3 + 2) / 4.5, 0);
+	    CircuitElementSupport.interpPoint(grid[1], point2, grid[2 + i * 2], (i * 3 + 1) / 4.5, 0);
+	    CircuitElementSupport.interpPoint(grid[1], point2, grid[3 + i * 2], (i * 3 + 2) / 4.5, 0);
 	}
 	midgrid = point2;
 
 	int cathw = 16;
-	midcath = interpPoint(point1, point2, 1, -nearw);
-	interpPoint2(point2, plate[1], cath[1], cath[2], -1, cathw);
-	interpPoint(point2, plate[1], cath[3], -1.2, -cathw);
-	interpPoint(point2, plate[1], cath[0], -farw / (double) nearw, cathw);
+	midcath = CircuitElementSupport.interpPoint(point1, point2, 1, -nearw);
+	CircuitElementSupport.interpPoint2(point2, plate[1], cath[1], cath[2], -1, cathw);
+	CircuitElementSupport.interpPoint(point2, plate[1], cath[3], -1.2, -cathw);
+	CircuitElementSupport.interpPoint(point2, plate[1], cath[0], -farw / (double) nearw, cathw);
     }
 
     public void draw(Graphics g) {

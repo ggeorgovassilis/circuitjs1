@@ -91,15 +91,15 @@ public class SwitchElm extends CircuitElm {
 
 	if (!needsHighlight())
 	    g.setColor(sim.whiteColor);
-	interpPoint(lead1, lead2, ps, 0, hs1);
-	interpPoint(lead1, lead2, ps2, 1, hs2);
+	CircuitElementSupport.interpPoint(lead1, lead2, ps, 0, hs1);
+	CircuitElementSupport.interpPoint(lead1, lead2, ps2, 1, hs2);
 
 	CircuitElementSupport.drawThickLine(g, ps, ps2);
 	drawPosts(g);
     }
 
     public Rectangle getSwitchRect() {
-	interpPoint(lead1, lead2, ps, 0, openhs);
+	CircuitElementSupport.interpPoint(lead1, lead2, ps, 0, openhs);
 	return new Rectangle(lead1).union(new Rectangle(lead2)).union(new Rectangle(ps));
     }
 

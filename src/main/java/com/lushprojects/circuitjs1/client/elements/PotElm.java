@@ -104,7 +104,7 @@ public class PotElm extends CircuitElm implements Command, MouseWheelHandler {
 	super.setPoints();
 	int offset = 0;
 	int myLen = 0;
-	if (abs(dx) > abs(dy)) {
+	if (CircuitElementSupport.abs(dx) > CircuitElementSupport.abs(dy)) {
 	    myLen = 2 * sim.gridSize * Integer.signum(dx)
 		    * ((((Integer) Math.abs(dx)) + 2 * sim.gridSize - 1) / (2 * sim.gridSize));
 	    point2.x = point1.x + myLen;
@@ -134,20 +134,20 @@ public class PotElm extends CircuitElm implements Command, MouseWheelHandler {
 	// }
 	if (offset == 0)
 	    offset = sim.gridSize;
-	dn = distance(point1, point2);
+	dn = CircuitElementSupport.distance(point1, point2);
 	int bodyLen = 32;
 	calcLeads(bodyLen);
 	position = slider.getValue() * .0099 + .005;
 	int soff = (int) ((position - .5) * bodyLen);
 	// int offset2 = offset - sign(offset)*4;
-	post3 = interpPoint(point1, point2, .5, offset);
-	corner2 = interpPoint(point1, point2, soff / dn + .5, offset);
-	arrowPoint = interpPoint(point1, point2, soff / dn + .5, 8 * sign(offset));
+	post3 = CircuitElementSupport.interpPoint(point1, point2, .5, offset);
+	corner2 = CircuitElementSupport.interpPoint(point1, point2, soff / dn + .5, offset);
+	arrowPoint = CircuitElementSupport.interpPoint(point1, point2, soff / dn + .5, 8 * CircuitElementSupport.sign(offset));
 	midpoint = interpPoint(point1, point2, soff / dn + .5);
 	arrow1 = new Point();
 	arrow2 = new Point();
-	double clen = abs(offset) - 8;
-	interpPoint2(corner2, arrowPoint, arrow1, arrow2, (clen - 8) / clen, 8);
+	double clen = CircuitElementSupport.abs(offset) - 8;
+	CircuitElementSupport.interpPoint2(corner2, arrowPoint, arrow1, arrow2, (clen - 8) / clen, 8);
 	ps3 = new Point();
 	ps4 = new Point();
     }
@@ -184,27 +184,27 @@ public class PotElm extends CircuitElm implements Command, MouseWheelHandler {
 		if (i >= divide)
 		    v = v3 + (v2 - v3) * (i - divide) / (segments - divide);
 		setVoltageColor(g, v);
-		interpPoint(lead1, lead2, sim.ps1, i * segf, hs * ox);
-		interpPoint(lead1, lead2, sim.ps2, (i + 1) * segf, hs * nx);
+		CircuitElementSupport.interpPoint(lead1, lead2, sim.ps1, i * segf, hs * ox);
+		CircuitElementSupport.interpPoint(lead1, lead2, sim.ps2, (i + 1) * segf, hs * nx);
 		CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 		ox = nx;
 	    }
 	} else {
 	    // draw rectangle
 	    setVoltageColor(g, v1);
-	    interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 0, hs);
+	    CircuitElementSupport.interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 0, hs);
 	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	    for (i = 0; i != segments; i++) {
 		double v = v1 + (v3 - v1) * i / divide;
 		if (i >= divide)
 		    v = v3 + (v2 - v3) * (i - divide) / (segments - divide);
 		setVoltageColor(g, v);
-		interpPoint2(lead1, lead2, sim.ps1, sim.ps2, i * segf, hs);
-		interpPoint2(lead1, lead2, ps3, ps4, (i + 1) * segf, hs);
+		CircuitElementSupport.interpPoint2(lead1, lead2, sim.ps1, sim.ps2, i * segf, hs);
+		CircuitElementSupport.interpPoint2(lead1, lead2, ps3, ps4, (i + 1) * segf, hs);
 		CircuitElementSupport.drawThickLine(g, sim.ps1, ps3);
 		CircuitElementSupport.drawThickLine(g, sim.ps2, ps4);
 	    }
-	    interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 1, hs);
+	    CircuitElementSupport.interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 1, hs);
 	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	}
 	setVoltageColor(g, v3);
@@ -219,7 +219,7 @@ public class PotElm extends CircuitElm implements Command, MouseWheelHandler {
 	    drawDots(g, point1, midpoint, curcount1);
 	    drawDots(g, point2, midpoint, curcount2);
 	    drawDots(g, post3, corner2, curcount3);
-	    drawDots(g, corner2, midpoint, curcount3 + distance(post3, corner2));
+	    drawDots(g, corner2, midpoint, curcount3 + CircuitElementSupport.distance(post3, corner2));
 	}
 	drawPosts(g);
     }

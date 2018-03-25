@@ -54,12 +54,12 @@ public class TunnelDiodeElm extends CircuitElm {
     public void setPoints() {
 	super.setPoints();
 	calcLeads(16);
-	cathode = newPointArray(4);
-	Point pa[] = newPointArray(2);
-	interpPoint2(lead1, lead2, pa[0], pa[1], 0, hs);
-	interpPoint2(lead1, lead2, cathode[0], cathode[1], 1, hs);
-	interpPoint2(lead1, lead2, cathode[2], cathode[3], .8, hs);
-	poly = createPolygon(pa[0], pa[1], lead2);
+	cathode = CircuitElementSupport.newPointArray(4);
+	Point pa[] = CircuitElementSupport.newPointArray(2);
+	CircuitElementSupport.interpPoint2(lead1, lead2, pa[0], pa[1], 0, hs);
+	CircuitElementSupport.interpPoint2(lead1, lead2, cathode[0], cathode[1], 1, hs);
+	CircuitElementSupport.interpPoint2(lead1, lead2, cathode[2], cathode[3], .8, hs);
+	poly = CircuitElementSupport.createPolygon(pa[0], pa[1], lead2);
     }
 
     public void draw(Graphics g) {

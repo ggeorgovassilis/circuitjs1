@@ -125,15 +125,15 @@ public class OpAmpElm extends CircuitElm {
 	int hs = opheight * dsign;
 	if ((flags & FLAG_SWAP) != 0)
 	    hs = -hs;
-	in1p = newPointArray(2);
-	in2p = newPointArray(2);
-	textp = newPointArray(2);
-	interpPoint2(point1, point2, in1p[0], in2p[0], 0, hs);
-	interpPoint2(lead1, lead2, in1p[1], in2p[1], 0, hs);
-	interpPoint2(lead1, lead2, textp[0], textp[1], .2, hs);
-	Point tris[] = newPointArray(2);
-	interpPoint2(lead1, lead2, tris[0], tris[1], 0, hs * 2);
-	triangle = createPolygon(tris[0], tris[1], lead2);
+	in1p = CircuitElementSupport.newPointArray(2);
+	in2p = CircuitElementSupport.newPointArray(2);
+	textp = CircuitElementSupport.newPointArray(2);
+	CircuitElementSupport.interpPoint2(point1, point2, in1p[0], in2p[0], 0, hs);
+	CircuitElementSupport.interpPoint2(lead1, lead2, in1p[1], in2p[1], 0, hs);
+	CircuitElementSupport.interpPoint2(lead1, lead2, textp[0], textp[1], .2, hs);
+	Point tris[] = CircuitElementSupport.newPointArray(2);
+	CircuitElementSupport.interpPoint2(lead1, lead2, tris[0], tris[1], 0, hs * 2);
+	triangle = CircuitElementSupport.createPolygon(tris[0], tris[1], lead2);
 	plusFont = new Font("SansSerif", 0, opsize == 2 ? 14 : 10);
     }
 

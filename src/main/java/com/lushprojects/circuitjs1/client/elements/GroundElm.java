@@ -47,11 +47,11 @@ public class GroundElm extends CircuitElm {
 	for (i = 0; i != 3; i++) {
 	    int a = 10 - i * 4;
 	    int b = i * 5; // -10;
-	    interpPoint2(point1, point2, sim.ps1, sim.ps2, 1 + b / dn, a);
+	    CircuitElementSupport.interpPoint2(point1, point2, sim.ps1, sim.ps2, 1 + b / dn, a);
 	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	}
 	doDots(g);
-	interpPoint(point1, point2, sim.ps2, 1 + 11. / dn);
+	CircuitElementSupport.interpPoint(point1, point2, sim.ps2, 1 + 11. / dn);
 	setBbox(point1, sim.ps2, 11);
 	drawPosts(g);
     }

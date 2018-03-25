@@ -80,14 +80,14 @@ public class LampElm extends CircuitElm {
 	super.setPoints();
 	int llen = 16;
 	calcLeads(llen);
-	bulbLead = newPointArray(2);
-	filament = newPointArray(2);
+	bulbLead = CircuitElementSupport.newPointArray(2);
+	filament = CircuitElementSupport.newPointArray(2);
 	bulbR = 20;
-	filament[0] = interpPoint(lead1, lead2, 0, filament_len);
-	filament[1] = interpPoint(lead1, lead2, 1, filament_len);
+	filament[0] = CircuitElementSupport.interpPoint(lead1, lead2, 0, filament_len);
+	filament[1] = CircuitElementSupport.interpPoint(lead1, lead2, 1, filament_len);
 	double br = filament_len - Math.sqrt(bulbR * bulbR - llen * llen);
-	bulbLead[0] = interpPoint(lead1, lead2, 0, br);
-	bulbLead[1] = interpPoint(lead1, lead2, 1, br);
+	bulbLead[0] = CircuitElementSupport.interpPoint(lead1, lead2, 0, br);
+	bulbLead[1] = CircuitElementSupport.interpPoint(lead1, lead2, 1, br);
 	bulb = interpPoint(filament[0], filament[1], .5);
     }
 

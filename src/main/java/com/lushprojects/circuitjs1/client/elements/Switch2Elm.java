@@ -70,15 +70,15 @@ public class Switch2Elm extends SwitchElm {
     public void setPoints() {
 	super.setPoints();
 	calcLeads(32);
-	swposts = newPointArray(throwCount);
-	swpoles = newPointArray(2 + throwCount);
+	swposts = CircuitElementSupport.newPointArray(throwCount);
+	swpoles = CircuitElementSupport.newPointArray(2 + throwCount);
 	int i;
 	for (i = 0; i != throwCount; i++) {
 	    int hs = -openhs * (i - (throwCount - 1) / 2);
 	    if (throwCount == 2 && i == 0)
 		hs = openhs;
-	    interpPoint(lead1, lead2, swpoles[i], 1, hs);
-	    interpPoint(point1, point2, swposts[i], 1, hs);
+	    CircuitElementSupport.interpPoint(lead1, lead2, swpoles[i], 1, hs);
+	    CircuitElementSupport.interpPoint(point1, point2, swposts[i], 1, hs);
 	}
 	swpoles[i] = lead2; // for center off
 	posCount = hasCenterOff() ? 3 : throwCount;

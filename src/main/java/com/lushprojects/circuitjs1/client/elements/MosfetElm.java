@@ -123,8 +123,8 @@ public class MosfetElm extends CircuitElm {
 		continue;
 	    double v = volts[1] + (volts[2] - volts[1]) * i / segments;
 	    setVoltageColor(g, v);
-	    interpPoint(src[1], drn[1], sim.ps1, i * segf);
-	    interpPoint(src[1], drn[1], sim.ps2, (i + 1) * segf);
+	    CircuitElementSupport.interpPoint(src[1], drn[1], sim.ps1, i * segf);
+	    CircuitElementSupport.interpPoint(src[1], drn[1], sim.ps2, (i + 1) * segf);
 	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	}
 
@@ -164,7 +164,7 @@ public class MosfetElm extends CircuitElm {
 	if ((needsHighlight() || sim.dragElm == this) && dy == 0) {
 	    g.setColor(Color.white);
 	    g.setFont(sim.unitsFont);
-	    int ds = sign(dx);
+	    int ds = CircuitElementSupport.sign(dx);
 	    g.drawString("G", gate[1].x - 10 * ds, gate[1].y - 5);
 	    g.drawString(pnp == -1 ? "D" : "S", src[0].x - 3 + 9 * ds, src[0].y + 4); // x+6 if ds=1, -12 if -1
 	    g.drawString(pnp == -1 ? "S" : "D", drn[0].x - 3 + 9 * ds, drn[0].y + 4);
@@ -208,36 +208,36 @@ public class MosfetElm extends CircuitElm {
 	int hs2 = hs * dsign;
 	if ((flags & FLAG_FLIP) != 0)
 	    hs2 = -hs2;
-	src = newPointArray(3);
-	drn = newPointArray(3);
-	interpPoint2(point1, point2, src[0], drn[0], 1, -hs2);
-	interpPoint2(point1, point2, src[1], drn[1], 1 - 22 / dn, -hs2);
-	interpPoint2(point1, point2, src[2], drn[2], 1 - 22 / dn, -hs2 * 4 / 3);
+	src = CircuitElementSupport.newPointArray(3);
+	drn = CircuitElementSupport.newPointArray(3);
+	CircuitElementSupport.interpPoint2(point1, point2, src[0], drn[0], 1, -hs2);
+	CircuitElementSupport.interpPoint2(point1, point2, src[1], drn[1], 1 - 22 / dn, -hs2);
+	CircuitElementSupport.interpPoint2(point1, point2, src[2], drn[2], 1 - 22 / dn, -hs2 * 4 / 3);
 
-	gate = newPointArray(3);
-	interpPoint2(point1, point2, gate[0], gate[2], 1 - 28 / dn, hs2 / 2); // was 1-20/dn
-	interpPoint(gate[0], gate[2], gate[1], .5);
+	gate = CircuitElementSupport.newPointArray(3);
+	CircuitElementSupport.interpPoint2(point1, point2, gate[0], gate[2], 1 - 28 / dn, hs2 / 2); // was 1-20/dn
+	CircuitElementSupport.interpPoint(gate[0], gate[2], gate[1], .5);
 
 	if (showBulk()) {
-	    body = newPointArray(2);
-	    interpPoint(src[0], drn[0], body[0], .5);
-	    interpPoint(src[1], drn[1], body[1], .5);
+	    body = CircuitElementSupport.newPointArray(2);
+	    CircuitElementSupport.interpPoint(src[0], drn[0], body[0], .5);
+	    CircuitElementSupport.interpPoint(src[1], drn[1], body[1], .5);
 	}
 
 	if (!drawDigital()) {
 	    if (pnp == 1) {
 		if (!showBulk())
-		    arrowPoly = calcArrow(src[1], src[0], 10, 4);
+		    arrowPoly = CircuitElementSupport.calcArrow(src[1], src[0], 10, 4);
 		else
-		    arrowPoly = calcArrow(body[0], body[1], 12, 5);
+		    arrowPoly = CircuitElementSupport.calcArrow(body[0], body[1], 12, 5);
 	    } else {
 		if (!showBulk())
-		    arrowPoly = calcArrow(drn[0], drn[1], 12, 5);
+		    arrowPoly = CircuitElementSupport.calcArrow(drn[0], drn[1], 12, 5);
 		else
-		    arrowPoly = calcArrow(body[1], body[0], 12, 5);
+		    arrowPoly = CircuitElementSupport.calcArrow(body[1], body[0], 12, 5);
 	    }
 	} else if (pnp == -1) {
-	    interpPoint(point1, point2, gate[1], 1 - 36 / dn);
+	    CircuitElementSupport.interpPoint(point1, point2, gate[1], 1 - 36 / dn);
 	    int dist = (dsign < 0) ? 32 : 31;
 	    pcircle = interpPoint(point1, point2, 1 - dist / dn);
 	    pcircler = 3;

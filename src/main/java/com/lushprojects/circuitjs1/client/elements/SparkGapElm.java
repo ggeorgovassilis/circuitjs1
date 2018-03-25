@@ -68,9 +68,9 @@ public class SparkGapElm extends CircuitElm {
 	int alen = 8;
 	calcLeads(dist + alen);
 	Point p1 = interpPoint(point1, point2, (dn - alen) / (2 * dn));
-	arrow1 = calcArrow(point1, p1, alen, alen);
+	arrow1 = CircuitElementSupport.calcArrow(point1, p1, alen, alen);
 	p1 = interpPoint(point1, point2, (dn + alen) / (2 * dn));
-	arrow2 = calcArrow(point2, p1, alen, alen);
+	arrow2 = CircuitElementSupport.calcArrow(point2, p1, alen, alen);
     }
 
     public void draw(Graphics g) {

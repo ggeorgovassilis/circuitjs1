@@ -57,14 +57,14 @@ public class ZenerElm extends DiodeElm {
     public void setPoints() {
 	super.setPoints();
 	calcLeads(16);
-	cathode = newPointArray(2);
-	wing = newPointArray(2);
-	Point pa[] = newPointArray(2);
-	interpPoint2(lead1, lead2, pa[0], pa[1], 0, hs);
-	interpPoint2(lead1, lead2, cathode[0], cathode[1], 1, hs);
-	interpPoint(cathode[0], cathode[1], wing[0], -0.2, -hs);
-	interpPoint(cathode[1], cathode[0], wing[1], -0.2, -hs);
-	poly = createPolygon(pa[0], pa[1], lead2);
+	cathode = CircuitElementSupport.newPointArray(2);
+	wing = CircuitElementSupport.newPointArray(2);
+	Point pa[] = CircuitElementSupport.newPointArray(2);
+	CircuitElementSupport.interpPoint2(lead1, lead2, pa[0], pa[1], 0, hs);
+	CircuitElementSupport.interpPoint2(lead1, lead2, cathode[0], cathode[1], 1, hs);
+	CircuitElementSupport.interpPoint(cathode[0], cathode[1], wing[0], -0.2, -hs);
+	CircuitElementSupport.interpPoint(cathode[1], cathode[0], wing[1], -0.2, -hs);
+	poly = CircuitElementSupport.createPolygon(pa[0], pa[1], lead2);
     }
 
     public void draw(Graphics g) {

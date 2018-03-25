@@ -121,7 +121,7 @@ public class TransistorElm extends CircuitElm {
 	    g.setColor(Color.white);
 	    // IES
 	    // g.setFont(unitsFont);
-	    int ds = sign(dx);
+	    int ds = CircuitElementSupport.sign(dx);
 	    g.drawString("B", base.x - 10 * ds, base.y - 5);
 	    g.drawString("C", coll[0].x - 3 + 9 * ds, coll[0].y + 4); // x+6 if ds=1, -12 if -1
 	    g.drawString("E", emit[0].x - 3 + 9 * ds, emit[0].y + 4);
@@ -150,27 +150,27 @@ public class TransistorElm extends CircuitElm {
 	    dsign = -dsign;
 	int hs2 = hs * dsign * pnp;
 	// calc collector, emitter posts
-	coll = newPointArray(2);
-	emit = newPointArray(2);
-	interpPoint2(point1, point2, coll[0], emit[0], 1, hs2);
+	coll = CircuitElementSupport.newPointArray(2);
+	emit = CircuitElementSupport.newPointArray(2);
+	CircuitElementSupport.interpPoint2(point1, point2, coll[0], emit[0], 1, hs2);
 	// calc rectangle edges
-	rect = newPointArray(4);
-	interpPoint2(point1, point2, rect[0], rect[1], 1 - 16 / dn, hs);
-	interpPoint2(point1, point2, rect[2], rect[3], 1 - 13 / dn, hs);
+	rect = CircuitElementSupport.newPointArray(4);
+	CircuitElementSupport.interpPoint2(point1, point2, rect[0], rect[1], 1 - 16 / dn, hs);
+	CircuitElementSupport.interpPoint2(point1, point2, rect[2], rect[3], 1 - 13 / dn, hs);
 	// calc points where collector/emitter leads contact rectangle
-	interpPoint2(point1, point2, coll[1], emit[1], 1 - 13 / dn, 6 * dsign * pnp);
+	CircuitElementSupport.interpPoint2(point1, point2, coll[1], emit[1], 1 - 13 / dn, 6 * dsign * pnp);
 	// calc point where base lead contacts rectangle
 	base = new Point();
-	interpPoint(point1, point2, base, 1 - 16 / dn);
+	CircuitElementSupport.interpPoint(point1, point2, base, 1 - 16 / dn);
 	// rectangle
-	rectPoly = createPolygon(rect[0], rect[2], rect[3], rect[1]);
+	rectPoly = CircuitElementSupport.createPolygon(rect[0], rect[2], rect[3], rect[1]);
 
 	// arrow
 	if (pnp == 1)
-	    arrowPoly = calcArrow(emit[1], emit[0], 8, 4);
+	    arrowPoly = CircuitElementSupport.calcArrow(emit[1], emit[0], 8, 4);
 	else {
-	    Point pt = interpPoint(point1, point2, 1 - 11 / dn, -5 * dsign * pnp);
-	    arrowPoly = calcArrow(emit[0], pt, 8, 4);
+	    Point pt = CircuitElementSupport.interpPoint(point1, point2, 1 - 11 / dn, -5 * dsign * pnp);
+	    arrowPoly = CircuitElementSupport.calcArrow(emit[0], pt, 8, 4);
 	}
     }
 

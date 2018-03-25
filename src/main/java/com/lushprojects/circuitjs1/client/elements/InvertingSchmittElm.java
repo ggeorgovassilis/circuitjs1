@@ -93,11 +93,11 @@ public class InvertingSchmittElm extends CircuitElm {
 	lead1 = interpPoint(point1, point2, .5 - ww / dn);
 	lead2 = interpPoint(point1, point2, .5 + (ww + 2) / dn);
 	pcircle = interpPoint(point1, point2, .5 + (ww - 2) / dn);
-	Point triPoints[] = newPointArray(3);
-	interpPoint2(lead1, lead2, triPoints[0], triPoints[1], 0, hs);
+	Point triPoints[] = CircuitElementSupport.newPointArray(3);
+	CircuitElementSupport.interpPoint2(lead1, lead2, triPoints[0], triPoints[1], 0, hs);
 	triPoints[2] = interpPoint(point1, point2, .5 + (ww - 5) / dn);
 
-	gatePoly = createPolygon(triPoints);
+	gatePoly = CircuitElementSupport.createPolygon(triPoints);
 	symbolPoly = getSchmittPolygon(1, .3f);
 	setBbox(point1, point2, hs);
     }

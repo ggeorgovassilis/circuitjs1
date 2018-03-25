@@ -78,10 +78,10 @@ public class CapacitorElm extends CircuitElm {
 	lead1 = interpPoint(point1, point2, f);
 	lead2 = interpPoint(point1, point2, 1 - f);
 	// calc plates
-	plate1 = newPointArray(2);
-	plate2 = newPointArray(2);
-	interpPoint2(point1, point2, plate1[0], plate1[1], f, 12);
-	interpPoint2(point1, point2, plate2[0], plate2[1], 1 - f, 12);
+	plate1 = CircuitElementSupport.newPointArray(2);
+	plate2 = CircuitElementSupport.newPointArray(2);
+	CircuitElementSupport.interpPoint2(point1, point2, plate1[0], plate1[1], f, 12);
+	CircuitElementSupport.interpPoint2(point1, point2, plate2[0], plate2[1], 1 - f, 12);
     }
 
     public void draw(Graphics g) {

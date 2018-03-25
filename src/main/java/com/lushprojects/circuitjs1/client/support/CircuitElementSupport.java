@@ -108,4 +108,136 @@ public class CircuitElementSupport {
         g.fillOval(pt.x - 3, pt.y - 3, 7, 7);
     }
 
+    public static void interpPoint(Point a, Point b, Point c, double f, double g) {
+        // int xpd = b.x-a.x;
+        // int ypd = b.y-a.y;
+        int gx = b.y - a.y;
+        int gy = a.x - b.x;
+        g /= Math.sqrt(gx * gx + gy * gy);
+        c.x = (int) Math.floor(a.x * (1 - f) + b.x * f + g * gx + .48);
+        c.y = (int) Math.floor(a.y * (1 - f) + b.y * f + g * gy + .48);
+    }
+
+    /**
+     * Returns a point fraction f along the line between a and b and offset
+     * perpendicular by g
+     * 
+     * @param a
+     *            1st Point
+     * @param b
+     *            2nd Point
+     * @param f
+     *            Fraction along line
+     * @param g
+     *            Fraction perpendicular to line
+     * @return Interpolated point
+     */
+    public static Point interpPoint(Point a, Point b, double f, double g) {
+        Point p = new Point();
+        interpPoint(a, b, p, f, g);
+        return p;
+    }
+
+    /**
+     * Calculates two points fraction f along the line between a and b and offest
+     * perpendicular by +/-g
+     * 
+     * @param a
+     *            1st point (In)
+     * @param b
+     *            2nd point (In)
+     * @param c
+     *            1st point (Out)
+     * @param d
+     *            2nd point (Out)
+     * @param f
+     *            Fraction along line
+     * @param g
+     *            Fraction perpendicular to line
+     */
+    public static void interpPoint2(Point a, Point b, Point c, Point d, double f, double g) {
+        // int xpd = b.x-a.x;
+        // int ypd = b.y-a.y;
+        int gx = b.y - a.y;
+        int gy = a.x - b.x;
+        g /= Math.sqrt(gx * gx + gy * gy);
+        c.x = (int) Math.floor(a.x * (1 - f) + b.x * f + g * gx + .48);
+        c.y = (int) Math.floor(a.y * (1 - f) + b.y * f + g * gy + .48);
+        d.x = (int) Math.floor(a.x * (1 - f) + b.x * f - g * gx + .48);
+        d.y = (int) Math.floor(a.y * (1 - f) + b.y * f - g * gy + .48);
+    }
+
+    public static void interpPoint(Point a, Point b, Point c, double f) {
+        c.x = (int) Math.floor(a.x * (1 - f) + b.x * f + .48);
+        c.y = (int) Math.floor(a.y * (1 - f) + b.y * f + .48);
+    }
+
+    public static Point[] newPointArray(int n) {
+        Point a[] = new Point[n];
+        while (n > 0)
+            a[--n] = new Point();
+        return a;
+    }
+
+    public static Polygon calcArrow(Point a, Point b, double al, double aw) {
+        Polygon poly = new Polygon();
+        Point p1 = new Point();
+        Point p2 = new Point();
+        int adx = b.x - a.x;
+        int ady = b.y - a.y;
+        double l = Math.sqrt(adx * adx + ady * ady);
+        poly.addPoint(b.x, b.y);
+        interpPoint2(a, b, p1, p2, 1 - al / l, aw);
+        poly.addPoint(p1.x, p1.y);
+        poly.addPoint(p2.x, p2.y);
+        return poly;
+    }
+
+    public static Polygon createPolygon(Point a, Point b, Point c) {
+        Polygon p = new Polygon();
+        p.addPoint(a.x, a.y);
+        p.addPoint(b.x, b.y);
+        p.addPoint(c.x, c.y);
+        return p;
+    }
+
+    public static Polygon createPolygon(Point a, Point b, Point c, Point d) {
+        Polygon p = new Polygon();
+        p.addPoint(a.x, a.y);
+        p.addPoint(b.x, b.y);
+        p.addPoint(c.x, c.y);
+        p.addPoint(d.x, d.y);
+        return p;
+    }
+
+    public static Polygon createPolygon(Point a[]) {
+        Polygon p = new Polygon();
+        int i;
+        for (i = 0; i != a.length; i++)
+            p.addPoint(a[i].x, a[i].y);
+        return p;
+    }
+
+    public static int abs(int x) {
+        return x < 0 ? -x : x;
+    }
+
+    public static int sign(int x) {
+        return (x < 0) ? -1 : (x == 0) ? 0 : 1;
+    }
+
+    public static int min(int a, int b) {
+        return (a < b) ? a : b;
+    }
+
+    public static int max(int a, int b) {
+        return (a > b) ? a : b;
+    }
+
+    public static double distance(Point p1, Point p2) {
+        double x = p1.x - p2.x;
+        double y = p1.y - p2.y;
+        return Math.sqrt(x * x + y * y);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Color;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -33,12 +34,12 @@ public class PolarCapacitorElm extends CapacitorElm {
 	super.setPoints();
 	double f = (dn / 2 - 4) / dn;
 	int i;
-	platePoints = newPointArray(8);
+	platePoints = CircuitElementSupport.newPointArray(8);
 	for (i = 0; i <= 7; i++) {
 	    double q = (i - 3.5) / 3.5;
-	    platePoints[i] = interpPoint(plate2[0], plate2[1], i / 7., 5 * (1 - Math.sqrt(1 - q * q)));
+	    platePoints[i] = CircuitElementSupport.interpPoint(plate2[0], plate2[1], i / 7., 5 * (1 - Math.sqrt(1 - q * q)));
 	}
-	plusPoint = interpPoint(point1, point2, f - 8 / dn, -10 * dsign);
+	plusPoint = CircuitElementSupport.interpPoint(point1, point2, f - 8 / dn, -10 * dsign);
 	if (y2 > y)
 	    plusPoint.y += 4;
 	if (y > y2)

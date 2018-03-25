@@ -91,12 +91,12 @@ public class MemristorElm extends CircuitElm {
 		nx = 0;
 	    double v = v1 + (v2 - v1) * i / segments;
 	    setVoltageColor(g, v);
-	    interpPoint(lead1, lead2, sim.ps1, i * segf, hs * ox);
-	    interpPoint(lead1, lead2, sim.ps2, i * segf, hs * nx);
+	    CircuitElementSupport.interpPoint(lead1, lead2, sim.ps1, i * segf, hs * ox);
+	    CircuitElementSupport.interpPoint(lead1, lead2, sim.ps2, i * segf, hs * nx);
 	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	    if (i == segments)
 		break;
-	    interpPoint(lead1, lead2, sim.ps1, (i + 1) * segf, hs * nx);
+	    CircuitElementSupport.interpPoint(lead1, lead2, sim.ps1, (i + 1) * segf, hs * nx);
 	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	    ox = nx;
 	}

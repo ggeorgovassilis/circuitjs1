@@ -72,13 +72,13 @@ public class TriStateElm extends CircuitElm {
 	int ww = 16;
 	if (ww > dn / 2)
 	    ww = (int) (dn / 2);
-	Point triPoints[] = newPointArray(3);
-	interpPoint2(lead1, lead2, triPoints[0], triPoints[1], 0, hs + 2);
+	Point triPoints[] = CircuitElementSupport.newPointArray(3);
+	CircuitElementSupport.interpPoint2(lead1, lead2, triPoints[0], triPoints[1], 0, hs + 2);
 	triPoints[2] = interpPoint(point1, point2, .5 + (ww - 2) / dn);
-	gatePoly = createPolygon(triPoints);
+	gatePoly = CircuitElementSupport.createPolygon(triPoints);
 
-	point3 = interpPoint(point1, point2, .5, -hs);
-	lead3 = interpPoint(point1, point2, .5, -hs / 2);
+	point3 = CircuitElementSupport.interpPoint(point1, point2, .5, -hs);
+	lead3 = CircuitElementSupport.interpPoint(point1, point2, .5, -hs / 2);
     }
 
     public void draw(Graphics g) {
@@ -127,11 +127,11 @@ public class TriStateElm extends CircuitElm {
     public void drag(int xx, int yy) {
 	xx = sim.snapGrid(xx);
 	yy = sim.snapGrid(yy);
-	if (abs(x - xx) < abs(y - yy))
+	if (CircuitElementSupport.abs(x - xx) < CircuitElementSupport.abs(y - yy))
 	    xx = x;
 	else
 	    yy = y;
-	int q1 = abs(x - xx) + abs(y - yy);
+	int q1 = CircuitElementSupport.abs(x - xx) + CircuitElementSupport.abs(y - yy);
 	int q2 = (q1 / 2) % sim.gridSize;
 	if (q2 != 0)
 	    return;

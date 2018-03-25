@@ -62,7 +62,7 @@ public class OutputElm extends CircuitElm {
 	    s = "X";
 	if (this == sim.plotYElm)
 	    s = "Y";
-	interpPoint(point1, point2, lead1, 1 - ((int) g.context.measureText(s).getWidth() / 2 + 8) / dn);
+	CircuitElementSupport.interpPoint(point1, point2, lead1, 1 - ((int) g.context.measureText(s).getWidth() / 2 + 8) / dn);
 	setBbox(point1, lead1, 0);
 	drawCenteredText(g, s, x2, y2, true);
 	setVoltageColor(g, volts[0]);

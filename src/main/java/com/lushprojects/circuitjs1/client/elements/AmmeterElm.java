@@ -72,7 +72,7 @@ public class AmmeterElm extends CircuitElm {
     public void setPoints() {
 	super.setPoints();
 	mid = interpPoint(point1, point2, 0.6);
-	arrowPoly = calcArrow(point1, mid, 14, 7);
+	arrowPoly = CircuitElementSupport.calcArrow(point1, mid, 14, 7);
     }
 
     Point mid;

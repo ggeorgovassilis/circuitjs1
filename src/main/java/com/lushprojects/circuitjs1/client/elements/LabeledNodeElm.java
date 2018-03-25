@@ -124,7 +124,7 @@ public class LabeledNodeElm extends CircuitElm {
 	drawCenteredText(g, text, x2, y2, true);
 	curcount = updateDotCount(current, curcount);
 	drawDots(g, point1, lead1, curcount);
-	interpPoint(point1, point2, sim.ps2, 1 + 11. / dn);
+	CircuitElementSupport.interpPoint(point1, point2, sim.ps2, 1 + 11. / dn);
 	setBbox(point1, sim.ps2, circleSize);
 	drawPosts(g);
     }

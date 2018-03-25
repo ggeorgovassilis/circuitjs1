@@ -104,23 +104,23 @@ public class SCRElm extends CircuitElm {
     public void setPoints() {
 	super.setPoints();
 	int dir = 0;
-	if (abs(dx) > abs(dy)) {
-	    dir = -sign(dx) * sign(dy);
+	if (CircuitElementSupport.abs(dx) > CircuitElementSupport.abs(dy)) {
+	    dir = -CircuitElementSupport.sign(dx) * CircuitElementSupport.sign(dy);
 	    point2.y = point1.y;
 	} else {
-	    dir = sign(dy) * sign(dx);
+	    dir = CircuitElementSupport.sign(dy) * CircuitElementSupport.sign(dx);
 	    point2.x = point1.x;
 	}
 	if (dir == 0)
 	    dir = 1;
 	calcLeads(16);
-	cathode = newPointArray(2);
-	Point pa[] = newPointArray(2);
-	interpPoint2(lead1, lead2, pa[0], pa[1], 0, hs);
-	interpPoint2(lead1, lead2, cathode[0], cathode[1], 1, hs);
-	poly = createPolygon(pa[0], pa[1], lead2);
+	cathode = CircuitElementSupport.newPointArray(2);
+	Point pa[] = CircuitElementSupport.newPointArray(2);
+	CircuitElementSupport.interpPoint2(lead1, lead2, pa[0], pa[1], 0, hs);
+	CircuitElementSupport.interpPoint2(lead1, lead2, cathode[0], cathode[1], 1, hs);
+	poly = CircuitElementSupport.createPolygon(pa[0], pa[1], lead2);
 
-	gate = newPointArray(2);
+	gate = CircuitElementSupport.newPointArray(2);
 	double leadlen = (dn - 16) / 2;
 	int gatelen = sim.gridSize;
 	gatelen += leadlen % sim.gridSize;
@@ -129,8 +129,8 @@ public class SCRElm extends CircuitElm {
 	    y2 = y;
 	    return;
 	}
-	interpPoint(lead2, point2, gate[0], gatelen / leadlen, gatelen * dir);
-	interpPoint(lead2, point2, gate[1], gatelen / leadlen, sim.gridSize * 2 * dir);
+	CircuitElementSupport.interpPoint(lead2, point2, gate[0], gatelen / leadlen, gatelen * dir);
+	CircuitElementSupport.interpPoint(lead2, point2, gate[1], gatelen / leadlen, sim.gridSize * 2 * dir);
 	gate[1].x = sim.snapGrid(gate[1].x);
 	gate[1].y = sim.snapGrid(gate[1].y);
     }
@@ -163,7 +163,7 @@ public class SCRElm extends CircuitElm {
 	    drawDots(g, point1, lead2, curcount_a);
 	    drawDots(g, point2, lead2, curcount_c);
 	    drawDots(g, gate[1], gate[0], curcount_g);
-	    drawDots(g, gate[0], lead2, curcount_g + distance(gate[1], gate[0]));
+	    drawDots(g, gate[0], lead2, curcount_g + CircuitElementSupport.distance(gate[1], gate[0]));
 	}
 	drawPosts(g);
     }

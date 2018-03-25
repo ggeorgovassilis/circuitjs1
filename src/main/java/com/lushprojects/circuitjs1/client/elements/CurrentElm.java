@@ -61,7 +61,7 @@ public class CurrentElm extends CircuitElm {
 	ashaft2 = interpPoint(lead1, lead2, .6);
 	center = interpPoint(lead1, lead2, .5);
 	Point p2 = interpPoint(lead1, lead2, .75);
-	arrow = calcArrow(center, p2, 4, 4);
+	arrow = CircuitElementSupport.calcArrow(center, p2, 4, 4);
     }
 
     public void draw(Graphics g) {

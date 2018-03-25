@@ -70,8 +70,8 @@ public class TransLineElm extends CircuitElm {
     public void drag(int xx, int yy) {
 	xx = sim.snapGrid(xx);
 	yy = sim.snapGrid(yy);
-	int w1 = max(sim.gridSize, abs(yy - y));
-	int w2 = max(sim.gridSize, abs(xx - x));
+	int w1 = CircuitElementSupport.max(sim.gridSize, CircuitElementSupport.abs(yy - y));
+	int w2 = CircuitElementSupport.max(sim.gridSize, CircuitElementSupport.abs(xx - x));
 	if (w1 > w2) {
 	    xx = x;
 	    width = w2;
@@ -103,14 +103,14 @@ public class TransLineElm extends CircuitElm {
 
     public void setPoints() {
 	super.setPoints();
-	int ds = (dy == 0) ? sign(dx) : -sign(dy);
-	Point p3 = interpPoint(point1, point2, 0, -width * ds);
-	Point p4 = interpPoint(point1, point2, 1, -width * ds);
+	int ds = (dy == 0) ? CircuitElementSupport.sign(dx) : -CircuitElementSupport.sign(dy);
+	Point p3 = CircuitElementSupport.interpPoint(point1, point2, 0, -width * ds);
+	Point p4 = CircuitElementSupport.interpPoint(point1, point2, 1, -width * ds);
 	int sep = sim.gridSize / 2;
-	Point p5 = interpPoint(point1, point2, 0, -(width / 2 - sep) * ds);
-	Point p6 = interpPoint(point1, point2, 1, -(width / 2 - sep) * ds);
-	Point p7 = interpPoint(point1, point2, 0, -(width / 2 + sep) * ds);
-	Point p8 = interpPoint(point1, point2, 1, -(width / 2 + sep) * ds);
+	Point p5 = CircuitElementSupport.interpPoint(point1, point2, 0, -(width / 2 - sep) * ds);
+	Point p6 = CircuitElementSupport.interpPoint(point1, point2, 1, -(width / 2 - sep) * ds);
+	Point p7 = CircuitElementSupport.interpPoint(point1, point2, 0, -(width / 2 + sep) * ds);
+	Point p8 = CircuitElementSupport.interpPoint(point1, point2, 1, -(width / 2 + sep) * ds);
 
 	// we number the posts like this because we want the lower-numbered
 	// points to be on the bottom, so that if some of them are unconnected
@@ -138,10 +138,10 @@ public class TransLineElm extends CircuitElm {
 		int ix2 = (ix0 - lenSteps * (segments - 1 - i) / segments) % lenSteps;
 		double v = (voltageL[ix1] + voltageR[ix2]) / 2;
 		setVoltageColor(g, v);
-		interpPoint(inner[0], inner[1], sim.ps1, i * segf);
-		interpPoint(inner[2], inner[3], sim.ps2, i * segf);
+		CircuitElementSupport.interpPoint(inner[0], inner[1], sim.ps1, i * segf);
+		CircuitElementSupport.interpPoint(inner[2], inner[3], sim.ps2, i * segf);
 		g.drawLine(sim.ps1.x, sim.ps1.y, sim.ps2.x, sim.ps2.y);
-		interpPoint(inner[2], inner[3], sim.ps1, (i + 1) * segf);
+		CircuitElementSupport.interpPoint(inner[2], inner[3], sim.ps1, (i + 1) * segf);
 		CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	    }
 	}

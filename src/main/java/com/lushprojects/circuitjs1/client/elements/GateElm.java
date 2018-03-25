@@ -106,8 +106,8 @@ abstract class GateElm extends CircuitElm {
 	for (i = 0; i != inputCount; i++, i0++) {
 	    if (i0 == 0 && (inputCount & 1) == 0)
 		i0++;
-	    inPosts[i] = interpPoint(point1, point2, 0, hs * i0);
-	    inGates[i] = interpPoint(lead1, lead2, 0, hs * i0);
+	    inPosts[i] = CircuitElementSupport.interpPoint(point1, point2, 0, hs * i0);
+	    inGates[i] = CircuitElementSupport.interpPoint(lead1, lead2, 0, hs * i0);
 	    volts[i] = (lastOutput ^ isInverting()) ? 5 : 0;
 	}
 	hs2 = gwidth * (inputCount / 2 + 1);
@@ -117,10 +117,10 @@ abstract class GateElm extends CircuitElm {
     }
 
     void createEuroGatePolygon() {
-	Point pts[] = newPointArray(4);
-	interpPoint2(lead1, lead2, pts[0], pts[1], 0, hs2);
-	interpPoint2(lead1, lead2, pts[3], pts[2], 1, hs2);
-	gatePoly = createPolygon(pts);
+	Point pts[] = CircuitElementSupport.newPointArray(4);
+	CircuitElementSupport.interpPoint2(lead1, lead2, pts[0], pts[1], 0, hs2);
+	CircuitElementSupport.interpPoint2(lead1, lead2, pts[3], pts[2], 1, hs2);
+	gatePoly = CircuitElementSupport.createPolygon(pts);
     }
 
     String getGateText() {

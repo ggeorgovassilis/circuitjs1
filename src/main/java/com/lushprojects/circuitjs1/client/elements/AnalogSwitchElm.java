@@ -65,8 +65,8 @@ public class AnalogSwitchElm extends CircuitElm {
 	calcLeads(32);
 	ps = new Point();
 	int openhs = 16;
-	point3 = interpPoint(point1, point2, .5, -openhs);
-	lead3 = interpPoint(point1, point2, .5, -openhs / 2);
+	point3 = CircuitElementSupport.interpPoint(point1, point2, .5, -openhs);
+	lead3 = CircuitElementSupport.interpPoint(point1, point2, .5, -openhs / 2);
     }
 
     public void draw(Graphics g) {
@@ -77,7 +77,7 @@ public class AnalogSwitchElm extends CircuitElm {
 	draw2Leads(g);
 
 	g.setColor(sim.lightGrayColor);
-	interpPoint(lead1, lead2, ps, 1, hs);
+	CircuitElementSupport.interpPoint(lead1, lead2, ps, 1, hs);
 	CircuitElementSupport.drawThickLine(g, lead1, ps);
 
 	setVoltageColor(g, volts[2]);
@@ -113,11 +113,11 @@ public class AnalogSwitchElm extends CircuitElm {
     public void drag(int xx, int yy) {
 	xx = sim.snapGrid(xx);
 	yy = sim.snapGrid(yy);
-	if (abs(x - xx) < abs(y - yy))
+	if (CircuitElementSupport.abs(x - xx) < CircuitElementSupport.abs(y - yy))
 	    xx = x;
 	else
 	    yy = y;
-	int q1 = abs(x - xx) + abs(y - yy);
+	int q1 = CircuitElementSupport.abs(x - xx) + CircuitElementSupport.abs(y - yy);
 	int q2 = (q1 / 2) % sim.gridSize;
 	if (q2 != 0)
 	    return;

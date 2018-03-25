@@ -93,7 +93,7 @@ public abstract class CircuitElm implements Editable {
 
     void initBoundingBox() {
 	boundingBox = new Rectangle();
-	boundingBox.setBounds(min(x, x2), min(y, y2), abs(x2 - x) + 1, abs(y2 - y) + 1);
+	boundingBox.setBounds(CircuitElementSupport.min(x, x2), CircuitElementSupport.min(y, y2), CircuitElementSupport.abs(x2 - x) + 1, CircuitElementSupport.abs(y2 - y) + 1);
     }
 
     void allocNodes() {
@@ -155,7 +155,7 @@ public abstract class CircuitElm implements Editable {
 	dn = Math.sqrt(dx * dx + dy * dy);
 	dpx1 = dy / dn;
 	dpy1 = -dx / dn;
-	dsign = (dy == 0) ? sign(dx) : sign(dy);
+	dsign = (dy == 0) ? CircuitElementSupport.sign(dx) : CircuitElementSupport.sign(dy);
 	point1 = new Point(x, y);
 	point2 = new Point(x2, y2);
     }
@@ -172,75 +172,8 @@ public abstract class CircuitElm implements Editable {
 
     Point interpPoint(Point a, Point b, double f) {
 	Point p = new Point();
-	interpPoint(a, b, p, f);
+	CircuitElementSupport.interpPoint(a, b, p, f);
 	return p;
-    }
-
-    void interpPoint(Point a, Point b, Point c, double f) {
-	/*
-	 * double q = (a.x*(1-f)+b.x*f+.48); System.out.println(q + " " + (int) q);
-	 */
-	c.x = (int) Math.floor(a.x * (1 - f) + b.x * f + .48);
-	c.y = (int) Math.floor(a.y * (1 - f) + b.y * f + .48);
-    }
-
-    void interpPoint(Point a, Point b, Point c, double f, double g) {
-	// int xpd = b.x-a.x;
-	// int ypd = b.y-a.y;
-	int gx = b.y - a.y;
-	int gy = a.x - b.x;
-	g /= Math.sqrt(gx * gx + gy * gy);
-	c.x = (int) Math.floor(a.x * (1 - f) + b.x * f + g * gx + .48);
-	c.y = (int) Math.floor(a.y * (1 - f) + b.y * f + g * gy + .48);
-    }
-
-    /**
-     * Returns a point fraction f along the line between a and b and offset
-     * perpendicular by g
-     * 
-     * @param a
-     *            1st Point
-     * @param b
-     *            2nd Point
-     * @param f
-     *            Fraction along line
-     * @param g
-     *            Fraction perpendicular to line
-     * @return Interpolated point
-     */
-    Point interpPoint(Point a, Point b, double f, double g) {
-	Point p = new Point();
-	interpPoint(a, b, p, f, g);
-	return p;
-    }
-
-    /**
-     * Calculates two points fraction f along the line between a and b and offest
-     * perpendicular by +/-g
-     * 
-     * @param a
-     *            1st point (In)
-     * @param b
-     *            2nd point (In)
-     * @param c
-     *            1st point (Out)
-     * @param d
-     *            2nd point (Out)
-     * @param f
-     *            Fraction along line
-     * @param g
-     *            Fraction perpendicular to line
-     */
-    void interpPoint2(Point a, Point b, Point c, Point d, double f, double g) {
-	// int xpd = b.x-a.x;
-	// int ypd = b.y-a.y;
-	int gx = b.y - a.y;
-	int gy = a.x - b.x;
-	g /= Math.sqrt(gx * gx + gy * gy);
-	c.x = (int) Math.floor(a.x * (1 - f) + b.x * f + g * gx + .48);
-	c.y = (int) Math.floor(a.y * (1 - f) + b.y * f + g * gy + .48);
-	d.x = (int) Math.floor(a.x * (1 - f) + b.x * f - g * gx + .48);
-	d.y = (int) Math.floor(a.y * (1 - f) + b.y * f - g * gy + .48);
     }
 
     void draw2Leads(Graphics g) {
@@ -251,13 +184,6 @@ public abstract class CircuitElm implements Editable {
 	// draw second lead
 	setVoltageColor(g, volts[1]);
 	CircuitElementSupport.drawThickLine(g, lead2, point2);
-    }
-
-    Point[] newPointArray(int n) {
-	Point a[] = new Point[n];
-	while (n > 0)
-	    a[--n] = new Point();
-	return a;
     }
 
     void drawDots(Graphics g, Point pa, Point pb, double pos) {
@@ -277,45 +203,6 @@ public abstract class CircuitElm implements Editable {
 	    int y0 = (int) (pa.y + di * dy / dn);
 	    g.fillRect(x0 - 2, y0 - 2, 4, 4);
 	}
-    }
-
-    Polygon calcArrow(Point a, Point b, double al, double aw) {
-	Polygon poly = new Polygon();
-	Point p1 = new Point();
-	Point p2 = new Point();
-	int adx = b.x - a.x;
-	int ady = b.y - a.y;
-	double l = Math.sqrt(adx * adx + ady * ady);
-	poly.addPoint(b.x, b.y);
-	interpPoint2(a, b, p1, p2, 1 - al / l, aw);
-	poly.addPoint(p1.x, p1.y);
-	poly.addPoint(p2.x, p2.y);
-	return poly;
-    }
-
-    Polygon createPolygon(Point a, Point b, Point c) {
-	Polygon p = new Polygon();
-	p.addPoint(a.x, a.y);
-	p.addPoint(b.x, b.y);
-	p.addPoint(c.x, c.y);
-	return p;
-    }
-
-    Polygon createPolygon(Point a, Point b, Point c, Point d) {
-	Polygon p = new Polygon();
-	p.addPoint(a.x, a.y);
-	p.addPoint(b.x, b.y);
-	p.addPoint(c.x, c.y);
-	p.addPoint(d.x, d.y);
-	return p;
-    }
-
-    Polygon createPolygon(Point a[]) {
-	Polygon p = new Polygon();
-	int i;
-	for (i = 0; i != a.length; i++)
-	    p.addPoint(a[i].x, a[i].y);
-	return p;
     }
 
     public void drag(int xx, int yy) {
@@ -506,10 +393,10 @@ public abstract class CircuitElm implements Editable {
 	    y1 = y2;
 	    y2 = q;
 	}
-	x1 = min(boundingBox.x, x1);
-	y1 = min(boundingBox.y, y1);
-	x2 = max(boundingBox.x + boundingBox.width, x2);
-	y2 = max(boundingBox.y + boundingBox.height, y2);
+	x1 = CircuitElementSupport.min(boundingBox.x, x1);
+	y1 = CircuitElementSupport.min(boundingBox.y, y1);
+	x2 = CircuitElementSupport.max(boundingBox.x + boundingBox.width, x2);
+	y2 = CircuitElementSupport.max(boundingBox.y + boundingBox.height, y2);
 	boundingBox.setBounds(x1, y1, x2 - x1, y2 - y1);
     }
 
@@ -559,17 +446,17 @@ public abstract class CircuitElm implements Editable {
 	int dpx = (int) (dpx1 * hs);
 	int dpy = (int) (dpy1 * hs);
 	if (dpx == 0)
-	    g.drawString(s, xc - w / 2, yc - abs(dpy) - 2);
+	    g.drawString(s, xc - w / 2, yc - CircuitElementSupport.abs(dpy) - 2);
 	else {
-	    int xx = xc + abs(dpx) + 2;
+	    int xx = xc + CircuitElementSupport.abs(dpx) + 2;
 	    if (this instanceof VoltageElm || (x < x2 && y > y2))
-		xx = xc - (w + abs(dpx) + 2);
+		xx = xc - (w + CircuitElementSupport.abs(dpx) + 2);
 	    g.drawString(s, xx, yc + dpy + ya);
 	}
     }
 
     void drawCoil(Graphics g, int hs, Point p1, Point p2, double v1, double v2) {
-	double len = distance(p1, p2);
+	double len = CircuitElementSupport.distance(p1, p2);
 
 	g.context.save();
 	g.context.setLineWidth(3.0);
@@ -599,18 +486,18 @@ public abstract class CircuitElm implements Editable {
     }
 
     Polygon getSchmittPolygon(float gsize, float ctr) {
-	Point pts[] = newPointArray(6);
+	Point pts[] = CircuitElementSupport.newPointArray(6);
 	float hs = 3 * gsize;
 	float h1 = 3 * gsize;
 	float h2 = h1 * 2;
-	double len = distance(lead1, lead2);
-	pts[0] = interpPoint(lead1, lead2, ctr - h2 / len, hs);
-	pts[1] = interpPoint(lead1, lead2, ctr + h1 / len, hs);
-	pts[2] = interpPoint(lead1, lead2, ctr + h1 / len, -hs);
-	pts[3] = interpPoint(lead1, lead2, ctr + h2 / len, -hs);
-	pts[4] = interpPoint(lead1, lead2, ctr - h1 / len, -hs);
-	pts[5] = interpPoint(lead1, lead2, ctr - h1 / len, hs);
-	return createPolygon(pts);
+	double len = CircuitElementSupport.distance(lead1, lead2);
+	pts[0] = CircuitElementSupport.interpPoint(lead1, lead2, ctr - h2 / len, hs);
+	pts[1] = CircuitElementSupport.interpPoint(lead1, lead2, ctr + h1 / len, hs);
+	pts[2] = CircuitElementSupport.interpPoint(lead1, lead2, ctr + h1 / len, -hs);
+	pts[3] = CircuitElementSupport.interpPoint(lead1, lead2, ctr + h2 / len, -hs);
+	pts[4] = CircuitElementSupport.interpPoint(lead1, lead2, ctr - h1 / len, -hs);
+	pts[5] = CircuitElementSupport.interpPoint(lead1, lead2, ctr - h1 / len, hs);
+	return CircuitElementSupport.createPolygon(pts);
     }
 
     public void updateDotCount() {
@@ -785,28 +672,6 @@ public abstract class CircuitElm implements Editable {
 
     public void selectRect(Rectangle r) {
 	selected = r.intersects(boundingBox);
-    }
-
-    static int abs(int x) {
-	return x < 0 ? -x : x;
-    }
-
-    static int sign(int x) {
-	return (x < 0) ? -1 : (x == 0) ? 0 : 1;
-    }
-
-    static int min(int a, int b) {
-	return (a < b) ? a : b;
-    }
-
-    static int max(int a, int b) {
-	return (a > b) ? a : b;
-    }
-
-    static double distance(Point p1, Point p2) {
-	double x = p1.x - p2.x;
-	double y = p1.y - p2.y;
-	return Math.sqrt(x * x + y * y);
     }
 
     public Rectangle getBoundingBox() {

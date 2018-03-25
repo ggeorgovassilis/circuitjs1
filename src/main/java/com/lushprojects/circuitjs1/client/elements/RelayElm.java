@@ -115,11 +115,11 @@ public class RelayElm extends CircuitElm {
 	g.setColor(Color.darkGray);
 	for (i = 0; i != poleCount; i++) {
 	    if (i == 0)
-		interpPoint(point1, point2, lines[i * 2], .5, openhs * 2 + 5 * dsign - i * openhs * 3);
+		CircuitElementSupport.interpPoint(point1, point2, lines[i * 2], .5, openhs * 2 + 5 * dsign - i * openhs * 3);
 	    else
-		interpPoint(point1, point2, lines[i * 2], .5,
+		CircuitElementSupport.interpPoint(point1, point2, lines[i * 2], .5,
 			(int) (openhs * (-i * 3 + 3 - .5 + d_position)) + 5 * dsign);
-	    interpPoint(point1, point2, lines[i * 2 + 1], .5, (int) (openhs * (-i * 3 - .5 + d_position)) - 5 * dsign);
+	    CircuitElementSupport.interpPoint(point1, point2, lines[i * 2 + 1], .5, (int) (openhs * (-i * 3 - .5 + d_position)) - 5 * dsign);
 	    g.drawLine(lines[i * 2].x, lines[i * 2].y, lines[i * 2 + 1].x, lines[i * 2 + 1].y);
 	}
 
@@ -131,7 +131,7 @@ public class RelayElm extends CircuitElm {
 		CircuitElementSupport.drawThickLine(g, swposts[p][i], swpoles[p][i]);
 	    }
 
-	    interpPoint(swpoles[p][1], swpoles[p][2], ptSwitch[p], d_position);
+	    CircuitElementSupport.interpPoint(swpoles[p][1], swpoles[p][2], ptSwitch[p], d_position);
 	    // setVoltageColor(g, volts[nSwitch0]);
 	    g.setColor(Color.lightGray);
 	    CircuitElementSupport.drawThickLine(g, swpoles[p][0], ptSwitch[p]);
@@ -185,27 +185,27 @@ public class RelayElm extends CircuitElm {
 		swposts[i][j] = new Point();
 		swpoles[i][j] = new Point();
 	    }
-	    interpPoint(lead1, lead2, swpoles[i][0], 0, -openhs * 3 * i);
-	    interpPoint(lead1, lead2, swpoles[i][1], 1, -openhs * 3 * i - openhs);
-	    interpPoint(lead1, lead2, swpoles[i][2], 1, -openhs * 3 * i + openhs);
-	    interpPoint(point1, point2, swposts[i][0], 0, -openhs * 3 * i);
-	    interpPoint(point1, point2, swposts[i][1], 1, -openhs * 3 * i - openhs);
-	    interpPoint(point1, point2, swposts[i][2], 1, -openhs * 3 * i + openhs);
+	    CircuitElementSupport.interpPoint(lead1, lead2, swpoles[i][0], 0, -openhs * 3 * i);
+	    CircuitElementSupport.interpPoint(lead1, lead2, swpoles[i][1], 1, -openhs * 3 * i - openhs);
+	    CircuitElementSupport.interpPoint(lead1, lead2, swpoles[i][2], 1, -openhs * 3 * i + openhs);
+	    CircuitElementSupport.interpPoint(point1, point2, swposts[i][0], 0, -openhs * 3 * i);
+	    CircuitElementSupport.interpPoint(point1, point2, swposts[i][1], 1, -openhs * 3 * i - openhs);
+	    CircuitElementSupport.interpPoint(point1, point2, swposts[i][2], 1, -openhs * 3 * i + openhs);
 	}
 
 	// coil
-	coilPosts = newPointArray(2);
-	coilLeads = newPointArray(2);
-	ptSwitch = newPointArray(poleCount);
+	coilPosts = CircuitElementSupport.newPointArray(2);
+	coilLeads = CircuitElementSupport.newPointArray(2);
+	ptSwitch = CircuitElementSupport.newPointArray(poleCount);
 
 	int x = ((flags & FLAG_SWAP_COIL) != 0) ? 1 : 0;
-	interpPoint(point1, point2, coilPosts[0], x, openhs * 2);
-	interpPoint(point1, point2, coilPosts[1], x, openhs * 3);
-	interpPoint(point1, point2, coilLeads[0], .5, openhs * 2);
-	interpPoint(point1, point2, coilLeads[1], .5, openhs * 3);
+	CircuitElementSupport.interpPoint(point1, point2, coilPosts[0], x, openhs * 2);
+	CircuitElementSupport.interpPoint(point1, point2, coilPosts[1], x, openhs * 3);
+	CircuitElementSupport.interpPoint(point1, point2, coilLeads[0], .5, openhs * 2);
+	CircuitElementSupport.interpPoint(point1, point2, coilLeads[1], .5, openhs * 3);
 
 	// lines
-	lines = newPointArray(poleCount * 2);
+	lines = CircuitElementSupport.newPointArray(poleCount * 2);
     }
 
     public Point getPost(int n) {

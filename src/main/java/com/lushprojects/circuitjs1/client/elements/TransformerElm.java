@@ -47,7 +47,7 @@ public class TransformerElm extends CircuitElm {
 
     public TransformerElm(int xa, int ya, int xb, int yb, int f, StringTokenizer st) {
 	super(xa, ya, xb, yb, f);
-	width = max(32, abs(yb - ya));
+	width = CircuitElementSupport.max(32, CircuitElementSupport.abs(yb - ya));
 	inductance = new Double(st.nextToken()).doubleValue();
 	ratio = new Double(st.nextToken()).doubleValue();
 	current = new double[2];
@@ -66,7 +66,7 @@ public class TransformerElm extends CircuitElm {
     public void drag(int xx, int yy) {
 	xx = sim.snapGrid(xx);
 	yy = sim.snapGrid(yy);
-	width = max(32, abs(yy - y));
+	width = CircuitElementSupport.max(32, CircuitElementSupport.abs(yy - y));
 	if (xx == x)
 	    yy = y;
 	x2 = xx;
@@ -116,27 +116,27 @@ public class TransformerElm extends CircuitElm {
     public void setPoints() {
 	super.setPoints();
 	point2.y = point1.y;
-	ptEnds = newPointArray(4);
-	ptCoil = newPointArray(4);
-	ptCore = newPointArray(4);
+	ptEnds = CircuitElementSupport.newPointArray(4);
+	ptCoil = CircuitElementSupport.newPointArray(4);
+	ptCore = CircuitElementSupport.newPointArray(4);
 	ptEnds[0] = point1;
 	ptEnds[1] = point2;
-	interpPoint(point1, point2, ptEnds[2], 0, -dsign * width);
-	interpPoint(point1, point2, ptEnds[3], 1, -dsign * width);
+	CircuitElementSupport.interpPoint(point1, point2, ptEnds[2], 0, -dsign * width);
+	CircuitElementSupport.interpPoint(point1, point2, ptEnds[3], 1, -dsign * width);
 	double ce = .5 - 12 / dn;
 	double cd = .5 - 2 / dn;
 	int i;
 	for (i = 0; i != 4; i += 2) {
-	    interpPoint(ptEnds[i], ptEnds[i + 1], ptCoil[i], ce);
-	    interpPoint(ptEnds[i], ptEnds[i + 1], ptCoil[i + 1], 1 - ce);
-	    interpPoint(ptEnds[i], ptEnds[i + 1], ptCore[i], cd);
-	    interpPoint(ptEnds[i], ptEnds[i + 1], ptCore[i + 1], 1 - cd);
+	    CircuitElementSupport.interpPoint(ptEnds[i], ptEnds[i + 1], ptCoil[i], ce);
+	    CircuitElementSupport.interpPoint(ptEnds[i], ptEnds[i + 1], ptCoil[i + 1], 1 - ce);
+	    CircuitElementSupport.interpPoint(ptEnds[i], ptEnds[i + 1], ptCore[i], cd);
+	    CircuitElementSupport.interpPoint(ptEnds[i], ptEnds[i + 1], ptCore[i + 1], 1 - cd);
 	}
 	if (polarity == -1) {
 	    dots = new Point[2];
 	    double dotp = Math.abs(7. / width);
-	    dots[0] = interpPoint(ptCoil[0], ptCoil[2], dotp, -7 * dsign);
-	    dots[1] = interpPoint(ptCoil[3], ptCoil[1], dotp, -7 * dsign);
+	    dots[0] = CircuitElementSupport.interpPoint(ptCoil[0], ptCoil[2], dotp, -7 * dsign);
+	    dots[1] = CircuitElementSupport.interpPoint(ptCoil[3], ptCoil[1], dotp, -7 * dsign);
 	    Point x = ptEnds[1];
 	    ptEnds[1] = ptEnds[3];
 	    ptEnds[3] = x;

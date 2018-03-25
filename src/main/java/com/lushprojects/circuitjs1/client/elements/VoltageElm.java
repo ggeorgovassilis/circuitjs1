@@ -154,16 +154,16 @@ public class VoltageElm extends CircuitElm {
 	if (waveform == WF_DC) {
 	    setPowerColor(g, false);
 	    setVoltageColor(g, volts[0]);
-	    interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 0, 10);
+	    CircuitElementSupport.interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 0, 10);
 	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	    setVoltageColor(g, volts[1]);
 	    int hs = 16;
 	    setBbox(point1, point2, hs);
-	    interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 1, hs);
+	    CircuitElementSupport.interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 1, hs);
 	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	} else {
 	    setBbox(point1, point2, circleSize);
-	    interpPoint(lead1, lead2, sim.ps1, .5);
+	    CircuitElementSupport.interpPoint(lead1, lead2, sim.ps1, .5);
 	    drawWaveform(g, sim.ps1);
 	    String inds;
 	    if (bias > 0 || (bias == 0 && waveform == WF_PULSE))
@@ -172,7 +172,7 @@ public class VoltageElm extends CircuitElm {
 		inds = "*";
 	    g.setColor(Color.white);
 	    g.setFont(sim.unitsFont);
-	    Point plusPoint = interpPoint(point1, point2, (dn / 2 + circleSize + 4) / dn, 10 * dsign);
+	    Point plusPoint = CircuitElementSupport.interpPoint(point1, point2, (dn / 2 + circleSize + 4) / dn, 10 * dsign);
 	    plusPoint.y += 4;
 	    int w = (int) g.context.measureText(inds).getWidth();
 	    ;
@@ -205,7 +205,7 @@ public class VoltageElm extends CircuitElm {
 	}
 	case WF_SQUARE:
 	    xc2 = (int) (wl * 2 * dutyCycle - wl + xc);
-	    xc2 = max(xc - wl + 3, min(xc + wl - 3, xc2));
+	    xc2 = CircuitElementSupport.max(xc - wl + 3, CircuitElementSupport.min(xc + wl - 3, xc2));
 	    CircuitElementSupport.drawThickLine(g, xc - wl, yc - wl, xc - wl, yc);
 	    CircuitElementSupport.drawThickLine(g, xc - wl, yc - wl, xc2, yc - wl);
 	    CircuitElementSupport.drawThickLine(g, xc2, yc - wl, xc2, yc + wl);

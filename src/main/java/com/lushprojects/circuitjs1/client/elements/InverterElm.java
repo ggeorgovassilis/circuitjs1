@@ -87,17 +87,17 @@ public class InverterElm extends CircuitElm {
 	pcircle = interpPoint(point1, point2, .5 + (ww - 2) / dn);
 
 	if (GateElm.useEuroGates()) {
-	    Point pts[] = newPointArray(4);
+	    Point pts[] = CircuitElementSupport.newPointArray(4);
 	    Point l2 = interpPoint(point1, point2, .5 + (ww - 5) / dn); // make room for circle
-	    interpPoint2(lead1, l2, pts[0], pts[1], 0, hs);
-	    interpPoint2(lead1, l2, pts[3], pts[2], 1, hs);
-	    gatePoly = createPolygon(pts);
+	    CircuitElementSupport.interpPoint2(lead1, l2, pts[0], pts[1], 0, hs);
+	    CircuitElementSupport.interpPoint2(lead1, l2, pts[3], pts[2], 1, hs);
+	    gatePoly = CircuitElementSupport.createPolygon(pts);
 	    center = interpPoint(lead1, l2, .5);
 	} else {
-	    Point triPoints[] = newPointArray(3);
-	    interpPoint2(lead1, lead2, triPoints[0], triPoints[1], 0, hs);
+	    Point triPoints[] = CircuitElementSupport.newPointArray(3);
+	    CircuitElementSupport.interpPoint2(lead1, lead2, triPoints[0], triPoints[1], 0, hs);
 	    triPoints[2] = interpPoint(point1, point2, .5 + (ww - 5) / dn);
-	    gatePoly = createPolygon(triPoints);
+	    gatePoly = CircuitElementSupport.createPolygon(triPoints);
 	}
 	setBbox(point1, point2, hs);
     }
