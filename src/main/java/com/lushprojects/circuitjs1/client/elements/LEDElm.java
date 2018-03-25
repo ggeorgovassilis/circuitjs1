@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Color;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -76,13 +77,13 @@ public class LEDElm extends DiodeElm {
 	    return;
 	}
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, ledLead1);
+	CircuitElementSupport.drawThickLine(g, point1, ledLead1);
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, ledLead2, point2);
+	CircuitElementSupport.drawThickLine(g, ledLead2, point2);
 
 	g.setColor(Color.gray);
 	int cr = 12;
-	drawThickCircle(g, ledCenter.x, ledCenter.y, cr);
+	CircuitElementSupport.drawThickCircle(g, ledCenter.x, ledCenter.y, cr);
 	cr -= 4;
 	double w = current / maxBrightnessCurrent;
 	if (w > 0)

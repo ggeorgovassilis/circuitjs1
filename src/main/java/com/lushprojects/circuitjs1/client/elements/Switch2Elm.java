@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -89,19 +90,19 @@ public class Switch2Elm extends SwitchElm {
 
 	// draw first lead
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 
 	// draw other leads
 	int i;
 	for (i = 0; i != throwCount; i++) {
 	    setVoltageColor(g, volts[i + 1]);
-	    drawThickLine(g, swpoles[i], swposts[i]);
+	    CircuitElementSupport.drawThickLine(g, swpoles[i], swposts[i]);
 	}
 
 	// draw switch
 	if (!needsHighlight())
 	    g.setColor(sim.whiteColor);
-	drawThickLine(g, lead1, swpoles[position]);
+	CircuitElementSupport.drawThickLine(g, lead1, swpoles[position]);
 
 	updateDotCount();
 	drawDots(g, point1, lead1, curcount);
@@ -168,7 +169,7 @@ public class Switch2Elm extends SwitchElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "switch (" + (link == 0 ? "S" : "D") + "P" + ((throwCount > 2) ? throwCount + "T)" : "DT)");
-	arr[1] = "I = " + getCurrentDText(getCurrent());
+	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
     }
 
     public EditInfo getEditInfo(int n) {

@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -65,7 +66,7 @@ public class InductorElm extends CircuitElm {
 	setPowerColor(g, false);
 	drawCoil(g, 8, lead1, lead2, v1, v2);
 	if (sim.showValuesCheckItem.getState()) {
-	    String s = getShortUnitText(inductance, "H");
+	    String s = CircuitElementSupport.getShortUnitText(inductance, "H");
 	    drawValues(g, s, hs);
 	}
 	doDots(g);
@@ -102,8 +103,8 @@ public class InductorElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "inductor";
 	getBasicInfo(arr);
-	arr[3] = "L = " + getUnitText(inductance, "H");
-	arr[4] = "P = " + getUnitText(getPower(), "W");
+	arr[3] = "L = " + CircuitElementSupport.getUnitText(inductance, "H");
+	arr[4] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
     }
 
     public EditInfo getEditInfo(int n) {

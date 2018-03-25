@@ -1,5 +1,6 @@
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Font;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -46,18 +47,18 @@ public boolean getConnection(int n1, int n2) {
     public void draw(Graphics g) {
 	setBbox(point1, point2, opheight * 2);
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, in1p[0], in1p[1]);
+	CircuitElementSupport.drawThickLine(g, in1p[0], in1p[1]);
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, in2p[0], in2p[1]);
+	CircuitElementSupport.drawThickLine(g, in2p[0], in2p[1]);
 	g.setColor(needsHighlight() ? sim.selectColor : sim.lightGrayColor);
 	setPowerColor(g, true);
-	drawThickPolygon(g, triangle);
+	CircuitElementSupport.drawThickPolygon(g, triangle);
 	g.setFont(plusFont);
 	drawCenteredText(g, "-", textp[0].x, textp[0].y - 2, true);
 	drawCenteredText(g, "+", textp[1].x, textp[1].y, true);
 	drawCenteredText(g, "\u2265?", textp[2].x, textp[2].y, true);
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, lead2, point2);
+	CircuitElementSupport.drawThickLine(g, lead2, point2);
 	curcount = updateDotCount(-getCurrentIntoNode(2), curcount);
 	drawDots(g, point2, lead2, curcount);
 	drawPosts(g);
@@ -92,7 +93,7 @@ public boolean getConnection(int n1, int n2) {
 
     public void getInfo(String arr[]) {
 	arr[0] = "Comparator";
-	arr[1] = "V+ = " + getVoltageText(volts[1]);
-	arr[2] = "V- = " + getVoltageText(volts[0]);
+	arr[1] = "V+ = " + CircuitElementSupport.getVoltageText(volts[1]);
+	arr[2] = "V- = " + CircuitElementSupport.getVoltageText(volts[0]);
     }
 }

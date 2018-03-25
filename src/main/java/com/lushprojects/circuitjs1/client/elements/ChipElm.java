@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.Color;
@@ -90,14 +91,14 @@ abstract class ChipElm extends CircuitElm {
 	    setVoltageColor(g, volts[i]);
 	    Point a = p.post;
 	    Point b = p.stub;
-	    drawThickLine(g, a, b);
+	    CircuitElementSupport.drawThickLine(g, a, b);
 	    p.curcount = updateDotCount(p.current, p.curcount);
 	    drawDots(g, b, a, p.curcount);
 	    if (p.bubble) {
 		g.setColor(sim.printableCheckItem.getState() ? Color.white : Color.black);
-		drawThickCircle(g, p.bubbleX, p.bubbleY, 1);
+		CircuitElementSupport.drawThickCircle(g, p.bubbleX, p.bubbleY, 1);
 		g.setColor(sim.lightGrayColor);
-		drawThickCircle(g, p.bubbleX, p.bubbleY, 3);
+		CircuitElementSupport.drawThickCircle(g, p.bubbleX, p.bubbleY, 3);
 	    }
 	    g.setColor(sim.whiteColor);
 	    // int sw = fm.stringWidth(p.text);
@@ -110,7 +111,7 @@ abstract class ChipElm extends CircuitElm {
 	    }
 	}
 	g.setColor(needsHighlight() ? sim.selectColor : sim.lightGrayColor);
-	drawThickPolygon(g, rectPointsX, rectPointsY, 4);
+	CircuitElementSupport.drawThickPolygon(g, rectPointsX, rectPointsY, 4);
 	if (clockPointsX != null)
 	    g.drawPolyline(clockPointsX, clockPointsY, 3);
 	drawPosts(g);
@@ -249,7 +250,7 @@ abstract class ChipElm extends CircuitElm {
 		t += '\'';
 	    if (p.clock)
 		t = "Clk";
-	    arr[a] += t + " = " + getVoltageText(volts[i]);
+	    arr[a] += t + " = " + CircuitElementSupport.getVoltageText(volts[i]);
 	    if (i % 2 == 1)
 		a++;
 	}

@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -134,25 +135,25 @@ abstract class GateElm extends CircuitElm {
 	int i;
 	for (i = 0; i != inputCount; i++) {
 	    setVoltageColor(g, volts[i]);
-	    drawThickLine(g, inPosts[i], inGates[i]);
+	    CircuitElementSupport.drawThickLine(g, inPosts[i], inGates[i]);
 	}
 	setVoltageColor(g, volts[inputCount]);
-	drawThickLine(g, lead2, point2);
+	CircuitElementSupport.drawThickLine(g, lead2, point2);
 	g.setColor(needsHighlight() ? sim.selectColor : sim.lightGrayColor);
-	drawThickPolygon(g, gatePoly);
+	CircuitElementSupport.drawThickPolygon(g, gatePoly);
 	if (useEuroGates()) {
 	    Point center = interpPoint(point1, point2, .5);
 	    drawCenteredText(g, getGateText(), center.x, center.y - 6 * gsize, true);
 	}
 	g.setLineWidth(2);
 	if (hasSchmittInputs())
-	    drawPolygon(g, schmittPoly);
+	    CircuitElementSupport.drawPolygon(g, schmittPoly);
 	g.setLineWidth(1);
 	if (linePoints != null)
 	    for (i = 0; i != linePoints.length - 1; i++)
-		drawThickLine(g, linePoints[i], linePoints[i + 1]);
+		CircuitElementSupport.drawThickLine(g, linePoints[i], linePoints[i + 1]);
 	if (isInverting())
-	    drawThickCircle(g, pcircle.x, pcircle.y, 3);
+	    CircuitElementSupport.drawThickCircle(g, pcircle.x, pcircle.y, 3);
 	curcount = updateDotCount(current, curcount);
 	drawDots(g, lead2, point2, curcount);
 	drawPosts(g);
@@ -179,8 +180,8 @@ abstract class GateElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = getGateName();
-	arr[1] = "Vout = " + getVoltageText(volts[inputCount]);
-	arr[2] = "Iout = " + getCurrentText(getCurrent());
+	arr[1] = "Vout = " + CircuitElementSupport.getVoltageText(volts[inputCount]);
+	arr[2] = "Iout = " + CircuitElementSupport.getCurrentText(getCurrent());
     }
 
     public void stamp() {

@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
 import com.lushprojects.circuitjs1.client.ui.Point;
@@ -54,20 +55,20 @@ public class AnalogSwitch2Elm extends AnalogSwitchElm {
 
 	// draw first lead
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 
 	// draw second lead
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, swpoles[0], swposts[0]);
+	CircuitElementSupport.drawThickLine(g, swpoles[0], swposts[0]);
 
 	// draw third lead
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, swpoles[1], swposts[1]);
+	CircuitElementSupport.drawThickLine(g, swpoles[1], swposts[1]);
 
 	// draw switch
 	g.setColor(sim.lightGrayColor);
 	int position = (open) ? 1 : 0;
-	drawThickLine(g, lead1, swpoles[position]);
+	CircuitElementSupport.drawThickLine(g, lead1, swpoles[position]);
 
 	updateDotCount();
 	drawDots(g, point1, lead1, curcount);
@@ -117,7 +118,7 @@ public class AnalogSwitch2Elm extends AnalogSwitchElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "analog switch (SPDT)";
-	arr[1] = "I = " + getCurrentDText(getCurrent());
+	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
     }
 
     public double getCurrentIntoPoint(int xa, int ya) {

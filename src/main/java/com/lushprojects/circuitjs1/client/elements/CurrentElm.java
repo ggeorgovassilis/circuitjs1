@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -69,14 +70,14 @@ public class CurrentElm extends CircuitElm {
 	setVoltageColor(g, (volts[0] + volts[1]) / 2);
 	setPowerColor(g, false);
 
-	drawThickCircle(g, center.x, center.y, cr);
-	drawThickLine(g, ashaft1, ashaft2);
+	CircuitElementSupport.drawThickCircle(g, center.x, center.y, cr);
+	CircuitElementSupport.drawThickLine(g, ashaft1, ashaft2);
 
 	g.fillPolygon(arrow);
 	setBbox(point1, point2, cr);
 	doDots(g);
 	if (sim.showValuesCheckItem.getState()) {
-	    String s = getShortUnitText(currentValue, "A");
+	    String s = CircuitElementSupport.getShortUnitText(currentValue, "A");
 	    if (dx == 0 || dy == 0)
 		drawValues(g, s, cr);
 	}

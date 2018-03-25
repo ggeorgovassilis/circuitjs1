@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -55,7 +56,7 @@ public class OutputElm extends CircuitElm {
 	Font f = new Font("SansSerif", selected ? Font.BOLD : 0, 14);
 	g.setFont(f);
 	g.setColor(selected ? sim.selectColor : sim.whiteColor);
-	String s = (flags & FLAG_VALUE) != 0 ? getVoltageText(volts[0]) : "out";
+	String s = (flags & FLAG_VALUE) != 0 ? CircuitElementSupport.getVoltageText(volts[0]) : "out";
 	// FontMetrics fm = g.getFontMetrics();
 	if (this == sim.plotXElm)
 	    s = "X";
@@ -67,7 +68,7 @@ public class OutputElm extends CircuitElm {
 	setVoltageColor(g, volts[0]);
 	if (selected)
 	    g.setColor(sim.selectColor);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 	drawPosts(g);
     }
 
@@ -77,7 +78,7 @@ public class OutputElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "output";
-	arr[1] = "V = " + getVoltageText(volts[0]);
+	arr[1] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
     }
 
     public EditInfo getEditInfo(int n) {

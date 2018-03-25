@@ -20,6 +20,7 @@
 package com.lushprojects.circuitjs1.client.elements;
 
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -92,11 +93,11 @@ public class MemristorElm extends CircuitElm {
 	    setVoltageColor(g, v);
 	    interpPoint(lead1, lead2, sim.ps1, i * segf, hs * ox);
 	    interpPoint(lead1, lead2, sim.ps2, i * segf, hs * nx);
-	    drawThickLine(g, sim.ps1, sim.ps2);
+	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	    if (i == segments)
 		break;
 	    interpPoint(lead1, lead2, sim.ps1, (i + 1) * segf, hs * nx);
-	    drawThickLine(g, sim.ps1, sim.ps2);
+	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	    ox = nx;
 	}
 
@@ -138,8 +139,8 @@ public class MemristorElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "memristor";
 	getBasicInfo(arr);
-	arr[3] = "R = " + getUnitText(resistance, CirSim.ohmString);
-	arr[4] = "P = " + getUnitText(getPower(), "W");
+	arr[3] = "R = " + CircuitElementSupport.getUnitText(resistance, CirSim.ohmString);
+	arr[4] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
     }
 
     public double getScopeValue(int x) {

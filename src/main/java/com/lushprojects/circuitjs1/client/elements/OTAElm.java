@@ -1,5 +1,6 @@
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Font;
@@ -62,22 +63,22 @@ public class OTAElm extends CompositeElm {
     public void draw(Graphics g) {
 	setBbox(point1, point2, 3 * opheight / 2);
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, in1p[0], in1p[1]);
+	CircuitElementSupport.drawThickLine(g, in1p[0], in1p[1]);
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, in2p[0], in2p[1]);
+	CircuitElementSupport.drawThickLine(g, in2p[0], in2p[1]);
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, in3p[0], in3p[1]);
+	CircuitElementSupport.drawThickLine(g, in3p[0], in3p[1]);
 	setVoltageColor(g, volts[3]);
-	drawThickLine(g, in4p[0], in4p[1]);
+	CircuitElementSupport.drawThickLine(g, in4p[0], in4p[1]);
 	g.setColor(needsHighlight() ? sim.selectColor : sim.lightGrayColor);
 	setPowerColor(g, true);
-	drawThickPolygon(g, triangle);
+	CircuitElementSupport.drawThickPolygon(g, triangle);
 	g.fillPolygon(arrowPoly1);
 	g.fillPolygon(arrowPoly2);
-	drawThickLine(g, bar1[0], bar1[1]);
-	drawThickLine(g, bar2[0], bar2[1]);
-	drawThickCircle(g, circCent[0].x, circCent[0].y, circDiam / 2);
-	drawThickCircle(g, circCent[1].x, circCent[1].y, circDiam / 2);
+	CircuitElementSupport.drawThickLine(g, bar1[0], bar1[1]);
+	CircuitElementSupport.drawThickLine(g, bar2[0], bar2[1]);
+	CircuitElementSupport.drawThickCircle(g, circCent[0].x, circCent[0].y, circDiam / 2);
+	CircuitElementSupport.drawThickCircle(g, circCent[1].x, circCent[1].y, circDiam / 2);
 	g.setFont(plusFont);
 	drawCenteredText(g, "+", textp[0].x, textp[0].y - 2, true);
 	drawCenteredText(g, "-", textp[1].x, textp[1].y, true);
@@ -158,8 +159,8 @@ public class OTAElm extends CompositeElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "OTA (LM13700 style)";
-	arr[1] = "Iabc = " + getCurrentText(-getCurrentIntoNode(3));
-	arr[2] = "V+ - V- = " + getVoltageText(volts[0] - volts[1]);
+	arr[1] = "Iabc = " + CircuitElementSupport.getCurrentText(-getCurrentIntoNode(3));
+	arr[2] = "V+ - V- = " + CircuitElementSupport.getVoltageText(volts[0] - volts[1]);
     }
 
     public EditInfo getEditInfo(int n) {

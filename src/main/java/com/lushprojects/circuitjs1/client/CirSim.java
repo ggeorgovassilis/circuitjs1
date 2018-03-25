@@ -91,6 +91,7 @@ import com.lushprojects.circuitjs1.client.dialogs.ImportFromDropboxDialog;
 import com.lushprojects.circuitjs1.client.dialogs.ImportFromTextDialog;
 import com.lushprojects.circuitjs1.client.dialogs.ScrollValuePopup;
 import com.lushprojects.circuitjs1.client.elements.*;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.CircuitNode;
 import com.lushprojects.circuitjs1.client.support.CircuitNodeLink;
 import com.lushprojects.circuitjs1.client.support.LoadFile;
@@ -1237,7 +1238,7 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 	// draw posts normally
 	if (mouseMode != CirSim.MODE_DRAG_ROW && mouseMode != CirSim.MODE_DRAG_COLUMN) {
 	    for (i = 0; i != postDrawList.size(); i++)
-		CircuitElm.drawPost(g, postDrawList.get(i));
+		CircuitElementSupport.drawPost(g, postDrawList.get(i));
 	}
 
 	// for some mouse modes, what matters is not the posts but the endpoints (which
@@ -1323,7 +1324,7 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 		    if (info[1] != null)
 			info[1] = LS(info[1]);
 		} else
-		    info[0] = "V = " + CircuitElm.getUnitText(mouseElm.getPostVoltage(mousePost), "V");
+		    info[0] = "V = " + CircuitElementSupport.getUnitText(mouseElm.getPostVoltage(mousePost), "V");
 		/*
 		 * //shownodes for (i = 0; i != mouseElm.getPostCount(); i++) info[0] += " " +
 		 * mouseElm.nodes[i]; if (mouseElm.getVoltageSourceCount() > 0) info[0] += ";" +
@@ -1331,8 +1332,8 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 		 */
 
 	    } else {
-		info[0] = "t = " + CircuitElm.getUnitText(t, "s");
-		info[1] = LS("time step = ") + CircuitElm.getUnitText(timeStep, "s");
+		info[0] = "t = " + CircuitElementSupport.getUnitText(t, "s");
+		info[1] = LS("time step = ") + CircuitElementSupport.getUnitText(timeStep, "s");
 	    }
 	    if (hintType != -1) {
 		for (i = 0; info[i] != null; i++)
@@ -1461,7 +1462,7 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 	    InductorElm ie = (InductorElm) c1;
 	    CapacitorElm ce = (CapacitorElm) c2;
 	    return LS("res.f = ")
-		    + CircuitElm.getUnitText(1 / (2 * pi * Math.sqrt(ie.inductance * ce.capacitance)), "Hz");
+		    + CircuitElementSupport.getUnitText(1 / (2 * pi * Math.sqrt(ie.inductance * ce.capacitance)), "Hz");
 	}
 	if (hintType == HINT_RC) {
 	    if (!(c1 instanceof ResistorElm))
@@ -1470,7 +1471,7 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 		return null;
 	    ResistorElm re = (ResistorElm) c1;
 	    CapacitorElm ce = (CapacitorElm) c2;
-	    return "RC = " + CircuitElm.getUnitText(re.resistance * ce.capacitance, "s");
+	    return "RC = " + CircuitElementSupport.getUnitText(re.resistance * ce.capacitance, "s");
 	}
 	if (hintType == HINT_3DB_C) {
 	    if (!(c1 instanceof ResistorElm))
@@ -1479,7 +1480,7 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 		return null;
 	    ResistorElm re = (ResistorElm) c1;
 	    CapacitorElm ce = (CapacitorElm) c2;
-	    return LS("f.3db = ") + CircuitElm.getUnitText(1 / (2 * pi * re.resistance * ce.capacitance), "Hz");
+	    return LS("f.3db = ") + CircuitElementSupport.getUnitText(1 / (2 * pi * re.resistance * ce.capacitance), "Hz");
 	}
 	if (hintType == HINT_3DB_L) {
 	    if (!(c1 instanceof ResistorElm))
@@ -1488,7 +1489,7 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 		return null;
 	    ResistorElm re = (ResistorElm) c1;
 	    InductorElm ie = (InductorElm) c2;
-	    return LS("f.3db = ") + CircuitElm.getUnitText(re.resistance / (2 * pi * ie.inductance), "Hz");
+	    return LS("f.3db = ") + CircuitElementSupport.getUnitText(re.resistance / (2 * pi * ie.inductance), "Hz");
 	}
 	if (hintType == HINT_TWINT) {
 	    if (!(c1 instanceof ResistorElm))
@@ -1497,7 +1498,7 @@ public class CirSim implements MouseDownHandler, MouseMoveHandler, MouseUpHandle
 		return null;
 	    ResistorElm re = (ResistorElm) c1;
 	    CapacitorElm ce = (CapacitorElm) c2;
-	    return LS("fc = ") + CircuitElm.getUnitText(1 / (2 * pi * re.resistance * ce.capacitance), "Hz");
+	    return LS("fc = ") + CircuitElementSupport.getUnitText(1 / (2 * pi * re.resistance * ce.capacitance), "Hz");
 	}
 	return null;
     }

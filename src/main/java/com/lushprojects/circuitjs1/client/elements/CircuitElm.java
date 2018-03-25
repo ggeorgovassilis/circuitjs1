@@ -21,9 +21,9 @@ package com.lushprojects.circuitjs1.client.elements;
 
 import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.google.gwt.canvas.dom.client.Context2d.LineCap;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.lushprojects.circuitjs1.client.CirSim;
 import com.lushprojects.circuitjs1.client.dialogs.Editable;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.ui.Color;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -246,11 +246,11 @@ public abstract class CircuitElm implements Editable {
     void draw2Leads(Graphics g) {
 	// draw first lead
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 
 	// draw second lead
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, lead2, point2);
+	CircuitElementSupport.drawThickLine(g, lead2, point2);
     }
 
     Point[] newPointArray(int n) {
@@ -403,7 +403,7 @@ public abstract class CircuitElm implements Editable {
 	int i;
 	for (i = 0; i != getPostCount(); i++) {
 	    Point p = getPost(i);
-	    drawPost(g, p);
+	    CircuitElementSupport.drawPost(g, p);
 	}
     }
 
@@ -472,17 +472,6 @@ public abstract class CircuitElm implements Editable {
 	return (n == 0) ? point1 : (n == 1) ? point2 : null;
     }
 
-    /*
-     * void drawPost(Graphics g, int x0, int y0, int n) { if (sim.dragElm == null &&
-     * !needsHighlight() && sim.getCircuitNode(n).links.size() == 2) return; if
-     * (sim.mouseMode == CirSim.MODE_DRAG_ROW || sim.mouseMode ==
-     * CirSim.MODE_DRAG_COLUMN) return; drawPost(g, x0, y0); }
-     */
-    public static void drawPost(Graphics g, Point pt) {
-	g.setColor(sim.whiteColor);
-	g.fillOval(pt.x - 3, pt.y - 3, 7, 7);
-    }
-
     // set/adjust bounding box used for selecting elements. getCircuitBounds() does
     // not use this!
     void setBbox(int x1, int y1, int x2, int y2) {
@@ -533,14 +522,6 @@ public abstract class CircuitElm implements Editable {
     }
 
     void drawCenteredText(Graphics g, String s, int x, int y, boolean cx) {
-	// FontMetrics fm = g.getFontMetrics();
-	// int w = fm.stringWidth(s);
-	// int w=0;
-	// if (cx)
-	// x -= w/2;
-	// g.drawString(s, x, y+fm.getAscent()/2);
-	// adjustBbox(x, y-fm.getAscent()/2,
-	// x+w, y+fm.getAscent()/2+fm.getDescent());
 	int w = (int) g.context.measureText(s).getWidth();
 	int h2 = (int) g.currentFontSize / 2;
 	g.context.save();
@@ -617,49 +598,6 @@ public abstract class CircuitElm implements Editable {
 	g.context.restore();
     }
 
-    static void drawThickLine(Graphics g, int x, int y, int x2, int y2) {
-	g.setLineWidth(3.0);
-	g.drawLine(x, y, x2, y2);
-	g.setLineWidth(1.0);
-    }
-
-    static void drawThickLine(Graphics g, Point pa, Point pb) {
-	g.setLineWidth(3.0);
-	g.drawLine(pa.x, pa.y, pb.x, pb.y);
-	g.setLineWidth(1.0);
-    }
-
-    static void drawThickPolygon(Graphics g, int xs[], int ys[], int c) {
-	// int i;
-	// for (i = 0; i != c-1; i++)
-	// drawThickLine(g, xs[i], ys[i], xs[i+1], ys[i+1]);
-	// drawThickLine(g, xs[i], ys[i], xs[0], ys[0]);
-	g.setLineWidth(3.0);
-	g.drawPolyline(xs, ys, c);
-	g.setLineWidth(1.0);
-    }
-
-    static void drawThickPolygon(Graphics g, Polygon p) {
-	drawThickPolygon(g, p.xpoints, p.ypoints, p.npoints);
-    }
-
-    static void drawPolygon(Graphics g, Polygon p) {
-	g.drawPolyline(p.xpoints, p.ypoints, p.npoints);
-	/*
-	 * int i; int xs[] = p.xpoints; int ys[] = p.ypoints; int np = p.npoints; np -=
-	 * 3; for (i = 0; i != np-1; i++) g.drawLine(xs[i], ys[i], xs[i+1], ys[i+1]);
-	 * g.drawLine(xs[i], ys[i], xs[0], ys[0]);
-	 */
-    }
-
-    static void drawThickCircle(Graphics g, int cx, int cy, int ri) {
-	g.setLineWidth(3.0);
-	g.context.beginPath();
-	g.context.arc(cx, cy, ri * .98, 0, 2 * Math.PI);
-	g.context.stroke();
-	g.setLineWidth(1.0);
-    }
-
     Polygon getSchmittPolygon(float gsize, float ctr) {
 	Point pts[] = newPointArray(6);
 	float hs = 3 * gsize;
@@ -673,81 +611,6 @@ public abstract class CircuitElm implements Editable {
 	pts[4] = interpPoint(lead1, lead2, ctr - h1 / len, -hs);
 	pts[5] = interpPoint(lead1, lead2, ctr - h1 / len, hs);
 	return createPolygon(pts);
-    }
-
-    public static String getVoltageDText(double v) {
-	return getUnitText(Math.abs(v), "V");
-    }
-
-    public static String getVoltageText(double v) {
-	return getUnitText(v, "V");
-
-    }
-
-    // IES - hacking
-    public static String getUnitText(double v, String u) {
-	return myGetUnitText(v, u, false);
-    }
-
-    public static String getShortUnitText(double v, String u) {
-	return myGetUnitText(v, u, true);
-    }
-
-    static String myGetUnitText(double v, String u, boolean sf) {
-	NumberFormat s;
-	String sp = "";
-	if (sf)
-	    s = sim.shortFormat;
-	else {
-	    s = sim.showFormat;
-	    sp = " ";
-	}
-	double va = Math.abs(v);
-	if (va < 1e-14)
-	    // this used to return null, but then wires would display "null" with 0V
-	    return "0" + sp + u;
-	if (va < 1e-9)
-	    return s.format(v * 1e12) + sp + "p" + u;
-	if (va < 1e-6)
-	    return s.format(v * 1e9) + sp + "n" + u;
-	if (va < 1e-3)
-	    return s.format(v * 1e6) + sp + CirSim.muString + u;
-	if (va < 1)
-	    return s.format(v * 1e3) + sp + "m" + u;
-	if (va < 1e3)
-	    return s.format(v) + sp + u;
-	if (va < 1e6)
-	    return s.format(v * 1e-3) + sp + "k" + u;
-	if (va < 1e9)
-	    return s.format(v * 1e-6) + sp + "M" + u;
-	return s.format(v * 1e-9) + sp + "G" + u;
-    }
-
-    /*
-     * static String getUnitText(double v, String u) { double va = Math.abs(v); if
-     * (va < 1e-14) return "0 " + u; if (va < 1e-9) return showFormat.format(v*1e12)
-     * + " p" + u; if (va < 1e-6) return showFormat.format(v*1e9) + " n" + u; if (va
-     * < 1e-3) return showFormat.format(v*1e6) + " " + CirSim.muString + u; if (va <
-     * 1) return showFormat.format(v*1e3) + " m" + u; if (va < 1e3) return
-     * showFormat.format(v) + " " + u; if (va < 1e6) return
-     * showFormat.format(v*1e-3) + " k" + u; if (va < 1e9) return
-     * showFormat.format(v*1e-6) + " M" + u; return showFormat.format(v*1e-9) + " G"
-     * + u; } static String getShortUnitText(double v, String u) { double va =
-     * Math.abs(v); if (va < 1e-13) return null; if (va < 1e-9) return
-     * shortFormat.format(v*1e12) + "p" + u; if (va < 1e-6) return
-     * shortFormat.format(v*1e9) + "n" + u; if (va < 1e-3) return
-     * shortFormat.format(v*1e6) + CirSim.muString + u; if (va < 1) return
-     * shortFormat.format(v*1e3) + "m" + u; if (va < 1e3) return
-     * shortFormat.format(v) + u; if (va < 1e6) return shortFormat.format(v*1e-3) +
-     * "k" + u; if (va < 1e9) return shortFormat.format(v*1e-6) + "M" + u; return
-     * shortFormat.format(v*1e-9) + "G" + u; }
-     */
-    public static String getCurrentText(double i) {
-	return getUnitText(i, "A");
-    }
-
-    public static String getCurrentDText(double i) {
-	return getUnitText(Math.abs(i), "A");
     }
 
     public void updateDotCount() {
@@ -785,8 +648,8 @@ public abstract class CircuitElm implements Editable {
     }
 
     int getBasicInfo(String arr[]) {
-	arr[1] = "I = " + getCurrentDText(getCurrent());
-	arr[2] = "Vd = " + getVoltageDText(getVoltageDiff());
+	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
+	arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(getVoltageDiff());
 	return 3;
     }
 

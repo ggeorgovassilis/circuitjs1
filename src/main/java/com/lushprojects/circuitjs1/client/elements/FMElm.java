@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Color;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -98,7 +99,7 @@ public class FMElm extends CircuitElm {
     public void draw(Graphics g) {
 	setBbox(point1, point2, circleSize);
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 
 	Font f = new Font("SansSerif", 0, 12);
 	g.setFont(f);
@@ -119,7 +120,7 @@ public class FMElm extends CircuitElm {
 	setPowerColor(g, false);
 	int xc = center.x;
 	int yc = center.y;
-	drawThickCircle(g, xc, yc, circleSize);
+	CircuitElementSupport.drawThickCircle(g, xc, yc, circleSize);
 	adjustBbox(xc - circleSize, yc - circleSize, xc + circleSize, yc + circleSize);
     }
 
@@ -147,12 +148,12 @@ public class FMElm extends CircuitElm {
     public void getInfo(String arr[]) {
 
 	arr[0] = "FM Source";
-	arr[1] = "I = " + getCurrentText(getCurrent());
-	arr[2] = "V = " + getVoltageText(getVoltageDiff());
-	arr[3] = "cf = " + getUnitText(carrierfreq, "Hz");
-	arr[4] = "sf = " + getUnitText(signalfreq, "Hz");
-	arr[5] = "dev =" + getUnitText(deviation, "Hz");
-	arr[6] = "Vmax = " + getVoltageText(maxVoltage);
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
+	arr[2] = "V = " + CircuitElementSupport.getVoltageText(getVoltageDiff());
+	arr[3] = "cf = " + CircuitElementSupport.getUnitText(carrierfreq, "Hz");
+	arr[4] = "sf = " + CircuitElementSupport.getUnitText(signalfreq, "Hz");
+	arr[5] = "dev =" + CircuitElementSupport.getUnitText(deviation, "Hz");
+	arr[6] = "Vmax = " + CircuitElementSupport.getVoltageText(maxVoltage);
     }
 
     public EditInfo getEditInfo(int n) {

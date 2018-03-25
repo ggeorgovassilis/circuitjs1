@@ -21,6 +21,7 @@ package com.lushprojects.circuitjs1.client.elements;
 
 import java.util.HashMap;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -117,7 +118,7 @@ public class LabeledNodeElm extends CircuitElm {
 
     public void draw(Graphics g) {
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 	g.setColor(needsHighlight() ? sim.selectColor : sim.whiteColor);
 	setPowerColor(g, false);
 	drawCenteredText(g, text, x2, y2, true);
@@ -150,8 +151,8 @@ public class LabeledNodeElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = text;
-	arr[1] = "I = " + getCurrentText(getCurrent());
-	arr[2] = "V = " + getVoltageText(volts[0]);
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
+	arr[2] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
     }
 
     public EditInfo getEditInfo(int n) {

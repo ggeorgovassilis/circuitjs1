@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Font;
@@ -82,14 +83,14 @@ public class OpAmpElm extends CircuitElm {
     public void draw(Graphics g) {
 	setBbox(point1, point2, opheight * 2);
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, in1p[0], in1p[1]);
+	CircuitElementSupport.drawThickLine(g, in1p[0], in1p[1]);
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, in2p[0], in2p[1]);
+	CircuitElementSupport.drawThickLine(g, in2p[0], in2p[1]);
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, lead2, point2);
+	CircuitElementSupport.drawThickLine(g, lead2, point2);
 	g.setColor(needsHighlight() ? sim.selectColor : sim.lightGrayColor);
 	setPowerColor(g, true);
-	drawThickPolygon(g, triangle);
+	CircuitElementSupport.drawThickPolygon(g, triangle);
 	g.setFont(plusFont);
 	drawCenteredText(g, "-", textp[0].x, textp[0].y - 2, true);
 	drawCenteredText(g, "+", textp[1].x, textp[1].y, true);
@@ -150,14 +151,14 @@ public class OpAmpElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "op-amp";
-	arr[1] = "V+ = " + getVoltageText(volts[1]);
-	arr[2] = "V- = " + getVoltageText(volts[0]);
+	arr[1] = "V+ = " + CircuitElementSupport.getVoltageText(volts[1]);
+	arr[2] = "V- = " + CircuitElementSupport.getVoltageText(volts[0]);
 	// sometimes the voltage goes slightly outside range, to make
 	// convergence easier. so we hide that here.
 	double vo = Math.max(Math.min(volts[2], maxOut), minOut);
-	arr[3] = "Vout = " + getVoltageText(vo);
-	arr[4] = "Iout = " + getCurrentText(-current);
-	arr[5] = "range = " + getVoltageText(minOut) + " to " + getVoltageText(maxOut);
+	arr[3] = "Vout = " + CircuitElementSupport.getVoltageText(vo);
+	arr[4] = "Iout = " + CircuitElementSupport.getCurrentText(-current);
+	arr[5] = "range = " + CircuitElementSupport.getVoltageText(minOut) + " to " + CircuitElementSupport.getVoltageText(maxOut);
     }
 
     double lastvd;

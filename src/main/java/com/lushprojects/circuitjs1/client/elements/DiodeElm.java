@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -110,7 +111,7 @@ public class DiodeElm extends CircuitElm {
 
 	// draw thing arrow is pointing to
 	setVoltageColor(g, v2);
-	drawThickLine(g, cathode[0], cathode[1]);
+	CircuitElementSupport.drawThickLine(g, cathode[0], cathode[1]);
     }
 
     public void stamp() {
@@ -127,11 +128,11 @@ public class DiodeElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "diode";
-	arr[1] = "I = " + getCurrentText(getCurrent());
-	arr[2] = "Vd = " + getVoltageText(getVoltageDiff());
-	arr[3] = "P = " + getUnitText(getPower(), "W");
-	arr[4] = "Vf = " + getVoltageText(fwdrop);
-	arr[5] = "P = " + getUnitText(getPower(), "W");
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
+	arr[2] = "Vd = " + CircuitElementSupport.getVoltageText(getVoltageDiff());
+	arr[3] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
+	arr[4] = "Vf = " + CircuitElementSupport.getVoltageText(fwdrop);
+	arr[5] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
     }
 
     public EditInfo getEditInfo(int n) {

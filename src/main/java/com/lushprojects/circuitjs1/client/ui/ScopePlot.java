@@ -2,6 +2,7 @@ package com.lushprojects.circuitjs1.client.ui;
 
 import com.lushprojects.circuitjs1.client.CirSim;
 import com.lushprojects.circuitjs1.client.elements.CircuitElm;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 
 public class ScopePlot {
     double minValues[], maxValues[];
@@ -70,13 +71,13 @@ public class ScopePlot {
     String getUnitText(double v) {
 	switch (units) {
 	case Scope.UNITS_V:
-	    return CircuitElm.getVoltageText(v);
+	    return CircuitElementSupport.getVoltageText(v);
 	case Scope.UNITS_A:
-	    return CircuitElm.getCurrentText(v);
+	    return CircuitElementSupport.getCurrentText(v);
 	case Scope.UNITS_OHMS:
-	    return CircuitElm.getUnitText(v, CirSim.ohmString);
+	    return CircuitElementSupport.getUnitText(v, CirSim.ohmString);
 	case Scope.UNITS_W:
-	    return CircuitElm.getUnitText(v, "W");
+	    return CircuitElementSupport.getUnitText(v, "W");
 	}
 	return null;
     }

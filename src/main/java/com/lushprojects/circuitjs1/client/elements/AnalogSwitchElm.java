@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -77,10 +78,10 @@ public class AnalogSwitchElm extends CircuitElm {
 
 	g.setColor(sim.lightGrayColor);
 	interpPoint(lead1, lead2, ps, 1, hs);
-	drawThickLine(g, lead1, ps);
+	CircuitElementSupport.drawThickLine(g, lead1, ps);
 
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, point3, lead3);
+	CircuitElementSupport.drawThickLine(g, point3, lead3);
 
 	if (!open)
 	    doDots(g);
@@ -136,9 +137,9 @@ public class AnalogSwitchElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "analog switch";
 	arr[1] = open ? "open" : "closed";
-	arr[2] = "Vd = " + getVoltageDText(getVoltageDiff());
-	arr[3] = "I = " + getCurrentDText(getCurrent());
-	arr[4] = "Vc = " + getVoltageText(volts[2]);
+	arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(getVoltageDiff());
+	arr[3] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
+	arr[4] = "Vc = " + CircuitElementSupport.getVoltageText(volts[2]);
     }
 
     // we have to just assume current will flow either way, even though that

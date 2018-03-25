@@ -20,6 +20,7 @@
 package com.lushprojects.circuitjs1.client.elements;
 
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.Color;
@@ -92,10 +93,10 @@ public class TransistorElm extends CircuitElm {
 	setPowerColor(g, true);
 	// draw collector
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, coll[0], coll[1]);
+	CircuitElementSupport.drawThickLine(g, coll[0], coll[1]);
 	// draw emitter
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, emit[0], emit[1]);
+	CircuitElementSupport.drawThickLine(g, emit[0], emit[1]);
 	// draw arrow
 	g.setColor(sim.lightGrayColor);
 	g.fillPolygon(arrowPoly);
@@ -103,7 +104,7 @@ public class TransistorElm extends CircuitElm {
 	setVoltageColor(g, volts[0]);
 	if (sim.powerCheckItem.getState())
 	    g.setColor(Color.gray);
-	drawThickLine(g, point1, base);
+	CircuitElementSupport.drawThickLine(g, point1, base);
 	// draw dots
 	curcount_b = updateDotCount(-ib, curcount_b);
 	drawDots(g, base, point1, curcount_b);
@@ -312,12 +313,12 @@ public class TransistorElm extends CircuitElm {
 	else
 	    arr[1] = vbe * pnp > .2 ? "fwd active" : "cutoff";
 	arr[1] = CirSim.LS(arr[1]);
-	arr[2] = "Ic = " + getCurrentText(ic);
-	arr[3] = "Ib = " + getCurrentText(ib);
-	arr[4] = "Vbe = " + getVoltageText(vbe);
-	arr[5] = "Vbc = " + getVoltageText(vbc);
-	arr[6] = "Vce = " + getVoltageText(vce);
-	arr[7] = "P = " + getUnitText(getPower(), "W");
+	arr[2] = "Ic = " + CircuitElementSupport.getCurrentText(ic);
+	arr[3] = "Ib = " + CircuitElementSupport.getCurrentText(ib);
+	arr[4] = "Vbe = " + CircuitElementSupport.getVoltageText(vbe);
+	arr[5] = "Vbc = " + CircuitElementSupport.getVoltageText(vbc);
+	arr[6] = "Vce = " + CircuitElementSupport.getVoltageText(vce);
+	arr[7] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
     }
 
     public double getScopeValue(int x) {

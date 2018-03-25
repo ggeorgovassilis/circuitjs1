@@ -29,6 +29,7 @@ import com.lushprojects.circuitjs1.client.elements.OutputElm;
 import com.lushprojects.circuitjs1.client.elements.ProbeElm;
 import com.lushprojects.circuitjs1.client.elements.TransistorElm;
 import com.lushprojects.circuitjs1.client.elements.WireElm;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.FFT;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 
@@ -848,11 +849,11 @@ public class Scope {
 	}
 	if (showFFT) {
 	    double maxFrequency = 1 / (sim.timeStep * speed * 2);
-	    info[ct++] = CircuitElm.getUnitText(maxFrequency * (sim.mouseCursorX - rect.x) / rect.width, "Hz");
+	    info[ct++] = CircuitElementSupport.getUnitText(maxFrequency * (sim.mouseCursorX - rect.x) / rect.width, "Hz");
 	}
 	if (visiblePlots.size() > 0) {
 	    double t = sim.t - sim.timeStep * speed * (rect.x + rect.width - sim.mouseCursorX);
-	    info[ct++] = CircuitElm.getUnitText(t, "s");
+	    info[ct++] = CircuitElementSupport.getUnitText(t, "s");
 	}
 	int szw = 0, szh = 15 * ct;
 	int i;
@@ -1061,7 +1062,7 @@ public class Scope {
 	    freq = 0;
 	// System.out.println(freq + " " + periodstd + " " + periodct);
 	if (freq != 0)
-	    drawInfoText(g, CircuitElm.getUnitText(freq, "Hz"));
+	    drawInfoText(g, CircuitElementSupport.getUnitText(freq, "Hz"));
     }
 
     int textY;
@@ -1081,7 +1082,7 @@ public class Scope {
 	    String vScaleText = "";
 	    if (gridStepY != 0 && (!(showV && showI)))
 		vScaleText = " V=" + plot.getUnitText(gridStepY) + "/div";
-	    drawInfoText(g, "H=" + CircuitElm.getUnitText(gridStepX, "s") + "/div" + vScaleText);
+	    drawInfoText(g, "H=" + CircuitElementSupport.getUnitText(gridStepX, "s") + "/div" + vScaleText);
 	}
 	// if (showMax || showMin)
 	// calcMaxAndMin(plot.units);

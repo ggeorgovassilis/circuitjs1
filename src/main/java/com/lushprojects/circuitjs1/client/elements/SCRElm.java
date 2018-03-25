@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -150,10 +151,10 @@ public class SCRElm extends CircuitElm {
 
 	// draw thing arrow is pointing to
 	setVoltageColor(g, v2);
-	drawThickLine(g, cathode[0], cathode[1]);
+	CircuitElementSupport.drawThickLine(g, cathode[0], cathode[1]);
 
-	drawThickLine(g, lead2, gate[0]);
-	drawThickLine(g, gate[0], gate[1]);
+	CircuitElementSupport.drawThickLine(g, lead2, gate[0]);
+	CircuitElementSupport.drawThickLine(g, gate[0], gate[1]);
 
 	curcount_a = updateDotCount(ia, curcount_a);
 	curcount_c = updateDotCount(ic, curcount_c);
@@ -226,11 +227,11 @@ public class SCRElm extends CircuitElm {
 	double vac = volts[anode] - volts[cnode];
 	double vag = volts[anode] - volts[gnode];
 	double vgc = volts[gnode] - volts[cnode];
-	arr[1] = "Ia = " + getCurrentText(ia);
-	arr[2] = "Ig = " + getCurrentText(ig);
-	arr[3] = "Vac = " + getVoltageText(vac);
-	arr[4] = "Vag = " + getVoltageText(vag);
-	arr[5] = "Vgc = " + getVoltageText(vgc);
+	arr[1] = "Ia = " + CircuitElementSupport.getCurrentText(ia);
+	arr[2] = "Ig = " + CircuitElementSupport.getCurrentText(ig);
+	arr[3] = "Vac = " + CircuitElementSupport.getVoltageText(vac);
+	arr[4] = "Vag = " + CircuitElementSupport.getVoltageText(vag);
+	arr[5] = "Vgc = " + CircuitElementSupport.getVoltageText(vgc);
     }
 
     void calculateCurrent() {

@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -69,12 +70,12 @@ public class InvertingSchmittElm extends CircuitElm {
 	drawPosts(g);
 	draw2Leads(g);
 	g.setColor(needsHighlight() ? sim.selectColor : sim.lightGrayColor);
-	drawThickPolygon(g, gatePoly);
+	CircuitElementSupport.drawThickPolygon(g, gatePoly);
 	g.setLineWidth(2);
-	drawPolygon(g, symbolPoly);
+	CircuitElementSupport.drawPolygon(g, symbolPoly);
 	g.setLineWidth(1);
 	;
-	drawThickCircle(g, pcircle.x, pcircle.y, 3);
+	CircuitElementSupport.drawThickCircle(g, pcircle.x, pcircle.y, 3);
 	curcount = updateDotCount(current, curcount);
 	drawDots(g, lead2, point2, curcount);
     }
@@ -141,8 +142,8 @@ public class InvertingSchmittElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "InvertingSchmitt";
-	arr[1] = "Vi = " + getVoltageText(volts[0]);
-	arr[2] = "Vo = " + getVoltageText(volts[1]);
+	arr[1] = "Vi = " + CircuitElementSupport.getVoltageText(volts[0]);
+	arr[2] = "Vo = " + CircuitElementSupport.getVoltageText(volts[1]);
     }
 
     public EditInfo getEditInfo(int n) {

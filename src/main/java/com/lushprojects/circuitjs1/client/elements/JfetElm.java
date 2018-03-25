@@ -20,6 +20,7 @@
 package com.lushprojects.circuitjs1.client.elements;
 
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -57,13 +58,13 @@ public class JfetElm extends MosfetElm {
     public void draw(Graphics g) {
 	setBbox(point1, point2, hs);
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, src[0], src[1]);
-	drawThickLine(g, src[1], src[2]);
+	CircuitElementSupport.drawThickLine(g, src[0], src[1]);
+	CircuitElementSupport.drawThickLine(g, src[1], src[2]);
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, drn[0], drn[1]);
-	drawThickLine(g, drn[1], drn[2]);
+	CircuitElementSupport.drawThickLine(g, drn[0], drn[1]);
+	CircuitElementSupport.drawThickLine(g, drn[1], drn[2]);
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, gatePt);
+	CircuitElementSupport.drawThickLine(g, point1, gatePt);
 	g.fillPolygon(arrowPoly);
 	setPowerColor(g, true);
 	g.fillPolygon(gatePoly);

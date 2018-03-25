@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.Expr;
 import com.lushprojects.circuitjs1.client.support.ExprParser;
 import com.lushprojects.circuitjs1.client.support.ExprState;
@@ -242,6 +243,6 @@ public class VCCSElm extends ChipElm {
 	int i;
 	for (i = 0; arr[i] != null; i++)
 	    ;
-	arr[i] = "I = " + getCurrentText(pins[inputCount].current);
+	arr[i] = "I = " + CircuitElementSupport.getCurrentText(pins[inputCount].current);
     }
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Anchor;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Font;
@@ -59,7 +60,7 @@ public class DataRecorderElm extends CircuitElm {
 	setVoltageColor(g, volts[0]);
 	if (selected)
 	    g.setColor(sim.selectColor);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 	drawPosts(g);
     }
 
@@ -69,7 +70,7 @@ public class DataRecorderElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "data export";
-	arr[1] = "V = " + getVoltageText(volts[0]);
+	arr[1] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
 	arr[2] = (dataFull ? dataCount : dataPtr) + "/" + dataCount;
     }
 

@@ -21,6 +21,7 @@ package com.lushprojects.circuitjs1.client.elements;
 
 import com.google.gwt.user.client.ui.Label;
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -185,14 +186,14 @@ public class PotElm extends CircuitElm implements Command, MouseWheelHandler {
 		setVoltageColor(g, v);
 		interpPoint(lead1, lead2, sim.ps1, i * segf, hs * ox);
 		interpPoint(lead1, lead2, sim.ps2, (i + 1) * segf, hs * nx);
-		drawThickLine(g, sim.ps1, sim.ps2);
+		CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 		ox = nx;
 	    }
 	} else {
 	    // draw rectangle
 	    setVoltageColor(g, v1);
 	    interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 0, hs);
-	    drawThickLine(g, sim.ps1, sim.ps2);
+	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	    for (i = 0; i != segments; i++) {
 		double v = v1 + (v3 - v1) * i / divide;
 		if (i >= divide)
@@ -200,17 +201,17 @@ public class PotElm extends CircuitElm implements Command, MouseWheelHandler {
 		setVoltageColor(g, v);
 		interpPoint2(lead1, lead2, sim.ps1, sim.ps2, i * segf, hs);
 		interpPoint2(lead1, lead2, ps3, ps4, (i + 1) * segf, hs);
-		drawThickLine(g, sim.ps1, ps3);
-		drawThickLine(g, sim.ps2, ps4);
+		CircuitElementSupport.drawThickLine(g, sim.ps1, ps3);
+		CircuitElementSupport.drawThickLine(g, sim.ps2, ps4);
 	    }
 	    interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 1, hs);
-	    drawThickLine(g, sim.ps1, sim.ps2);
+	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	}
 	setVoltageColor(g, v3);
-	drawThickLine(g, post3, corner2);
-	drawThickLine(g, corner2, arrowPoint);
-	drawThickLine(g, arrow1, arrowPoint);
-	drawThickLine(g, arrow2, arrowPoint);
+	CircuitElementSupport.drawThickLine(g, post3, corner2);
+	CircuitElementSupport.drawThickLine(g, corner2, arrowPoint);
+	CircuitElementSupport.drawThickLine(g, arrow1, arrowPoint);
+	CircuitElementSupport.drawThickLine(g, arrow2, arrowPoint);
 	curcount1 = updateDotCount(current1, curcount1);
 	curcount2 = updateDotCount(current2, curcount2);
 	curcount3 = updateDotCount(current3, curcount3);
@@ -254,11 +255,11 @@ public class PotElm extends CircuitElm implements Command, MouseWheelHandler {
 
     public void getInfo(String arr[]) {
 	arr[0] = "potentiometer";
-	arr[1] = "Vd = " + getVoltageDText(getVoltageDiff());
-	arr[2] = "R1 = " + getUnitText(resistance1, CirSim.ohmString);
-	arr[3] = "R2 = " + getUnitText(resistance2, CirSim.ohmString);
-	arr[4] = "I1 = " + getCurrentDText(current1);
-	arr[5] = "I2 = " + getCurrentDText(current2);
+	arr[1] = "Vd = " + CircuitElementSupport.getVoltageDText(getVoltageDiff());
+	arr[2] = "R1 = " + CircuitElementSupport.getUnitText(resistance1, CirSim.ohmString);
+	arr[3] = "R2 = " + CircuitElementSupport.getUnitText(resistance2, CirSim.ohmString);
+	arr[4] = "I1 = " + CircuitElementSupport.getCurrentDText(current1);
+	arr[5] = "I2 = " + CircuitElementSupport.getCurrentDText(current2);
     }
 
     public EditInfo getEditInfo(int n) {

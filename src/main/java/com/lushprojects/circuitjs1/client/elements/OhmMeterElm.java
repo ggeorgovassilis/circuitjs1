@@ -1,6 +1,7 @@
 package com.lushprojects.circuitjs1.client.elements;
 
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
 import com.lushprojects.circuitjs1.client.ui.Scope;
@@ -29,13 +30,13 @@ public class OhmMeterElm extends CurrentElm {
 	setVoltageColor(g, (volts[0] + volts[1]) / 2);
 	setPowerColor(g, false);
 
-	drawThickCircle(g, center.x, center.y, cr);
+	CircuitElementSupport.drawThickCircle(g, center.x, center.y, cr);
 	drawCenteredText(g, CirSim.ohmString, center.x, center.y, true);
 
 	setBbox(point1, point2, cr);
 	doDots(g);
 	if (sim.showValuesCheckItem.getState() && current != 0) {
-	    String s = getShortUnitText(getVoltageDiff() / current, CirSim.ohmString);
+	    String s = CircuitElementSupport.getShortUnitText(getVoltageDiff() / current, CirSim.ohmString);
 	    if (dx == 0 || dy == 0)
 		drawValues(g, s, cr);
 	}
@@ -64,6 +65,6 @@ public class OhmMeterElm extends CurrentElm {
 	if (current == 0)
 	    arr[1] = "R = \u221e";
 	else
-	    arr[1] = "R = " + getUnitText(getVoltageDiff() / current, CirSim.ohmString);
+	    arr[1] = "R = " + CircuitElementSupport.getUnitText(getVoltageDiff() / current, CirSim.ohmString);
     }
 }

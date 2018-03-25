@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
 import com.lushprojects.circuitjs1.client.ui.Point;
@@ -68,9 +69,9 @@ public class SchmittElm extends InvertingSchmittElm {
 	drawPosts(g);
 	draw2Leads(g);
 	g.setColor(needsHighlight() ? sim.selectColor : sim.lightGrayColor);
-	drawThickPolygon(g, gatePoly);
+	CircuitElementSupport.drawThickPolygon(g, gatePoly);
 	g.setLineWidth(2);
-	drawPolygon(g, symbolPoly);
+	CircuitElementSupport.drawPolygon(g, symbolPoly);
 	g.setLineWidth(1);
 	;
 	curcount = updateDotCount(current, curcount);

@@ -21,6 +21,7 @@ package com.lushprojects.circuitjs1.client.elements;
 
 import com.google.gwt.canvas.dom.client.CanvasGradient;
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -90,7 +91,7 @@ public class ResistorElm extends CircuitElm {
 	}
 	g.context.restore();
 	if (sim.showValuesCheckItem.getState()) {
-	    String s = getShortUnitText(resistance, "");
+	    String s = CircuitElementSupport.getShortUnitText(resistance, "");
 	    drawValues(g, s, hs);
 	}
 	doDots(g);
@@ -109,13 +110,13 @@ public class ResistorElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "resistor";
 	getBasicInfo(arr);
-	arr[3] = "R = " + getUnitText(resistance, CirSim.ohmString);
-	arr[4] = "P = " + getUnitText(getPower(), "W");
+	arr[3] = "R = " + CircuitElementSupport.getUnitText(resistance, CirSim.ohmString);
+	arr[4] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
     }
 
     @Override
     public String getScopeText(int v) {
-	return CirSim.LS("resistor") + ", " + getUnitText(resistance, CirSim.ohmString);
+	return CirSim.LS("resistor") + ", " + CircuitElementSupport.getUnitText(resistance, CirSim.ohmString);
     }
 
     public EditInfo getEditInfo(int n) {

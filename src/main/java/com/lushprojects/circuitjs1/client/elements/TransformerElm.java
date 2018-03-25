@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -89,7 +90,7 @@ public class TransformerElm extends CircuitElm {
 	int i;
 	for (i = 0; i != 4; i++) {
 	    setVoltageColor(g, volts[i]);
-	    drawThickLine(g, ptEnds[i], ptCoil[i]);
+	    CircuitElementSupport.drawThickLine(g, ptEnds[i], ptCoil[i]);
 	}
 	for (i = 0; i != 2; i++) {
 	    setPowerColor(g, current[i] * (volts[i] - volts[i + 2]));
@@ -97,7 +98,7 @@ public class TransformerElm extends CircuitElm {
 	}
 	g.setColor(needsHighlight() ? sim.selectColor : sim.lightGrayColor);
 	for (i = 0; i != 2; i++) {
-	    drawThickLine(g, ptCore[i], ptCore[i + 2]);
+	    CircuitElementSupport.drawThickLine(g, ptCore[i], ptCore[i + 2]);
 	    if (dots != null)
 		g.fillOval(dots[i].x - 2, dots[i].y - 2, 5, 5);
 	    curcount[i] = updateDotCount(current[i], curcount[i]);
@@ -252,12 +253,12 @@ public class TransformerElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "transformer";
-	arr[1] = "L = " + getUnitText(inductance, "H");
+	arr[1] = "L = " + CircuitElementSupport.getUnitText(inductance, "H");
 	arr[2] = "Ratio = 1:" + ratio;
-	arr[3] = "Vd1 = " + getVoltageText(volts[0] - volts[2]);
-	arr[4] = "Vd2 = " + getVoltageText(volts[1] - volts[3]);
-	arr[5] = "I1 = " + getCurrentText(current[0]);
-	arr[6] = "I2 = " + getCurrentText(current[1]);
+	arr[3] = "Vd1 = " + CircuitElementSupport.getVoltageText(volts[0] - volts[2]);
+	arr[4] = "Vd2 = " + CircuitElementSupport.getVoltageText(volts[1] - volts[3]);
+	arr[5] = "I1 = " + CircuitElementSupport.getCurrentText(current[0]);
+	arr[6] = "I2 = " + CircuitElementSupport.getCurrentText(current[1]);
     }
 
     public boolean getConnection(int n1, int n2) {

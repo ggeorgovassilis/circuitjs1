@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -87,9 +88,9 @@ public class TriStateElm extends CircuitElm {
 	draw2Leads(g);
 
 	g.setColor(sim.lightGrayColor);
-	drawThickPolygon(g, gatePoly);
+	CircuitElementSupport.drawThickPolygon(g, gatePoly);
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, point3, lead3);
+	CircuitElementSupport.drawThickLine(g, point3, lead3);
 	curcount = updateDotCount(current, curcount);
 	drawDots(g, lead2, point2, curcount);
 	drawPosts(g);
@@ -158,9 +159,9 @@ public class TriStateElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "tri-state buffer";
 	arr[1] = open ? "open" : "closed";
-	arr[2] = "Vd = " + getVoltageDText(getVoltageDiff());
-	arr[3] = "I = " + getCurrentDText(getCurrent());
-	arr[4] = "Vc = " + getVoltageText(volts[2]);
+	arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(getVoltageDiff());
+	arr[3] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
+	arr[4] = "Vc = " + CircuitElementSupport.getVoltageText(volts[2]);
     }
 
     // there is no current path through the input, but there

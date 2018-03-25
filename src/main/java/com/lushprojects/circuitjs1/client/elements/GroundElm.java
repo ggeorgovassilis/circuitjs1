@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
 
@@ -41,13 +42,13 @@ public class GroundElm extends CircuitElm {
 
     public void draw(Graphics g) {
 	setVoltageColor(g, 0);
-	drawThickLine(g, point1, point2);
+	CircuitElementSupport.drawThickLine(g, point1, point2);
 	int i;
 	for (i = 0; i != 3; i++) {
 	    int a = 10 - i * 4;
 	    int b = i * 5; // -10;
 	    interpPoint2(point1, point2, sim.ps1, sim.ps2, 1 + b / dn, a);
-	    drawThickLine(g, sim.ps1, sim.ps2);
+	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	}
 	doDots(g);
 	interpPoint(point1, point2, sim.ps2, 1 + 11. / dn);
@@ -73,7 +74,7 @@ public class GroundElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "ground";
-	arr[1] = "I = " + getCurrentText(getCurrent());
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
     }
 
     public boolean hasGroundConnection(int n1) {

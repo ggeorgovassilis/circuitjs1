@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Color;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -99,25 +100,25 @@ public class TriodeElm extends CircuitElm {
 
     public void draw(Graphics g) {
 	g.setColor(Color.gray);
-	drawThickCircle(g, point2.x, point2.y, circler);
+	CircuitElementSupport.drawThickCircle(g, point2.x, point2.y, circler);
 	setBbox(point1, plate[0], 16);
 	adjustBbox(cath[0].x, cath[1].y, point2.x + circler, point2.y + circler);
 	// draw plate
 	setVoltageColor(g, volts[0]);
 	setPowerColor(g, currentp * (volts[0] - volts[2]));
-	drawThickLine(g, plate[0], plate[1]);
-	drawThickLine(g, plate[2], plate[3]);
+	CircuitElementSupport.drawThickLine(g, plate[0], plate[1]);
+	CircuitElementSupport.drawThickLine(g, plate[2], plate[3]);
 	// draw grid
 	setVoltageColor(g, volts[1]);
 	setPowerColor(g, currentg * (volts[1] - volts[2]));
 	int i;
 	for (i = 0; i != 8; i += 2)
-	    drawThickLine(g, grid[i], grid[i + 1]);
+	    CircuitElementSupport.drawThickLine(g, grid[i], grid[i + 1]);
 	// draw cathode
 	setVoltageColor(g, volts[2]);
 	setPowerColor(g, 0);
 	for (i = 0; i != 3; i++)
-	    drawThickLine(g, cath[i], cath[i + 1]);
+	    CircuitElementSupport.drawThickLine(g, cath[i], cath[i + 1]);
 	// draw dots
 	curcountp = updateDotCount(currentp, curcountp);
 	curcountc = updateDotCount(currentc, curcountc);
@@ -226,9 +227,9 @@ public class TriodeElm extends CircuitElm {
 	double vbc = volts[0] - volts[1];
 	double vbe = volts[0] - volts[2];
 	double vce = volts[1] - volts[2];
-	arr[1] = "Vbe = " + getVoltageText(vbe);
-	arr[2] = "Vbc = " + getVoltageText(vbc);
-	arr[3] = "Vce = " + getVoltageText(vce);
+	arr[1] = "Vbe = " + CircuitElementSupport.getVoltageText(vbe);
+	arr[2] = "Vbc = " + CircuitElementSupport.getVoltageText(vbc);
+	arr[3] = "Vce = " + CircuitElementSupport.getVoltageText(vce);
     }
 
     // grid not connected to other terminals

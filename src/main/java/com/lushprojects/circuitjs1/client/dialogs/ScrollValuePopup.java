@@ -30,6 +30,7 @@ import com.lushprojects.circuitjs1.client.elements.CapacitorElm;
 import com.lushprojects.circuitjs1.client.elements.CircuitElm;
 import com.lushprojects.circuitjs1.client.elements.InductorElm;
 import com.lushprojects.circuitjs1.client.elements.ResistorElm;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.event.dom.client.MouseOutEvent;
@@ -116,7 +117,7 @@ public class ScrollValuePopup extends PopupPanel implements MouseOutHandler, Mou
 	inf = myElm.getEditInfo(0);
 	double currentvalue = inf.value;
 	for (int i = 0; i < nvalues + 1; i++) {
-	    if (CircuitElm.getShortUnitText(currentvalue, "") == CircuitElm.getShortUnitText(values[i], "")) { // match
+	    if (CircuitElementSupport.getShortUnitText(currentvalue, "") == CircuitElementSupport.getShortUnitText(values[i], "")) { // match
 													       // to an
 													       // existing
 													       // value
@@ -147,7 +148,7 @@ public class ScrollValuePopup extends PopupPanel implements MouseOutHandler, Mou
 	    if ((thissel + i - 2) < 0 || (thissel + i - 2) >= nvalues)
 		labels[i].setText("---");
 	    else {
-		labels[i].setText(CircuitElm.getShortUnitText(values[thissel + i - 2], ""));
+		labels[i].setText(CircuitElementSupport.getShortUnitText(values[thissel + i - 2], ""));
 		if (thissel + i - 2 == currentidx)
 		    labels[i].addStyleDependentName("current");
 	    }

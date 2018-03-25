@@ -20,6 +20,7 @@
 package com.lushprojects.circuitjs1.client.elements;
 
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Color;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -129,7 +130,7 @@ public class TransLineElm extends CircuitElm {
 	g.fillRect(inner[2].x, inner[2].y, inner[1].x - inner[2].x + 2, inner[1].y - inner[2].y + 2);
 	for (i = 0; i != 4; i++) {
 	    setVoltageColor(g, volts[i]);
-	    drawThickLine(g, posts[i], inner[i]);
+	    CircuitElementSupport.drawThickLine(g, posts[i], inner[i]);
 	}
 	if (voltageL != null) {
 	    for (i = 0; i != segments; i++) {
@@ -141,11 +142,11 @@ public class TransLineElm extends CircuitElm {
 		interpPoint(inner[2], inner[3], sim.ps2, i * segf);
 		g.drawLine(sim.ps1.x, sim.ps1.y, sim.ps2.x, sim.ps2.y);
 		interpPoint(inner[2], inner[3], sim.ps1, (i + 1) * segf);
-		drawThickLine(g, sim.ps1, sim.ps2);
+		CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	    }
 	}
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, inner[0], inner[1]);
+	CircuitElementSupport.drawThickLine(g, inner[0], inner[1]);
 	drawPosts(g);
 
 	curCount1 = updateDotCount(-current1, curCount1);
@@ -236,9 +237,9 @@ public class TransLineElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "transmission line";
-	arr[1] = getUnitText(imped, CirSim.ohmString);
-	arr[2] = "length = " + getUnitText(2.9979e8 * delay, "m");
-	arr[3] = "delay = " + getUnitText(delay, "s");
+	arr[1] = CircuitElementSupport.getUnitText(imped, CirSim.ohmString);
+	arr[2] = "length = " + CircuitElementSupport.getUnitText(2.9979e8 * delay, "m");
+	arr[3] = "delay = " + CircuitElementSupport.getUnitText(delay, "s");
     }
 
     public EditInfo getEditInfo(int n) {

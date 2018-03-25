@@ -20,6 +20,7 @@
 package com.lushprojects.circuitjs1.client.elements;
 
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.Color;
@@ -107,9 +108,9 @@ public class MosfetElm extends CircuitElm {
 
 	// draw source/drain terminals
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, src[0], src[1]);
+	CircuitElementSupport.drawThickLine(g, src[0], src[1]);
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, drn[0], drn[1]);
+	CircuitElementSupport.drawThickLine(g, drn[0], drn[1]);
 
 	// draw line connecting source and drain
 	int segments = 6;
@@ -124,19 +125,19 @@ public class MosfetElm extends CircuitElm {
 	    setVoltageColor(g, v);
 	    interpPoint(src[1], drn[1], sim.ps1, i * segf);
 	    interpPoint(src[1], drn[1], sim.ps2, (i + 1) * segf);
-	    drawThickLine(g, sim.ps1, sim.ps2);
+	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	}
 
 	// draw little extensions of that line
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, src[1], src[2]);
+	CircuitElementSupport.drawThickLine(g, src[1], src[2]);
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, drn[1], drn[2]);
+	CircuitElementSupport.drawThickLine(g, drn[1], drn[2]);
 
 	if (showBulk()) {
 	    setVoltageColor(g, pnp == -1 ? volts[2] : volts[1]);
-	    drawThickLine(g, pnp == -1 ? drn[0] : src[0], body[0]);
-	    drawThickLine(g, body[0], body[1]);
+	    CircuitElementSupport.drawThickLine(g, pnp == -1 ? drn[0] : src[0], body[0]);
+	    CircuitElementSupport.drawThickLine(g, body[0], body[1]);
 	}
 
 	// draw arrow
@@ -149,10 +150,10 @@ public class MosfetElm extends CircuitElm {
 
 	// draw gate
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, gate[1]);
-	drawThickLine(g, gate[0], gate[2]);
+	CircuitElementSupport.drawThickLine(g, point1, gate[1]);
+	CircuitElementSupport.drawThickLine(g, gate[0], gate[2]);
 	if (drawDigital() && pnp == -1)
-	    drawThickCircle(g, pcircle.x, pcircle.y, pcircler);
+	    CircuitElementSupport.drawThickCircle(g, pcircle.x, pcircle.y, pcircler);
 
 	if ((flags & FLAG_SHOWVT) != 0) {
 	    String s = "" + (vt * pnp);
@@ -344,13 +345,13 @@ public class MosfetElm extends CircuitElm {
     @SuppressWarnings("static-access")
     void getFetInfo(String arr[], String n) {
 	arr[0] = sim.LS(((pnp == -1) ? "p-" : "n-") + n);
-	arr[0] += " (Vt = " + getVoltageText(pnp * vt) + ")";
-	arr[1] = ((pnp == 1) ? "Ids = " : "Isd = ") + getCurrentText(ids);
-	arr[2] = "Vgs = " + getVoltageText(volts[0] - volts[pnp == -1 ? 2 : 1]);
-	arr[3] = ((pnp == 1) ? "Vds = " : "Vsd = ") + getVoltageText(volts[2] - volts[1]);
+	arr[0] += " (Vt = " + CircuitElementSupport.getVoltageText(pnp * vt) + ")";
+	arr[1] = ((pnp == 1) ? "Ids = " : "Isd = ") + CircuitElementSupport.getCurrentText(ids);
+	arr[2] = "Vgs = " + CircuitElementSupport.getVoltageText(volts[0] - volts[pnp == -1 ? 2 : 1]);
+	arr[3] = ((pnp == 1) ? "Vds = " : "Vsd = ") + CircuitElementSupport.getVoltageText(volts[2] - volts[1]);
 	arr[4] = sim.LS((mode == 0) ? "off" : (mode == 1) ? "linear" : "saturation");
-	arr[5] = "gm = " + getUnitText(gm, "A/V");
-	arr[6] = "P = " + getUnitText(getPower(), "W");
+	arr[5] = "gm = " + CircuitElementSupport.getUnitText(gm, "A/V");
+	arr[6] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
     }
 
     public void getInfo(String arr[]) {

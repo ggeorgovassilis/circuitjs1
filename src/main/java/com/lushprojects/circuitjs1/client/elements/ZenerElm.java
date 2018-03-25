@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -81,11 +82,11 @@ public class ZenerElm extends DiodeElm {
 
 	// draw thing arrow is pointing to
 	setVoltageColor(g, v2);
-	drawThickLine(g, cathode[0], cathode[1]);
+	CircuitElementSupport.drawThickLine(g, cathode[0], cathode[1]);
 
 	// draw wings on cathode
-	drawThickLine(g, wing[0], cathode[0]);
-	drawThickLine(g, wing[1], cathode[1]);
+	CircuitElementSupport.drawThickLine(g, wing[0], cathode[0]);
+	CircuitElementSupport.drawThickLine(g, wing[1], cathode[1]);
 
 	doDots(g);
 	drawPosts(g);
@@ -96,7 +97,7 @@ public class ZenerElm extends DiodeElm {
     public void getInfo(String arr[]) {
 	super.getInfo(arr);
 	arr[0] = "Zener diode";
-	arr[5] = "Vz = " + getVoltageText(zvoltage);
+	arr[5] = "Vz = " + CircuitElementSupport.getVoltageText(zvoltage);
     }
 
     public EditInfo getEditInfo(int n) {

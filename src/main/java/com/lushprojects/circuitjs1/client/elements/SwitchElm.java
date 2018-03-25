@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -93,7 +94,7 @@ public class SwitchElm extends CircuitElm {
 	interpPoint(lead1, lead2, ps, 0, hs1);
 	interpPoint(lead1, lead2, ps2, 1, hs2);
 
-	drawThickLine(g, ps, ps2);
+	CircuitElementSupport.drawThickLine(g, ps, ps2);
 	drawPosts(g);
     }
 
@@ -131,11 +132,11 @@ public class SwitchElm extends CircuitElm {
 	arr[0] = (momentary) ? "push switch (SPST)" : "switch (SPST)";
 	if (position == 1) {
 	    arr[1] = "open";
-	    arr[2] = "Vd = " + getVoltageDText(getVoltageDiff());
+	    arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(getVoltageDiff());
 	} else {
 	    arr[1] = "closed";
-	    arr[2] = "V = " + getVoltageText(volts[0]);
-	    arr[3] = "I = " + getCurrentDText(getCurrent());
+	    arr[2] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
+	    arr[3] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
 	}
     }
 

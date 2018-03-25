@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
 import com.lushprojects.circuitjs1.client.ui.Point;
@@ -76,9 +77,9 @@ public class TunnelDiodeElm extends CircuitElm {
 
 	// draw thing arrow is pointing to
 	setVoltageColor(g, v2);
-	drawThickLine(g, cathode[0], cathode[1]);
-	drawThickLine(g, cathode[2], cathode[0]);
-	drawThickLine(g, cathode[3], cathode[1]);
+	CircuitElementSupport.drawThickLine(g, cathode[0], cathode[1]);
+	CircuitElementSupport.drawThickLine(g, cathode[2], cathode[0]);
+	CircuitElementSupport.drawThickLine(g, cathode[3], cathode[1]);
 
 	doDots(g);
 	drawPosts(g);
@@ -143,8 +144,8 @@ public class TunnelDiodeElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "tunnel diode";
-	arr[1] = "I = " + getCurrentText(getCurrent());
-	arr[2] = "Vd = " + getVoltageText(getVoltageDiff());
-	arr[3] = "P = " + getUnitText(getPower(), "W");
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
+	arr[2] = "Vd = " + CircuitElementSupport.getVoltageText(getVoltageDiff());
+	arr[3] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
     }
 }

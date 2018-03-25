@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.Color;
@@ -71,12 +72,12 @@ public class SweepElm extends CircuitElm {
     public void draw(Graphics g) {
 	setBbox(point1, point2, circleSize);
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 	g.setColor(needsHighlight() ? sim.selectColor : Color.gray);
 	setPowerColor(g, false);
 	int xc = point2.x;
 	int yc = point2.y;
-	drawThickCircle(g, xc, yc, circleSize);
+	CircuitElementSupport.drawThickCircle(g, xc, yc, circleSize);
 	int wl = 8;
 	adjustBbox(xc - circleSize, yc - circleSize, xc + circleSize, yc + circleSize);
 	int i;
@@ -103,7 +104,7 @@ public class SweepElm extends CircuitElm {
 	g.context.setLineWidth(1.0);
 
 	if (sim.showValuesCheckItem.getState()) {
-	    String s = getShortUnitText(frequency, "Hz");
+	    String s = CircuitElementSupport.getShortUnitText(frequency, "Hz");
 	    if (dx == 0 || dy == 0)
 		drawValues(g, s, circleSize);
 	}
@@ -186,11 +187,11 @@ public class SweepElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "sweep " + (((flags & FLAG_LOG) == 0) ? "(linear)" : "(log)");
-	arr[1] = "I = " + getCurrentDText(getCurrent());
-	arr[2] = "V = " + getVoltageText(volts[0]);
-	arr[3] = "f = " + getUnitText(frequency, "Hz");
-	arr[4] = "range = " + getUnitText(minF, "Hz") + " .. " + getUnitText(maxF, "Hz");
-	arr[5] = "time = " + getUnitText(sweepTime, "s");
+	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
+	arr[2] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
+	arr[3] = "f = " + CircuitElementSupport.getUnitText(frequency, "Hz");
+	arr[4] = "range = " + CircuitElementSupport.getUnitText(minF, "Hz") + " .. " + CircuitElementSupport.getUnitText(maxF, "Hz");
+	arr[5] = "time = " + CircuitElementSupport.getUnitText(sweepTime, "s");
     }
 
     public EditInfo getEditInfo(int n) {

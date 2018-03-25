@@ -20,6 +20,7 @@
 package com.lushprojects.circuitjs1.client.elements;
 
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -114,10 +115,10 @@ public class DiacElm extends CircuitElm {
 	arr[0] = "spark gap";
 	getBasicInfo(arr);
 	arr[3] = state ? "on" : "off";
-	arr[4] = "Ron = " + getUnitText(onresistance, CirSim.ohmString);
-	arr[5] = "Roff = " + getUnitText(offresistance, CirSim.ohmString);
-	arr[6] = "Vbrkdn = " + getUnitText(breakdown, "V");
-	arr[7] = "Ihold = " + getUnitText(holdcurrent, "A");
+	arr[4] = "Ron = " + CircuitElementSupport.getUnitText(onresistance, CirSim.ohmString);
+	arr[5] = "Roff = " + CircuitElementSupport.getUnitText(offresistance, CirSim.ohmString);
+	arr[6] = "Vbrkdn = " + CircuitElementSupport.getUnitText(breakdown, "V");
+	arr[7] = "Ihold = " + CircuitElementSupport.getUnitText(holdcurrent, "A");
     }
 
     public EditInfo getEditInfo(int n) {

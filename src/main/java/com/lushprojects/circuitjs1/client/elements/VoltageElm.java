@@ -21,6 +21,7 @@ package com.lushprojects.circuitjs1.client.elements;
 
 import com.google.gwt.user.client.Window;
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Choice;
 import com.lushprojects.circuitjs1.client.ui.Color;
@@ -154,12 +155,12 @@ public class VoltageElm extends CircuitElm {
 	    setPowerColor(g, false);
 	    setVoltageColor(g, volts[0]);
 	    interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 0, 10);
-	    drawThickLine(g, sim.ps1, sim.ps2);
+	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	    setVoltageColor(g, volts[1]);
 	    int hs = 16;
 	    setBbox(point1, point2, hs);
 	    interpPoint2(lead1, lead2, sim.ps1, sim.ps2, 1, hs);
-	    drawThickLine(g, sim.ps1, sim.ps2);
+	    CircuitElementSupport.drawThickLine(g, sim.ps1, sim.ps2);
 	} else {
 	    setBbox(point1, point2, circleSize);
 	    interpPoint(lead1, lead2, sim.ps1, .5);
@@ -194,7 +195,7 @@ public class VoltageElm extends CircuitElm {
 	setPowerColor(g, false);
 	int xc = center.x;
 	int yc = center.y;
-	drawThickCircle(g, xc, yc, circleSize);
+	CircuitElementSupport.drawThickCircle(g, xc, yc, circleSize);
 	int wl = 8;
 	adjustBbox(xc - circleSize, yc - circleSize, xc + circleSize, yc + circleSize);
 	int xc2;
@@ -205,30 +206,30 @@ public class VoltageElm extends CircuitElm {
 	case WF_SQUARE:
 	    xc2 = (int) (wl * 2 * dutyCycle - wl + xc);
 	    xc2 = max(xc - wl + 3, min(xc + wl - 3, xc2));
-	    drawThickLine(g, xc - wl, yc - wl, xc - wl, yc);
-	    drawThickLine(g, xc - wl, yc - wl, xc2, yc - wl);
-	    drawThickLine(g, xc2, yc - wl, xc2, yc + wl);
-	    drawThickLine(g, xc + wl, yc + wl, xc2, yc + wl);
-	    drawThickLine(g, xc + wl, yc, xc + wl, yc + wl);
+	    CircuitElementSupport.drawThickLine(g, xc - wl, yc - wl, xc - wl, yc);
+	    CircuitElementSupport.drawThickLine(g, xc - wl, yc - wl, xc2, yc - wl);
+	    CircuitElementSupport.drawThickLine(g, xc2, yc - wl, xc2, yc + wl);
+	    CircuitElementSupport.drawThickLine(g, xc + wl, yc + wl, xc2, yc + wl);
+	    CircuitElementSupport.drawThickLine(g, xc + wl, yc, xc + wl, yc + wl);
 	    break;
 	case WF_PULSE:
 	    yc += wl / 2;
-	    drawThickLine(g, xc - wl, yc - wl, xc - wl, yc);
-	    drawThickLine(g, xc - wl, yc - wl, xc - wl / 2, yc - wl);
-	    drawThickLine(g, xc - wl / 2, yc - wl, xc - wl / 2, yc);
-	    drawThickLine(g, xc - wl / 2, yc, xc + wl, yc);
+	    CircuitElementSupport.drawThickLine(g, xc - wl, yc - wl, xc - wl, yc);
+	    CircuitElementSupport.drawThickLine(g, xc - wl, yc - wl, xc - wl / 2, yc - wl);
+	    CircuitElementSupport.drawThickLine(g, xc - wl / 2, yc - wl, xc - wl / 2, yc);
+	    CircuitElementSupport.drawThickLine(g, xc - wl / 2, yc, xc + wl, yc);
 	    break;
 	case WF_SAWTOOTH:
-	    drawThickLine(g, xc, yc - wl, xc - wl, yc);
-	    drawThickLine(g, xc, yc - wl, xc, yc + wl);
-	    drawThickLine(g, xc, yc + wl, xc + wl, yc);
+	    CircuitElementSupport.drawThickLine(g, xc, yc - wl, xc - wl, yc);
+	    CircuitElementSupport.drawThickLine(g, xc, yc - wl, xc, yc + wl);
+	    CircuitElementSupport.drawThickLine(g, xc, yc + wl, xc + wl, yc);
 	    break;
 	case WF_TRIANGLE: {
 	    int xl = 5;
-	    drawThickLine(g, xc - xl * 2, yc, xc - xl, yc - wl);
-	    drawThickLine(g, xc - xl, yc - wl, xc, yc);
-	    drawThickLine(g, xc, yc, xc + xl, yc + wl);
-	    drawThickLine(g, xc + xl, yc + wl, xc + xl * 2, yc);
+	    CircuitElementSupport.drawThickLine(g, xc - xl * 2, yc, xc - xl, yc - wl);
+	    CircuitElementSupport.drawThickLine(g, xc - xl, yc - wl, xc, yc);
+	    CircuitElementSupport.drawThickLine(g, xc, yc, xc + xl, yc + wl);
+	    CircuitElementSupport.drawThickLine(g, xc + xl, yc + wl, xc + xl * 2, yc);
 	    break;
 	}
 	case WF_AC: {
@@ -250,7 +251,7 @@ public class VoltageElm extends CircuitElm {
 	}
 	}
 	if (sim.showValuesCheckItem.getState()) {
-	    String s = getShortUnitText(frequency, "Hz");
+	    String s = CircuitElementSupport.getShortUnitText(frequency, "Hz");
 	    if (dx == 0 || dy == 0)
 		drawValues(g, s, circleSize);
 	}
@@ -290,23 +291,23 @@ public class VoltageElm extends CircuitElm {
 	    arr[0] = "triangle gen";
 	    break;
 	}
-	arr[1] = "I = " + getCurrentText(getCurrent());
-	arr[2] = ((this instanceof RailElm) ? "V = " : "Vd = ") + getVoltageText(getVoltageDiff());
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
+	arr[2] = ((this instanceof RailElm) ? "V = " : "Vd = ") + CircuitElementSupport.getVoltageText(getVoltageDiff());
 	if (waveform != WF_DC && waveform != WF_VAR) {
-	    arr[3] = "f = " + getUnitText(frequency, "Hz");
-	    arr[4] = "Vmax = " + getVoltageText(maxVoltage);
+	    arr[3] = "f = " + CircuitElementSupport.getUnitText(frequency, "Hz");
+	    arr[4] = "Vmax = " + CircuitElementSupport.getVoltageText(maxVoltage);
 	    int i = 5;
 	    if (waveform == WF_AC && bias == 0)
-		arr[i++] = "V(rms) = " + getVoltageText(maxVoltage / 1.41421356);
+		arr[i++] = "V(rms) = " + CircuitElementSupport.getVoltageText(maxVoltage / 1.41421356);
 	    if (bias != 0)
-		arr[i++] = "Voff = " + getVoltageText(bias);
+		arr[i++] = "Voff = " + CircuitElementSupport.getVoltageText(bias);
 	    else if (frequency > 500)
-		arr[i++] = "wavelength = " + getUnitText(2.9979e8 / frequency, "m");
-	    arr[i++] = "P = " + getUnitText(getPower(), "W");
+		arr[i++] = "wavelength = " + CircuitElementSupport.getUnitText(2.9979e8 / frequency, "m");
+	    arr[i++] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
 	}
 	if (waveform == WF_DC && current != 0 && sim.showResistanceInVoltageSources) {
-	    arr[3] = "(R = " + getUnitText(maxVoltage / current, CirSim.ohmString) + ")";
-	    arr[4] = "P = " + getUnitText(getPower(), "W");
+	    arr[3] = "(R = " + CircuitElementSupport.getUnitText(maxVoltage / current, CirSim.ohmString) + ")";
+	    arr[4] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
 	}
     }
 

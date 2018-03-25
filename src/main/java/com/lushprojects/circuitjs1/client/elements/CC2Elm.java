@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
 
@@ -60,9 +61,9 @@ public class CC2Elm extends ChipElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = (gain == 1) ? "CCII+~" : "CCII-~"; // ~ is for localization
-	arr[1] = "X,Y = " + getVoltageText(volts[0]);
-	arr[2] = "Z = " + getVoltageText(volts[2]);
-	arr[3] = "I = " + getCurrentText(pins[0].current);
+	arr[1] = "X,Y = " + CircuitElementSupport.getVoltageText(volts[0]);
+	arr[2] = "Z = " + CircuitElementSupport.getVoltageText(volts[2]);
+	arr[3] = "I = " + CircuitElementSupport.getCurrentText(pins[0].current);
     }
 
     // boolean nonLinear() { return true; }

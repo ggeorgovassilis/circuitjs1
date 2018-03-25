@@ -20,6 +20,7 @@
 package com.lushprojects.circuitjs1.client.elements;
 
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Color;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -123,13 +124,13 @@ public class LampElm extends CircuitElm {
 	g.setColor(getTempColor());
 	g.fillOval(bulb.x - bulbR, bulb.y - bulbR, bulbR * 2, bulbR * 2);
 	g.setColor(Color.white);
-	drawThickCircle(g, bulb.x, bulb.y, bulbR);
+	CircuitElementSupport.drawThickCircle(g, bulb.x, bulb.y, bulbR);
 	setVoltageColor(g, v1);
-	drawThickLine(g, lead1, filament[0]);
+	CircuitElementSupport.drawThickLine(g, lead1, filament[0]);
 	setVoltageColor(g, v2);
-	drawThickLine(g, lead2, filament[1]);
+	CircuitElementSupport.drawThickLine(g, lead2, filament[1]);
 	setVoltageColor(g, (v1 + v2) * .5);
-	drawThickLine(g, filament[0], filament[1]);
+	CircuitElementSupport.drawThickLine(g, filament[0], filament[1]);
 	updateDotCount();
 	if (sim.dragElm != this) {
 	    drawDots(g, point1, lead1, curcount);
@@ -184,8 +185,8 @@ public class LampElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "lamp";
 	getBasicInfo(arr);
-	arr[3] = "R = " + getUnitText(resistance, CirSim.ohmString);
-	arr[4] = "P = " + getUnitText(getPower(), "W");
+	arr[3] = "R = " + CircuitElementSupport.getUnitText(resistance, CirSim.ohmString);
+	arr[4] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
 	arr[5] = "T = " + ((int) temp) + " K";
     }
 

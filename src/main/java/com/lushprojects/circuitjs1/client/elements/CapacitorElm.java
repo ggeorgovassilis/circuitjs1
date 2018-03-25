@@ -20,6 +20,7 @@
 package com.lushprojects.circuitjs1.client.elements;
 
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.Color;
@@ -89,22 +90,22 @@ public class CapacitorElm extends CircuitElm {
 
 	// draw first lead and plate
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 	setPowerColor(g, false);
-	drawThickLine(g, plate1[0], plate1[1]);
+	CircuitElementSupport.drawThickLine(g, plate1[0], plate1[1]);
 	if (sim.powerCheckItem.getState())
 	    g.setColor(Color.gray);
 
 	// draw second lead and plate
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, point2, lead2);
+	CircuitElementSupport.drawThickLine(g, point2, lead2);
 	setPowerColor(g, false);
 	if (platePoints == null)
-	    drawThickLine(g, plate2[0], plate2[1]);
+	    CircuitElementSupport.drawThickLine(g, plate2[0], plate2[1]);
 	else {
 	    int i;
 	    for (i = 0; i != 7; i++)
-		drawThickLine(g, platePoints[i], platePoints[i + 1]);
+		CircuitElementSupport.drawThickLine(g, platePoints[i], platePoints[i + 1]);
 	}
 
 	updateDotCount();
@@ -114,7 +115,7 @@ public class CapacitorElm extends CircuitElm {
 	}
 	drawPosts(g);
 	if (sim.showValuesCheckItem.getState()) {
-	    String s = getShortUnitText(capacitance, "F");
+	    String s = CircuitElementSupport.getShortUnitText(capacitance, "F");
 	    drawValues(g, s, hs);
 	}
     }
@@ -159,15 +160,15 @@ public class CapacitorElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "capacitor";
 	getBasicInfo(arr);
-	arr[3] = "C = " + getUnitText(capacitance, "F");
-	arr[4] = "P = " + getUnitText(getPower(), "W");
+	arr[3] = "C = " + CircuitElementSupport.getUnitText(capacitance, "F");
+	arr[4] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
 	// double v = getVoltageDiff();
 	// arr[4] = "U = " + getUnitText(.5*capacitance*v*v, "J");
     }
 
     @Override
     public String getScopeText(int v) {
-	return CirSim.LS("capacitor") + ", " + getUnitText(capacitance, "F");
+	return CirSim.LS("capacitor") + ", " + CircuitElementSupport.getUnitText(capacitance, "F");
     }
 
     public EditInfo getEditInfo(int n) {

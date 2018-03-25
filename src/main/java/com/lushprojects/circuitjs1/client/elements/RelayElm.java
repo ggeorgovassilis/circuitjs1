@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.Color;
@@ -104,7 +105,7 @@ public class RelayElm extends CircuitElm {
 	int i, p;
 	for (i = 0; i != 2; i++) {
 	    setVoltageColor(g, volts[nCoil1 + i]);
-	    drawThickLine(g, coilLeads[i], coilPosts[i]);
+	    CircuitElementSupport.drawThickLine(g, coilLeads[i], coilPosts[i]);
 	}
 	int x = ((flags & FLAG_SWAP_COIL) != 0) ? 1 : 0;
 	setPowerColor(g, coilCurrent * (volts[nCoil1] - volts[nCoil2]));
@@ -127,13 +128,13 @@ public class RelayElm extends CircuitElm {
 	    for (i = 0; i != 3; i++) {
 		// draw lead
 		setVoltageColor(g, volts[nSwitch0 + po + i]);
-		drawThickLine(g, swposts[p][i], swpoles[p][i]);
+		CircuitElementSupport.drawThickLine(g, swposts[p][i], swpoles[p][i]);
 	    }
 
 	    interpPoint(swpoles[p][1], swpoles[p][2], ptSwitch[p], d_position);
 	    // setVoltageColor(g, volts[nSwitch0]);
 	    g.setColor(Color.lightGray);
-	    drawThickLine(g, swpoles[p][0], ptSwitch[p]);
+	    CircuitElementSupport.drawThickLine(g, swpoles[p][0], ptSwitch[p]);
 	    switchCurCount[p] = updateDotCount(switchCurrent[p], switchCurCount[p]);
 	    drawDots(g, swposts[p][0], swpoles[p][0], switchCurCount[p]);
 
@@ -299,9 +300,9 @@ public class RelayElm extends CircuitElm {
 	int i;
 	int ln = 1;
 	for (i = 0; i != poleCount; i++)
-	    arr[ln++] = "I" + (i + 1) + " = " + getCurrentDText(switchCurrent[i]);
-	arr[ln++] = "coil I = " + getCurrentDText(coilCurrent);
-	arr[ln++] = "coil Vd = " + getVoltageDText(volts[nCoil1] - volts[nCoil2]);
+	    arr[ln++] = "I" + (i + 1) + " = " + CircuitElementSupport.getCurrentDText(switchCurrent[i]);
+	arr[ln++] = "coil I = " + CircuitElementSupport.getCurrentDText(coilCurrent);
+	arr[ln++] = "coil Vd = " + CircuitElementSupport.getVoltageDText(volts[nCoil1] - volts[nCoil2]);
     }
 
     public EditInfo getEditInfo(int n) {

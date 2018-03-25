@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Color;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -58,19 +59,19 @@ public class SevenSegElm extends ChipElm {
 	int xl = x + cspc * 5;
 	int yl = y + cspc;
 	setColor(g, 0);
-	drawThickLine(g, xl, yl, xl + cspc, yl);
+	CircuitElementSupport.drawThickLine(g, xl, yl, xl + cspc, yl);
 	setColor(g, 1);
-	drawThickLine(g, xl + cspc, yl, xl + cspc, yl + cspc);
+	CircuitElementSupport.drawThickLine(g, xl + cspc, yl, xl + cspc, yl + cspc);
 	setColor(g, 2);
-	drawThickLine(g, xl + cspc, yl + cspc, xl + cspc, yl + cspc2);
+	CircuitElementSupport.drawThickLine(g, xl + cspc, yl + cspc, xl + cspc, yl + cspc2);
 	setColor(g, 3);
-	drawThickLine(g, xl, yl + cspc2, xl + cspc, yl + cspc2);
+	CircuitElementSupport.drawThickLine(g, xl, yl + cspc2, xl + cspc, yl + cspc2);
 	setColor(g, 4);
-	drawThickLine(g, xl, yl + cspc, xl, yl + cspc2);
+	CircuitElementSupport.drawThickLine(g, xl, yl + cspc, xl, yl + cspc2);
 	setColor(g, 5);
-	drawThickLine(g, xl, yl, xl, yl + cspc);
+	CircuitElementSupport.drawThickLine(g, xl, yl, xl, yl + cspc);
 	setColor(g, 6);
-	drawThickLine(g, xl, yl + cspc, xl + cspc, yl + cspc);
+	CircuitElementSupport.drawThickLine(g, xl, yl + cspc, xl + cspc, yl + cspc);
     }
 
     void setColor(Graphics g, int p) {

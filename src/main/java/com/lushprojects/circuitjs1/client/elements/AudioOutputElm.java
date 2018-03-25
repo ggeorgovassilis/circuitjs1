@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Choice;
 import com.lushprojects.circuitjs1.client.ui.Color;
@@ -109,7 +110,7 @@ public class AudioOutputElm extends CircuitElm {
 	setVoltageColor(g, volts[0]);
 	if (selected)
 	    g.setColor(sim.selectColor);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 	drawPosts(g);
     }
 
@@ -119,11 +120,11 @@ public class AudioOutputElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "audio output";
-	arr[1] = "V = " + getVoltageText(volts[0]);
+	arr[1] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
 	int ct = (dataFull ? dataCount : dataPtr);
 	double dur = sampleStep * ct;
-	arr[2] = "start = " + getUnitText(dataFull ? sim.t - duration : dataStart, "s");
-	arr[3] = "dur = " + getUnitText(dur, "s");
+	arr[2] = "start = " + CircuitElementSupport.getUnitText(dataFull ? sim.t - duration : dataStart, "s");
+	arr[3] = "dur = " + CircuitElementSupport.getUnitText(dur, "s");
 	arr[4] = "samples = " + ct + (dataFull ? "" : "/" + dataCount);
     }
 

@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
 
@@ -57,7 +58,7 @@ public class RailElm extends VoltageElm {
     public void draw(Graphics g) {
 	setBbox(point1, point2, circleSize);
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 	drawRail(g);
 	drawPosts(g);
 	curcount = updateDotCount(-current, curcount);
@@ -76,7 +77,7 @@ public class RailElm extends VoltageElm {
 	    if (Math.abs(v) < 1)
 		s = sim.showFormat.format(v) + " V";
 	    else
-		s = getShortUnitText(v, "V");
+		s = CircuitElementSupport.getShortUnitText(v, "V");
 	    if (getVoltage() > 0)
 		s = "+" + s;
 	    drawCenteredText(g, s, x2, y2, true);

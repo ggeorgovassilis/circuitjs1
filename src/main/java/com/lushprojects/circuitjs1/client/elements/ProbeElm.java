@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.Choice;
@@ -125,11 +126,11 @@ public class ProbeElm extends CircuitElm {
 	setVoltageColor(g, volts[0]);
 	if (selected)
 	    g.setColor(sim.selectColor);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 	setVoltageColor(g, volts[1]);
 	if (selected)
 	    g.setColor(sim.selectColor);
-	drawThickLine(g, lead2, point2);
+	CircuitElementSupport.drawThickLine(g, lead2, point2);
 	Font f = new Font("SansSerif", Font.BOLD, 14);
 	g.setFont(f);
 	if (this == sim.plotXElm)
@@ -140,32 +141,32 @@ public class ProbeElm extends CircuitElm {
 	    String s = "";
 	    switch (meter) {
 	    case TP_VOL:
-		s = myGetUnitText(getVoltageDiff(), "V", false);
+		s = CircuitElementSupport.myGetUnitText(getVoltageDiff(), "V", false);
 		break;
 	    case TP_RMS:
-		s = myGetUnitText(rmsV, "V(rms)", false);
+		s = CircuitElementSupport.myGetUnitText(rmsV, "V(rms)", false);
 		break;
 	    case TP_MAX:
-		s = myGetUnitText(lastMaxV, "Vpk", false);
+		s = CircuitElementSupport.myGetUnitText(lastMaxV, "Vpk", false);
 		break;
 	    case TP_MIN:
-		s = myGetUnitText(lastMinV, "Vmin", false);
+		s = CircuitElementSupport.myGetUnitText(lastMinV, "Vmin", false);
 		break;
 	    case TP_P2P:
-		s = myGetUnitText(lastMaxV - lastMinV, "Vp2p", false);
+		s = CircuitElementSupport.myGetUnitText(lastMaxV - lastMinV, "Vp2p", false);
 		break;
 	    case TP_BIN:
 		s = binaryLevel + "";
 		break;
 	    case TP_FRQ:
-		s = myGetUnitText(frequency, "Hz", false);
+		s = CircuitElementSupport.myGetUnitText(frequency, "Hz", false);
 		break;
 	    case TP_PER:
 		// s = "percent:"+period + " " + sim.timeStep + " " + sim.simTime + " " +
 		// sim.getIterCount();
 		break;
 	    case TP_PWI:
-		s = myGetUnitText(pulseWidth, "S", false);
+		s = CircuitElementSupport.myGetUnitText(pulseWidth, "S", false);
 		break;
 	    case TP_DUT:
 		s = sim.showFormat.format(dutyCycle);
@@ -265,7 +266,7 @@ public class ProbeElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "voltmeter";
-	arr[1] = "Vd = " + getVoltageText(getVoltageDiff());
+	arr[1] = "Vd = " + CircuitElementSupport.getVoltageText(getVoltageDiff());
     }
 
     public boolean getConnection(int n1, int n2) {

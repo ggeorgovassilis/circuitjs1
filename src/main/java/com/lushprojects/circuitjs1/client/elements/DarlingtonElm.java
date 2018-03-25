@@ -1,6 +1,7 @@
 package com.lushprojects.circuitjs1.client.elements;
 
 import com.lushprojects.circuitjs1.client.CirSim;
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Color;
 import com.lushprojects.circuitjs1.client.ui.Graphics;
@@ -54,12 +55,12 @@ public class DarlingtonElm extends CompositeElm {
 	setPowerColor(g, true);
 	// draw collector
 	setVoltageColor(g, volts[1]);
-	drawThickLine(g, coll[0], coll[1]);
-	drawThickLine(g, coll2[0], coll2[1]);
-	drawThickLine(g, coll[0], coll2[0]);
+	CircuitElementSupport.drawThickLine(g, coll[0], coll[1]);
+	CircuitElementSupport.drawThickLine(g, coll2[0], coll2[1]);
+	CircuitElementSupport.drawThickLine(g, coll[0], coll2[0]);
 	// draw emitter
 	setVoltageColor(g, volts[2]);
-	drawThickLine(g, emit[0], emit[1]);
+	CircuitElementSupport.drawThickLine(g, emit[0], emit[1]);
 	// draw arrow
 	g.setColor(sim.lightGrayColor);
 	g.fillPolygon(arrowPoly);
@@ -67,7 +68,7 @@ public class DarlingtonElm extends CompositeElm {
 	setVoltageColor(g, volts[0]);
 	if (sim.powerCheckItem.getState())
 	    g.setColor(Color.gray);
-	drawThickLine(g, point1, base);
+	CircuitElementSupport.drawThickLine(g, point1, base);
 	// draw dots
 	curcount_b = updateDotCount(getCurrentIntoNode(0), curcount_b);
 	drawDots(g, base, point1, curcount_b);
@@ -100,11 +101,11 @@ public class DarlingtonElm extends CompositeElm {
 	double vbc = volts[0] - volts[1];
 	double vbe = volts[0] - volts[2];
 	double vce = volts[1] - volts[2];
-	arr[1] = "Ic = " + getCurrentText(-getCurrentIntoNode(1));
-	arr[2] = "Ib = " + getCurrentText(-getCurrentIntoNode(0));
-	arr[3] = "Vbe = " + getVoltageText(vbe);
-	arr[4] = "Vbc = " + getVoltageText(vbc);
-	arr[5] = "Vce = " + getVoltageText(vce);
+	arr[1] = "Ic = " + CircuitElementSupport.getCurrentText(-getCurrentIntoNode(1));
+	arr[2] = "Ib = " + CircuitElementSupport.getCurrentText(-getCurrentIntoNode(0));
+	arr[3] = "Vbe = " + CircuitElementSupport.getVoltageText(vbe);
+	arr[4] = "Vbc = " + CircuitElementSupport.getVoltageText(vbc);
+	arr[5] = "Vce = " + CircuitElementSupport.getVoltageText(vce);
     }
 
     public void setPoints() {

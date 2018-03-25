@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -95,7 +96,7 @@ public class LogicOutputElm extends CircuitElm {
 	setBbox(point1, lead1, 0);
 	drawCenteredText(g, s, x2, y2, true);
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, lead1);
+	CircuitElementSupport.drawThickLine(g, point1, lead1);
 	drawPosts(g);
 	g.setFont(oldf);
     }
@@ -114,7 +115,7 @@ public class LogicOutputElm extends CircuitElm {
 	arr[1] = (volts[0] < threshold) ? "low" : "high";
 	if (isNumeric())
 	    arr[1] = value;
-	arr[2] = "V = " + getVoltageText(volts[0]);
+	arr[2] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
     }
 
     public EditInfo getEditInfo(int n) {

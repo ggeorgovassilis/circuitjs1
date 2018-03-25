@@ -19,6 +19,7 @@
 
 package com.lushprojects.circuitjs1.client.elements;
 
+import com.lushprojects.circuitjs1.client.support.CircuitElementSupport;
 import com.lushprojects.circuitjs1.client.support.StringTokenizer;
 import com.lushprojects.circuitjs1.client.ui.Checkbox;
 import com.lushprojects.circuitjs1.client.ui.EditInfo;
@@ -40,15 +41,15 @@ public class WireElm extends CircuitElm {
 
     public void draw(Graphics g) {
 	setVoltageColor(g, volts[0]);
-	drawThickLine(g, point1, point2);
+	CircuitElementSupport.drawThickLine(g, point1, point2);
 	doDots(g);
 	setBbox(point1, point2, 3);
 	String s = "";
 	if (mustShowCurrent()) {
-	    s = getShortUnitText(Math.abs(getCurrent()), "A");
+	    s = CircuitElementSupport.getShortUnitText(Math.abs(getCurrent()), "A");
 	}
 	if (mustShowVoltage()) {
-	    s = (s.length() > 0 ? s + " " : "") + getShortUnitText(volts[0], "V");
+	    s = (s.length() > 0 ? s + " " : "") + CircuitElementSupport.getShortUnitText(volts[0], "V");
 	}
 	drawValues(g, s, 4);
 	drawPosts(g);
@@ -69,8 +70,8 @@ public class WireElm extends CircuitElm {
     // int getVoltageSourceCount() { return 1; }
     public void getInfo(String arr[]) {
 	arr[0] = "wire";
-	arr[1] = "I = " + getCurrentDText(getCurrent());
-	arr[2] = "V = " + getVoltageText(volts[0]);
+	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
+	arr[2] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
     }
 
     int getDumpType() {
