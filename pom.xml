@@ -1,10 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.lushprojects.circuitjs1</groupId>
 	<artifactId>circuitjs</artifactId>
 	<version>2.1.15</version>
-	<packaging>gwt-app</packaging>
+	<packaging>war</packaging>
 
 	<distributionManagement>
 		<site>
@@ -39,11 +40,16 @@
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-codeserver</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -96,24 +102,30 @@
 				</configuration>
 			</plugin>
 			<plugin> <!-- gwt compiler -->
-				<groupId>net.ltgt.gwt.maven</groupId>
+				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>1.0-rc-9</version>
+				<version>2.8.2</version>
 				<extensions>true</extensions>
+				<executions>
+					<execution></execution>
+				</executions>
 				<configuration>
 					<moduleName>com.lushprojects.circuitjs1.circuitjs1</moduleName>
-					<localWorkers>0.5C</localWorkers><!-- this is the best setting for a 
-						laptop with 2 cores and HT -->
+					<failOnError>true</failOnError>
 					<warName>circuitjs</warName>
 					<optimize>9</optimize>
-					<compilerArgs>
-						<compilerArg>-style</compilerArg>
-						<compilerArg>PRETTY</compilerArg>
-					</compilerArgs>
+					<style>pretty</style>
+					<strict>true</strict>
 					<codeServerPort>8888</codeServerPort>
+					<copyWebapp>true</copyWebapp>
+					<warSourceDirectory>${project.basedir}/src/main/webapp</warSourceDirectory>
+					<hostedWebapp>${project.basedir}/src/main/webapp</hostedWebapp>
+					<codeServerWorkDir>${project.build.directory}/gwt-workdir</codeServerWorkDir>
+					<generateDirectory>${project.build.directory}/generated-sources</generateDirectory>
 				</configuration>
 			</plugin>
-			<plugin> <!-- copy a few things around before packaging the website -->
+			<!-- copy a few things around before packaging the website -->
+			<plugin> 
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.0.2</version>
 				<executions>
@@ -157,6 +169,14 @@
 					<content>${project.build.directory}/site</content>
 					<siteOutputEncoding>UTF-8</siteOutputEncoding>
 					<extraNormalizeExtensions>html,ms</extraNormalizeExtensions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 			<!-- github site plugin is too slow, using site publish instead -->

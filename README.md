@@ -34,14 +34,14 @@ and then
 
 ```
 cd circuitjs1
-mvn install
+mvn clean gwt:compile install
 ```
 
 Then open the file `/circuitjs1/target/site/circuitjs.html` with a web browser.
 
 You can run GWT devmode with
 
-`mvn gwt:codeserver -pl . -am`
+`mvn gwt:run-codeserver`
 
 Then open the file `/circuitjs1/target/site/circuitjs.html` with a web browser. If you have the GWT devmode [bookmarklets](http://www.gwtproject.org/articles/superdevmode.html) you can make changes to the Java files and recompile them quickly.
 
