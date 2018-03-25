@@ -243,6 +243,6 @@ public class VCCSElm extends ChipElm {
 	int i;
 	for (i = 0; arr[i] != null; i++)
 	    ;
-	arr[i] = "I = " + CircuitElementSupport.getCurrentText(pins[inputCount].current);
+	arr[i] = "I = " + CircuitElementSupport.getCurrentText(sim, pins[inputCount].current);
     }
 }

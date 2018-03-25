@@ -151,8 +151,8 @@ public class LabeledNodeElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = text;
-	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
-	arr[2] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(sim, getCurrent());
+	arr[2] = "V = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
     }
 
     public EditInfo getEditInfo(int n) {

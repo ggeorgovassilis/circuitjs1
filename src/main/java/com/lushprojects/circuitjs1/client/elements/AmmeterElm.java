@@ -158,10 +158,10 @@ public class AmmeterElm extends CircuitElm {
 	String s = "A";
 	switch (meter) {
 	case AM_VOL:
-	    s = CircuitElementSupport.myGetUnitText(getCurrent(), "A", false);
+	    s = CircuitElementSupport.myGetUnitText(sim, getCurrent(), "A", false);
 	    break;
 	case AM_RMS:
-	    s = CircuitElementSupport.myGetUnitText(rmsI, "A(rms)", false);
+	    s = CircuitElementSupport.myGetUnitText(sim, rmsI, "A(rms)", false);
 	    break;
 	}
 
@@ -190,10 +190,10 @@ public class AmmeterElm extends CircuitElm {
 	arr[0] = "Ammeter";
 	switch (meter) {
 	case AM_VOL:
-	    arr[1] = "I = " + CircuitElementSupport.myGetUnitText(current, "A", false);
+	    arr[1] = "I = " + CircuitElementSupport.myGetUnitText(sim, current, "A", false);
 	    break;
 	case AM_RMS:
-	    arr[1] = "Irms = " + CircuitElementSupport.myGetUnitText(rmsI, "A", false);
+	    arr[1] = "Irms = " + CircuitElementSupport.myGetUnitText(sim, rmsI, "A", false);
 	    break;
 	}
     }

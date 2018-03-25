@@ -104,7 +104,7 @@ public class SweepElm extends CircuitElm {
 	g.context.setLineWidth(1.0);
 
 	if (sim.showValuesCheckItem.getState()) {
-	    String s = CircuitElementSupport.getShortUnitText(frequency, "Hz");
+	    String s = CircuitElementSupport.getShortUnitText(sim, frequency, "Hz");
 	    if (dx == 0 || dy == 0)
 		drawValues(g, s, circleSize);
 	}
@@ -187,11 +187,11 @@ public class SweepElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "sweep " + (((flags & FLAG_LOG) == 0) ? "(linear)" : "(log)");
-	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
-	arr[2] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
-	arr[3] = "f = " + CircuitElementSupport.getUnitText(frequency, "Hz");
-	arr[4] = "range = " + CircuitElementSupport.getUnitText(minF, "Hz") + " .. " + CircuitElementSupport.getUnitText(maxF, "Hz");
-	arr[5] = "time = " + CircuitElementSupport.getUnitText(sweepTime, "s");
+	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(sim, getCurrent());
+	arr[2] = "V = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
+	arr[3] = "f = " + CircuitElementSupport.getUnitText(sim, frequency, "Hz");
+	arr[4] = "range = " + CircuitElementSupport.getUnitText(sim, minF, "Hz") + " .. " + CircuitElementSupport.getUnitText(sim, maxF, "Hz");
+	arr[5] = "time = " + CircuitElementSupport.getUnitText(sim, sweepTime, "s");
     }
 
     public EditInfo getEditInfo(int n) {

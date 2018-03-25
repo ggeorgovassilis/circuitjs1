@@ -124,32 +124,32 @@ public class TestPointElm extends CircuitElm {
 	// draw selected value
 	switch (meter) {
 	case TP_VOL:
-	    s = CircuitElementSupport.myGetUnitText(volts[0], "V", false);
+	    s = CircuitElementSupport.myGetUnitText(sim, volts[0], "V", false);
 	    break;
 	case TP_RMS:
-	    s = CircuitElementSupport.myGetUnitText(rmsV, "V(rms)", false);
+	    s = CircuitElementSupport.myGetUnitText(sim, rmsV, "V(rms)", false);
 	    break;
 	case TP_MAX:
-	    s = CircuitElementSupport.myGetUnitText(lastMaxV, "Vpk", false);
+	    s = CircuitElementSupport.myGetUnitText(sim, lastMaxV, "Vpk", false);
 	    break;
 	case TP_MIN:
-	    s = CircuitElementSupport.myGetUnitText(lastMinV, "Vmin", false);
+	    s = CircuitElementSupport.myGetUnitText(sim, lastMinV, "Vmin", false);
 	    break;
 	case TP_P2P:
-	    s = CircuitElementSupport.myGetUnitText(lastMaxV - lastMinV, "Vp2p", false);
+	    s = CircuitElementSupport.myGetUnitText(sim, lastMaxV - lastMinV, "Vp2p", false);
 	    break;
 	case TP_BIN:
 	    s = binaryLevel + "";
 	    break;
 	case TP_FRQ:
-	    s = CircuitElementSupport.myGetUnitText(frequency, "Hz", false);
+	    s = CircuitElementSupport.myGetUnitText(sim, frequency, "Hz", false);
 	    break;
 	case TP_PER:
 	    // s = "percent:"+period + " " + sim.timeStep + " " + sim.simTime + " " +
 	    // sim.getIterCount();
 	    break;
 	case TP_PWI:
-	    s = CircuitElementSupport.myGetUnitText(pulseWidth, "S", false);
+	    s = CircuitElementSupport.myGetUnitText(sim, pulseWidth, "S", false);
 	    break;
 	case TP_DUT:
 	    s = sim.showFormat.format(dutyCycle);
@@ -286,31 +286,31 @@ public class TestPointElm extends CircuitElm {
 	arr[0] = "Test Point";
 	switch (meter) {
 	case TP_VOL:
-	    arr[1] = "V = " + CircuitElementSupport.myGetUnitText(volts[0], "V", false);
+	    arr[1] = "V = " + CircuitElementSupport.myGetUnitText(sim, volts[0], "V", false);
 	    break;
 	case TP_RMS:
-	    arr[1] = "V(rms) = " + CircuitElementSupport.myGetUnitText(rmsV, "V", false);
+	    arr[1] = "V(rms) = " + CircuitElementSupport.myGetUnitText(sim, rmsV, "V", false);
 	    break;
 	case TP_MAX:
-	    arr[1] = "Vmax = " + CircuitElementSupport.myGetUnitText(lastMaxV, "Vpk", false);
+	    arr[1] = "Vmax = " + CircuitElementSupport.myGetUnitText(sim, lastMaxV, "Vpk", false);
 	    break;
 	case TP_MIN:
-	    arr[1] = "Vmin = " + CircuitElementSupport.myGetUnitText(lastMinV, "Vmin", false);
+	    arr[1] = "Vmin = " + CircuitElementSupport.myGetUnitText(sim, lastMinV, "Vmin", false);
 	    break;
 	case TP_P2P:
-	    arr[1] = "Vp2p = " + CircuitElementSupport.myGetUnitText(lastMaxV - lastMinV, "Vp2p", false);
+	    arr[1] = "Vp2p = " + CircuitElementSupport.myGetUnitText(sim, lastMaxV - lastMinV, "Vp2p", false);
 	    break;
 	case TP_BIN:
 	    arr[1] = "Binary:" + binaryLevel + "";
 	    break;
 	case TP_FRQ:
-	    arr[1] = "Freq = " + CircuitElementSupport.myGetUnitText(frequency, "Hz", false);
+	    arr[1] = "Freq = " + CircuitElementSupport.myGetUnitText(sim, frequency, "Hz", false);
 	    break;
 	case TP_PER:
-	    arr[1] = "Period = " + CircuitElementSupport.myGetUnitText(period * sim.timeStep / sim.getIterCount(), "S", false);
+	    arr[1] = "Period = " + CircuitElementSupport.myGetUnitText(sim, period * sim.timeStep / sim.getIterCount(), "S", false);
 	    break;
 	case TP_PWI:
-	    arr[1] = "Pulse width = " + CircuitElementSupport.myGetUnitText(pulseWidth * sim.timeStep * sim.getIterCount(), "S", false);
+	    arr[1] = "Pulse width = " + CircuitElementSupport.myGetUnitText(sim, pulseWidth * sim.timeStep * sim.getIterCount(), "S", false);
 	    break;
 	case TP_DUT:
 	    arr[1] = "Duty cycle = " + sim.showFormat.format(dutyCycle);

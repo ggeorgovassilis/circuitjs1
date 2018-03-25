@@ -128,11 +128,11 @@ public class DiodeElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "diode";
-	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
-	arr[2] = "Vd = " + CircuitElementSupport.getVoltageText(getVoltageDiff());
-	arr[3] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
-	arr[4] = "Vf = " + CircuitElementSupport.getVoltageText(fwdrop);
-	arr[5] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(sim, getCurrent());
+	arr[2] = "Vd = " + CircuitElementSupport.getVoltageText(sim, getVoltageDiff());
+	arr[3] = "P = " + CircuitElementSupport.getUnitText(sim, getPower(), "W");
+	arr[4] = "Vf = " + CircuitElementSupport.getVoltageText(sim, fwdrop);
+	arr[5] = "P = " + CircuitElementSupport.getUnitText(sim, getPower(), "W");
     }
 
     public EditInfo getEditInfo(int n) {

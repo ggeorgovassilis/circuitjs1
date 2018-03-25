@@ -141,32 +141,32 @@ public class ProbeElm extends CircuitElm {
 	    String s = "";
 	    switch (meter) {
 	    case TP_VOL:
-		s = CircuitElementSupport.myGetUnitText(getVoltageDiff(), "V", false);
+		s = CircuitElementSupport.myGetUnitText(sim, getVoltageDiff(), "V", false);
 		break;
 	    case TP_RMS:
-		s = CircuitElementSupport.myGetUnitText(rmsV, "V(rms)", false);
+		s = CircuitElementSupport.myGetUnitText(sim, rmsV, "V(rms)", false);
 		break;
 	    case TP_MAX:
-		s = CircuitElementSupport.myGetUnitText(lastMaxV, "Vpk", false);
+		s = CircuitElementSupport.myGetUnitText(sim, lastMaxV, "Vpk", false);
 		break;
 	    case TP_MIN:
-		s = CircuitElementSupport.myGetUnitText(lastMinV, "Vmin", false);
+		s = CircuitElementSupport.myGetUnitText(sim, lastMinV, "Vmin", false);
 		break;
 	    case TP_P2P:
-		s = CircuitElementSupport.myGetUnitText(lastMaxV - lastMinV, "Vp2p", false);
+		s = CircuitElementSupport.myGetUnitText(sim, lastMaxV - lastMinV, "Vp2p", false);
 		break;
 	    case TP_BIN:
 		s = binaryLevel + "";
 		break;
 	    case TP_FRQ:
-		s = CircuitElementSupport.myGetUnitText(frequency, "Hz", false);
+		s = CircuitElementSupport.myGetUnitText(sim, frequency, "Hz", false);
 		break;
 	    case TP_PER:
 		// s = "percent:"+period + " " + sim.timeStep + " " + sim.simTime + " " +
 		// sim.getIterCount();
 		break;
 	    case TP_PWI:
-		s = CircuitElementSupport.myGetUnitText(pulseWidth, "S", false);
+		s = CircuitElementSupport.myGetUnitText(sim, pulseWidth, "S", false);
 		break;
 	    case TP_DUT:
 		s = sim.showFormat.format(dutyCycle);
@@ -266,7 +266,7 @@ public class ProbeElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "voltmeter";
-	arr[1] = "Vd = " + CircuitElementSupport.getVoltageText(getVoltageDiff());
+	arr[1] = "Vd = " + CircuitElementSupport.getVoltageText(sim, getVoltageDiff());
     }
 
     public boolean getConnection(int n1, int n2) {

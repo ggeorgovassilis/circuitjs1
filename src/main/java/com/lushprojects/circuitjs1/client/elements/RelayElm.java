@@ -300,9 +300,9 @@ public class RelayElm extends CircuitElm {
 	int i;
 	int ln = 1;
 	for (i = 0; i != poleCount; i++)
-	    arr[ln++] = "I" + (i + 1) + " = " + CircuitElementSupport.getCurrentDText(switchCurrent[i]);
-	arr[ln++] = "coil I = " + CircuitElementSupport.getCurrentDText(coilCurrent);
-	arr[ln++] = "coil Vd = " + CircuitElementSupport.getVoltageDText(volts[nCoil1] - volts[nCoil2]);
+	    arr[ln++] = "I" + (i + 1) + " = " + CircuitElementSupport.getCurrentDText(sim, switchCurrent[i]);
+	arr[ln++] = "coil I = " + CircuitElementSupport.getCurrentDText(sim, coilCurrent);
+	arr[ln++] = "coil Vd = " + CircuitElementSupport.getVoltageDText(sim, volts[nCoil1] - volts[nCoil2]);
     }
 
     public EditInfo getEditInfo(int n) {

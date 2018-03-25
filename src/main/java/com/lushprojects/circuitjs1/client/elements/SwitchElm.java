@@ -132,11 +132,11 @@ public class SwitchElm extends CircuitElm {
 	arr[0] = (momentary) ? "push switch (SPST)" : "switch (SPST)";
 	if (position == 1) {
 	    arr[1] = "open";
-	    arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(getVoltageDiff());
+	    arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(sim, getVoltageDiff());
 	} else {
 	    arr[1] = "closed";
-	    arr[2] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
-	    arr[3] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
+	    arr[2] = "V = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
+	    arr[3] = "I = " + CircuitElementSupport.getCurrentDText(sim, getCurrent());
 	}
     }
 

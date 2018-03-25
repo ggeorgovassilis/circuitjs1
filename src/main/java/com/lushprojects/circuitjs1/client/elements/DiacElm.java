@@ -115,10 +115,10 @@ public class DiacElm extends CircuitElm {
 	arr[0] = "spark gap";
 	getBasicInfo(arr);
 	arr[3] = state ? "on" : "off";
-	arr[4] = "Ron = " + CircuitElementSupport.getUnitText(onresistance, CirSim.ohmString);
-	arr[5] = "Roff = " + CircuitElementSupport.getUnitText(offresistance, CirSim.ohmString);
-	arr[6] = "Vbrkdn = " + CircuitElementSupport.getUnitText(breakdown, "V");
-	arr[7] = "Ihold = " + CircuitElementSupport.getUnitText(holdcurrent, "A");
+	arr[4] = "Ron = " + CircuitElementSupport.getUnitText(sim, onresistance, CirSim.ohmString);
+	arr[5] = "Roff = " + CircuitElementSupport.getUnitText(sim, offresistance, CirSim.ohmString);
+	arr[6] = "Vbrkdn = " + CircuitElementSupport.getUnitText(sim, breakdown, "V");
+	arr[7] = "Ihold = " + CircuitElementSupport.getUnitText(sim, holdcurrent, "A");
     }
 
     public EditInfo getEditInfo(int n) {

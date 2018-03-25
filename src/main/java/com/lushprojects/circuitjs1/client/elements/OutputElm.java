@@ -56,7 +56,7 @@ public class OutputElm extends CircuitElm {
 	Font f = new Font("SansSerif", selected ? Font.BOLD : 0, 14);
 	g.setFont(f);
 	g.setColor(selected ? sim.selectColor : sim.whiteColor);
-	String s = (flags & FLAG_VALUE) != 0 ? CircuitElementSupport.getVoltageText(volts[0]) : "out";
+	String s = (flags & FLAG_VALUE) != 0 ? CircuitElementSupport.getVoltageText(sim, volts[0]) : "out";
 	// FontMetrics fm = g.getFontMetrics();
 	if (this == sim.plotXElm)
 	    s = "X";
@@ -78,7 +78,7 @@ public class OutputElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "output";
-	arr[1] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
+	arr[1] = "V = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
     }
 
     public EditInfo getEditInfo(int n) {

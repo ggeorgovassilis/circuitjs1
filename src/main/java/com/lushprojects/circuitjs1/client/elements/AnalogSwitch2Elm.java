@@ -118,7 +118,7 @@ public class AnalogSwitch2Elm extends AnalogSwitchElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "analog switch (SPDT)";
-	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
+	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(sim, getCurrent());
     }
 
     public double getCurrentIntoPoint(int xa, int ya) {

@@ -255,11 +255,11 @@ public class PotElm extends CircuitElm implements Command, MouseWheelHandler {
 
     public void getInfo(String arr[]) {
 	arr[0] = "potentiometer";
-	arr[1] = "Vd = " + CircuitElementSupport.getVoltageDText(getVoltageDiff());
-	arr[2] = "R1 = " + CircuitElementSupport.getUnitText(resistance1, CirSim.ohmString);
-	arr[3] = "R2 = " + CircuitElementSupport.getUnitText(resistance2, CirSim.ohmString);
-	arr[4] = "I1 = " + CircuitElementSupport.getCurrentDText(current1);
-	arr[5] = "I2 = " + CircuitElementSupport.getCurrentDText(current2);
+	arr[1] = "Vd = " + CircuitElementSupport.getVoltageDText(sim, getVoltageDiff());
+	arr[2] = "R1 = " + CircuitElementSupport.getUnitText(sim, resistance1, CirSim.ohmString);
+	arr[3] = "R2 = " + CircuitElementSupport.getUnitText(sim, resistance2, CirSim.ohmString);
+	arr[4] = "I1 = " + CircuitElementSupport.getCurrentDText(sim, current1);
+	arr[5] = "I2 = " + CircuitElementSupport.getCurrentDText(sim, current2);
     }
 
     public EditInfo getEditInfo(int n) {

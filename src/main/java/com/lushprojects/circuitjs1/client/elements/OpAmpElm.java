@@ -151,14 +151,14 @@ public class OpAmpElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "op-amp";
-	arr[1] = "V+ = " + CircuitElementSupport.getVoltageText(volts[1]);
-	arr[2] = "V- = " + CircuitElementSupport.getVoltageText(volts[0]);
+	arr[1] = "V+ = " + CircuitElementSupport.getVoltageText(sim, volts[1]);
+	arr[2] = "V- = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
 	// sometimes the voltage goes slightly outside range, to make
 	// convergence easier. so we hide that here.
 	double vo = Math.max(Math.min(volts[2], maxOut), minOut);
-	arr[3] = "Vout = " + CircuitElementSupport.getVoltageText(vo);
-	arr[4] = "Iout = " + CircuitElementSupport.getCurrentText(-current);
-	arr[5] = "range = " + CircuitElementSupport.getVoltageText(minOut) + " to " + CircuitElementSupport.getVoltageText(maxOut);
+	arr[3] = "Vout = " + CircuitElementSupport.getVoltageText(sim, vo);
+	arr[4] = "Iout = " + CircuitElementSupport.getCurrentText(sim, -current);
+	arr[5] = "range = " + CircuitElementSupport.getVoltageText(sim, minOut) + " to " + CircuitElementSupport.getVoltageText(sim, maxOut);
     }
 
     double lastvd;

@@ -118,9 +118,9 @@ public class SparkGapElm extends CircuitElm {
 	arr[0] = "spark gap";
 	getBasicInfo(arr);
 	arr[3] = state ? "on" : "off";
-	arr[4] = "Ron = " + CircuitElementSupport.getUnitText(onresistance, CirSim.ohmString);
-	arr[5] = "Roff = " + CircuitElementSupport.getUnitText(offresistance, CirSim.ohmString);
-	arr[6] = "Vbreakdown = " + CircuitElementSupport.getUnitText(breakdown, "V");
+	arr[4] = "Ron = " + CircuitElementSupport.getUnitText(sim, onresistance, CirSim.ohmString);
+	arr[5] = "Roff = " + CircuitElementSupport.getUnitText(sim, offresistance, CirSim.ohmString);
+	arr[6] = "Vbreakdown = " + CircuitElementSupport.getUnitText(sim, breakdown, "V");
     }
 
     public EditInfo getEditInfo(int n) {

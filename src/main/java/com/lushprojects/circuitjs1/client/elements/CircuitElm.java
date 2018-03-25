@@ -535,8 +535,8 @@ public abstract class CircuitElm implements Editable {
     }
 
     int getBasicInfo(String arr[]) {
-	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
-	arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(getVoltageDiff());
+	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(sim, getCurrent());
+	arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(sim, getVoltageDiff());
 	return 3;
     }
 

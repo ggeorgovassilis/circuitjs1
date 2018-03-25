@@ -97,7 +97,7 @@ public class ZenerElm extends DiodeElm {
     public void getInfo(String arr[]) {
 	super.getInfo(arr);
 	arr[0] = "Zener diode";
-	arr[5] = "Vz = " + CircuitElementSupport.getVoltageText(zvoltage);
+	arr[5] = "Vz = " + CircuitElementSupport.getVoltageText(sim, zvoltage);
     }
 
     public EditInfo getEditInfo(int n) {

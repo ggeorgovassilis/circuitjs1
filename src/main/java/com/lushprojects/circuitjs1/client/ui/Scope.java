@@ -849,11 +849,11 @@ public class Scope {
 	}
 	if (showFFT) {
 	    double maxFrequency = 1 / (sim.timeStep * speed * 2);
-	    info[ct++] = CircuitElementSupport.getUnitText(maxFrequency * (sim.mouseCursorX - rect.x) / rect.width, "Hz");
+	    info[ct++] = CircuitElementSupport.getUnitText(sim, maxFrequency * (sim.mouseCursorX - rect.x) / rect.width, "Hz");
 	}
 	if (visiblePlots.size() > 0) {
 	    double t = sim.t - sim.timeStep * speed * (rect.x + rect.width - sim.mouseCursorX);
-	    info[ct++] = CircuitElementSupport.getUnitText(t, "s");
+	    info[ct++] = CircuitElementSupport.getUnitText(sim, t, "s");
 	}
 	int szw = 0, szh = 15 * ct;
 	int i;
@@ -1062,7 +1062,7 @@ public class Scope {
 	    freq = 0;
 	// System.out.println(freq + " " + periodstd + " " + periodct);
 	if (freq != 0)
-	    drawInfoText(g, CircuitElementSupport.getUnitText(freq, "Hz"));
+	    drawInfoText(g, CircuitElementSupport.getUnitText(sim, freq, "Hz"));
     }
 
     int textY;
@@ -1082,7 +1082,7 @@ public class Scope {
 	    String vScaleText = "";
 	    if (gridStepY != 0 && (!(showV && showI)))
 		vScaleText = " V=" + plot.getUnitText(gridStepY) + "/div";
-	    drawInfoText(g, "H=" + CircuitElementSupport.getUnitText(gridStepX, "s") + "/div" + vScaleText);
+	    drawInfoText(g, "H=" + CircuitElementSupport.getUnitText(sim, gridStepX, "s") + "/div" + vScaleText);
 	}
 	// if (showMax || showMin)
 	// calcMaxAndMin(plot.units);

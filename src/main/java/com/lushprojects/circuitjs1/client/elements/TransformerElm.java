@@ -253,12 +253,12 @@ public class TransformerElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "transformer";
-	arr[1] = "L = " + CircuitElementSupport.getUnitText(inductance, "H");
+	arr[1] = "L = " + CircuitElementSupport.getUnitText(sim, inductance, "H");
 	arr[2] = "Ratio = 1:" + ratio;
-	arr[3] = "Vd1 = " + CircuitElementSupport.getVoltageText(volts[0] - volts[2]);
-	arr[4] = "Vd2 = " + CircuitElementSupport.getVoltageText(volts[1] - volts[3]);
-	arr[5] = "I1 = " + CircuitElementSupport.getCurrentText(current[0]);
-	arr[6] = "I2 = " + CircuitElementSupport.getCurrentText(current[1]);
+	arr[3] = "Vd1 = " + CircuitElementSupport.getVoltageText(sim, volts[0] - volts[2]);
+	arr[4] = "Vd2 = " + CircuitElementSupport.getVoltageText(sim, volts[1] - volts[3]);
+	arr[5] = "I1 = " + CircuitElementSupport.getCurrentText(sim, current[0]);
+	arr[6] = "I2 = " + CircuitElementSupport.getCurrentText(sim, current[1]);
     }
 
     public boolean getConnection(int n1, int n2) {

@@ -117,7 +117,7 @@ public class ScrollValuePopup extends PopupPanel implements MouseOutHandler, Mou
 	inf = myElm.getEditInfo(0);
 	double currentvalue = inf.value;
 	for (int i = 0; i < nvalues + 1; i++) {
-	    if (CircuitElementSupport.getShortUnitText(currentvalue, "") == CircuitElementSupport.getShortUnitText(values[i], "")) { // match
+	    if (CircuitElementSupport.getShortUnitText(sim, currentvalue, "") == CircuitElementSupport.getShortUnitText(sim, values[i], "")) { // match
 													       // to an
 													       // existing
 													       // value
@@ -148,7 +148,7 @@ public class ScrollValuePopup extends PopupPanel implements MouseOutHandler, Mou
 	    if ((thissel + i - 2) < 0 || (thissel + i - 2) >= nvalues)
 		labels[i].setText("---");
 	    else {
-		labels[i].setText(CircuitElementSupport.getShortUnitText(values[thissel + i - 2], ""));
+		labels[i].setText(CircuitElementSupport.getShortUnitText(sim, values[thissel + i - 2], ""));
 		if (thissel + i - 2 == currentidx)
 		    labels[i].addStyleDependentName("current");
 	    }

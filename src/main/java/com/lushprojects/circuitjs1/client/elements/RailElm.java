@@ -77,7 +77,7 @@ public class RailElm extends VoltageElm {
 	    if (Math.abs(v) < 1)
 		s = sim.showFormat.format(v) + " V";
 	    else
-		s = CircuitElementSupport.getShortUnitText(v, "V");
+		s = CircuitElementSupport.getShortUnitText(sim, v, "V");
 	    if (getVoltage() > 0)
 		s = "+" + s;
 	    drawCenteredText(g, s, x2, y2, true);

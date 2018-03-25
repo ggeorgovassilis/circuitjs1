@@ -142,8 +142,8 @@ public class InvertingSchmittElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "InvertingSchmitt";
-	arr[1] = "Vi = " + CircuitElementSupport.getVoltageText(volts[0]);
-	arr[2] = "Vo = " + CircuitElementSupport.getVoltageText(volts[1]);
+	arr[1] = "Vi = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
+	arr[2] = "Vo = " + CircuitElementSupport.getVoltageText(sim, volts[1]);
     }
 
     public EditInfo getEditInfo(int n) {

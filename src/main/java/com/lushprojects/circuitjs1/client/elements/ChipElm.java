@@ -250,7 +250,7 @@ abstract class ChipElm extends CircuitElm {
 		t += '\'';
 	    if (p.clock)
 		t = "Clk";
-	    arr[a] += t + " = " + CircuitElementSupport.getVoltageText(volts[i]);
+	    arr[a] += t + " = " + CircuitElementSupport.getVoltageText(sim, volts[i]);
 	    if (i % 2 == 1)
 		a++;
 	}

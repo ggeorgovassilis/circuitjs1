@@ -345,13 +345,13 @@ public class MosfetElm extends CircuitElm {
     @SuppressWarnings("static-access")
     void getFetInfo(String arr[], String n) {
 	arr[0] = sim.LS(((pnp == -1) ? "p-" : "n-") + n);
-	arr[0] += " (Vt = " + CircuitElementSupport.getVoltageText(pnp * vt) + ")";
-	arr[1] = ((pnp == 1) ? "Ids = " : "Isd = ") + CircuitElementSupport.getCurrentText(ids);
-	arr[2] = "Vgs = " + CircuitElementSupport.getVoltageText(volts[0] - volts[pnp == -1 ? 2 : 1]);
-	arr[3] = ((pnp == 1) ? "Vds = " : "Vsd = ") + CircuitElementSupport.getVoltageText(volts[2] - volts[1]);
+	arr[0] += " (Vt = " + CircuitElementSupport.getVoltageText(sim, pnp * vt) + ")";
+	arr[1] = ((pnp == 1) ? "Ids = " : "Isd = ") + CircuitElementSupport.getCurrentText(sim, ids);
+	arr[2] = "Vgs = " + CircuitElementSupport.getVoltageText(sim, volts[0] - volts[pnp == -1 ? 2 : 1]);
+	arr[3] = ((pnp == 1) ? "Vds = " : "Vsd = ") + CircuitElementSupport.getVoltageText(sim, volts[2] - volts[1]);
 	arr[4] = sim.LS((mode == 0) ? "off" : (mode == 1) ? "linear" : "saturation");
-	arr[5] = "gm = " + CircuitElementSupport.getUnitText(gm, "A/V");
-	arr[6] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
+	arr[5] = "gm = " + CircuitElementSupport.getUnitText(sim, gm, "A/V");
+	arr[6] = "P = " + CircuitElementSupport.getUnitText(sim, getPower(), "W");
     }
 
     public void getInfo(String arr[]) {

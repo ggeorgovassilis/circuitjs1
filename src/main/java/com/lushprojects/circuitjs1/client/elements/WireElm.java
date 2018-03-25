@@ -46,10 +46,10 @@ public class WireElm extends CircuitElm {
 	setBbox(point1, point2, 3);
 	String s = "";
 	if (mustShowCurrent()) {
-	    s = CircuitElementSupport.getShortUnitText(Math.abs(getCurrent()), "A");
+	    s = CircuitElementSupport.getShortUnitText(sim, Math.abs(getCurrent()), "A");
 	}
 	if (mustShowVoltage()) {
-	    s = (s.length() > 0 ? s + " " : "") + CircuitElementSupport.getShortUnitText(volts[0], "V");
+	    s = (s.length() > 0 ? s + " " : "") + CircuitElementSupport.getShortUnitText(sim, volts[0], "V");
 	}
 	drawValues(g, s, 4);
 	drawPosts(g);
@@ -70,8 +70,8 @@ public class WireElm extends CircuitElm {
     // int getVoltageSourceCount() { return 1; }
     public void getInfo(String arr[]) {
 	arr[0] = "wire";
-	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
-	arr[2] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
+	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(sim, getCurrent());
+	arr[2] = "V = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
     }
 
     int getDumpType() {

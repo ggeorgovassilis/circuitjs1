@@ -36,7 +36,7 @@ public class OhmMeterElm extends CurrentElm {
 	setBbox(point1, point2, cr);
 	doDots(g);
 	if (sim.showValuesCheckItem.getState() && current != 0) {
-	    String s = CircuitElementSupport.getShortUnitText(getVoltageDiff() / current, CirSim.ohmString);
+	    String s = CircuitElementSupport.getShortUnitText(sim, getVoltageDiff() / current, CirSim.ohmString);
 	    if (dx == 0 || dy == 0)
 		drawValues(g, s, cr);
 	}
@@ -65,6 +65,6 @@ public class OhmMeterElm extends CurrentElm {
 	if (current == 0)
 	    arr[1] = "R = \u221e";
 	else
-	    arr[1] = "R = " + CircuitElementSupport.getUnitText(getVoltageDiff() / current, CirSim.ohmString);
+	    arr[1] = "R = " + CircuitElementSupport.getUnitText(sim, getVoltageDiff() / current, CirSim.ohmString);
     }
 }

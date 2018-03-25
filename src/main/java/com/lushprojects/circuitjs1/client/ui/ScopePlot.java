@@ -71,13 +71,13 @@ public class ScopePlot {
     String getUnitText(double v) {
 	switch (units) {
 	case Scope.UNITS_V:
-	    return CircuitElementSupport.getVoltageText(v);
+	    return CircuitElementSupport.getVoltageText(CircuitElm.sim, v);
 	case Scope.UNITS_A:
-	    return CircuitElementSupport.getCurrentText(v);
+	    return CircuitElementSupport.getCurrentText(CircuitElm.sim, v);
 	case Scope.UNITS_OHMS:
-	    return CircuitElementSupport.getUnitText(v, CirSim.ohmString);
+	    return CircuitElementSupport.getUnitText(CircuitElm.sim, v, CirSim.ohmString);
 	case Scope.UNITS_W:
-	    return CircuitElementSupport.getUnitText(v, "W");
+	    return CircuitElementSupport.getUnitText(CircuitElm.sim, v, "W");
 	}
 	return null;
     }

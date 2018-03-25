@@ -140,11 +140,11 @@ public class AMElm extends CircuitElm {
     public void getInfo(String arr[]) {
 
 	arr[0] = "AM Source";
-	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
-	arr[2] = "V = " + CircuitElementSupport.getVoltageText(getVoltageDiff());
-	arr[3] = "cf = " + CircuitElementSupport.getUnitText(carrierfreq, "Hz");
-	arr[4] = "sf = " + CircuitElementSupport.getUnitText(signalfreq, "Hz");
-	arr[5] = "Vmax = " + CircuitElementSupport.getVoltageText(maxVoltage);
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(sim, getCurrent());
+	arr[2] = "V = " + CircuitElementSupport.getVoltageText(sim, getVoltageDiff());
+	arr[3] = "cf = " + CircuitElementSupport.getUnitText(sim, carrierfreq, "Hz");
+	arr[4] = "sf = " + CircuitElementSupport.getUnitText(sim, signalfreq, "Hz");
+	arr[5] = "Vmax = " + CircuitElementSupport.getVoltageText(sim, maxVoltage);
     }
 
     public EditInfo getEditInfo(int n) {

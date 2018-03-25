@@ -61,9 +61,9 @@ public class CC2Elm extends ChipElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = (gain == 1) ? "CCII+~" : "CCII-~"; // ~ is for localization
-	arr[1] = "X,Y = " + CircuitElementSupport.getVoltageText(volts[0]);
-	arr[2] = "Z = " + CircuitElementSupport.getVoltageText(volts[2]);
-	arr[3] = "I = " + CircuitElementSupport.getCurrentText(pins[0].current);
+	arr[1] = "X,Y = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
+	arr[2] = "Z = " + CircuitElementSupport.getVoltageText(sim, volts[2]);
+	arr[3] = "I = " + CircuitElementSupport.getCurrentText(sim, pins[0].current);
     }
 
     // boolean nonLinear() { return true; }

@@ -125,8 +125,8 @@ public class LogicInputElm extends SwitchElm {
 	arr[1] = (position == 0) ? "low" : "high";
 	if (isNumeric())
 	    arr[1] = "" + position;
-	arr[1] += " (" + CircuitElementSupport.getVoltageText(volts[0]) + ")";
-	arr[2] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
+	arr[1] += " (" + CircuitElementSupport.getVoltageText(sim, volts[0]) + ")";
+	arr[2] = "I = " + CircuitElementSupport.getCurrentText(sim, getCurrent());
     }
 
     public boolean hasGroundConnection(int n1) {

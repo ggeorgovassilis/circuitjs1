@@ -159,8 +159,8 @@ public class OTAElm extends CompositeElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "OTA (LM13700 style)";
-	arr[1] = "Iabc = " + CircuitElementSupport.getCurrentText(-getCurrentIntoNode(3));
-	arr[2] = "V+ - V- = " + CircuitElementSupport.getVoltageText(volts[0] - volts[1]);
+	arr[1] = "Iabc = " + CircuitElementSupport.getCurrentText(sim, -getCurrentIntoNode(3));
+	arr[2] = "V+ - V- = " + CircuitElementSupport.getVoltageText(sim, volts[0] - volts[1]);
     }
 
     public EditInfo getEditInfo(int n) {

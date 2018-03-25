@@ -115,7 +115,7 @@ public class LogicOutputElm extends CircuitElm {
 	arr[1] = (volts[0] < threshold) ? "low" : "high";
 	if (isNumeric())
 	    arr[1] = value;
-	arr[2] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
+	arr[2] = "V = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
     }
 
     public EditInfo getEditInfo(int n) {

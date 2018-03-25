@@ -169,7 +169,7 @@ public class Switch2Elm extends SwitchElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "switch (" + (link == 0 ? "S" : "D") + "P" + ((throwCount > 2) ? throwCount + "T)" : "DT)");
-	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
+	arr[1] = "I = " + CircuitElementSupport.getCurrentDText(sim, getCurrent());
     }
 
     public EditInfo getEditInfo(int n) {

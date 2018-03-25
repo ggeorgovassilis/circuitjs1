@@ -93,7 +93,7 @@ public boolean getConnection(int n1, int n2) {
 
     public void getInfo(String arr[]) {
 	arr[0] = "Comparator";
-	arr[1] = "V+ = " + CircuitElementSupport.getVoltageText(volts[1]);
-	arr[2] = "V- = " + CircuitElementSupport.getVoltageText(volts[0]);
+	arr[1] = "V+ = " + CircuitElementSupport.getVoltageText(sim, volts[1]);
+	arr[2] = "V- = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
     }
 }

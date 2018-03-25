@@ -180,8 +180,8 @@ abstract class GateElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = getGateName();
-	arr[1] = "Vout = " + CircuitElementSupport.getVoltageText(volts[inputCount]);
-	arr[2] = "Iout = " + CircuitElementSupport.getCurrentText(getCurrent());
+	arr[1] = "Vout = " + CircuitElementSupport.getVoltageText(sim, volts[inputCount]);
+	arr[2] = "Iout = " + CircuitElementSupport.getCurrentText(sim, getCurrent());
     }
 
     public void stamp() {

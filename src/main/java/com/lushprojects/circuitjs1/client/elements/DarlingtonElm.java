@@ -101,11 +101,11 @@ public class DarlingtonElm extends CompositeElm {
 	double vbc = volts[0] - volts[1];
 	double vbe = volts[0] - volts[2];
 	double vce = volts[1] - volts[2];
-	arr[1] = "Ic = " + CircuitElementSupport.getCurrentText(-getCurrentIntoNode(1));
-	arr[2] = "Ib = " + CircuitElementSupport.getCurrentText(-getCurrentIntoNode(0));
-	arr[3] = "Vbe = " + CircuitElementSupport.getVoltageText(vbe);
-	arr[4] = "Vbc = " + CircuitElementSupport.getVoltageText(vbc);
-	arr[5] = "Vce = " + CircuitElementSupport.getVoltageText(vce);
+	arr[1] = "Ic = " + CircuitElementSupport.getCurrentText(sim, -getCurrentIntoNode(1));
+	arr[2] = "Ib = " + CircuitElementSupport.getCurrentText(sim, -getCurrentIntoNode(0));
+	arr[3] = "Vbe = " + CircuitElementSupport.getVoltageText(sim, vbe);
+	arr[4] = "Vbc = " + CircuitElementSupport.getVoltageText(sim, vbc);
+	arr[5] = "Vce = " + CircuitElementSupport.getVoltageText(sim, vce);
     }
 
     public void setPoints() {

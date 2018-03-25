@@ -251,7 +251,7 @@ public class VoltageElm extends CircuitElm {
 	}
 	}
 	if (sim.showValuesCheckItem.getState()) {
-	    String s = CircuitElementSupport.getShortUnitText(frequency, "Hz");
+	    String s = CircuitElementSupport.getShortUnitText(sim, frequency, "Hz");
 	    if (dx == 0 || dy == 0)
 		drawValues(g, s, circleSize);
 	}
@@ -291,23 +291,23 @@ public class VoltageElm extends CircuitElm {
 	    arr[0] = "triangle gen";
 	    break;
 	}
-	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
-	arr[2] = ((this instanceof RailElm) ? "V = " : "Vd = ") + CircuitElementSupport.getVoltageText(getVoltageDiff());
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(sim, getCurrent());
+	arr[2] = ((this instanceof RailElm) ? "V = " : "Vd = ") + CircuitElementSupport.getVoltageText(sim, getVoltageDiff());
 	if (waveform != WF_DC && waveform != WF_VAR) {
-	    arr[3] = "f = " + CircuitElementSupport.getUnitText(frequency, "Hz");
-	    arr[4] = "Vmax = " + CircuitElementSupport.getVoltageText(maxVoltage);
+	    arr[3] = "f = " + CircuitElementSupport.getUnitText(sim, frequency, "Hz");
+	    arr[4] = "Vmax = " + CircuitElementSupport.getVoltageText(sim, maxVoltage);
 	    int i = 5;
 	    if (waveform == WF_AC && bias == 0)
-		arr[i++] = "V(rms) = " + CircuitElementSupport.getVoltageText(maxVoltage / 1.41421356);
+		arr[i++] = "V(rms) = " + CircuitElementSupport.getVoltageText(sim, maxVoltage / 1.41421356);
 	    if (bias != 0)
-		arr[i++] = "Voff = " + CircuitElementSupport.getVoltageText(bias);
+		arr[i++] = "Voff = " + CircuitElementSupport.getVoltageText(sim, bias);
 	    else if (frequency > 500)
-		arr[i++] = "wavelength = " + CircuitElementSupport.getUnitText(2.9979e8 / frequency, "m");
-	    arr[i++] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
+		arr[i++] = "wavelength = " + CircuitElementSupport.getUnitText(sim, 2.9979e8 / frequency, "m");
+	    arr[i++] = "P = " + CircuitElementSupport.getUnitText(sim, getPower(), "W");
 	}
 	if (waveform == WF_DC && current != 0 && sim.showResistanceInVoltageSources) {
-	    arr[3] = "(R = " + CircuitElementSupport.getUnitText(maxVoltage / current, CirSim.ohmString) + ")";
-	    arr[4] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
+	    arr[3] = "(R = " + CircuitElementSupport.getUnitText(sim, maxVoltage / current, CirSim.ohmString) + ")";
+	    arr[4] = "P = " + CircuitElementSupport.getUnitText(sim, getPower(), "W");
 	}
     }
 

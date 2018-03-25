@@ -159,9 +159,9 @@ public class TriStateElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "tri-state buffer";
 	arr[1] = open ? "open" : "closed";
-	arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(getVoltageDiff());
-	arr[3] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
-	arr[4] = "Vc = " + CircuitElementSupport.getVoltageText(volts[2]);
+	arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(sim, getVoltageDiff());
+	arr[3] = "I = " + CircuitElementSupport.getCurrentDText(sim, getCurrent());
+	arr[4] = "Vc = " + CircuitElementSupport.getVoltageText(sim, volts[2]);
     }
 
     // there is no current path through the input, but there

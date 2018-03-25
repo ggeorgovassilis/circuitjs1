@@ -185,8 +185,8 @@ public class LampElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "lamp";
 	getBasicInfo(arr);
-	arr[3] = "R = " + CircuitElementSupport.getUnitText(resistance, CirSim.ohmString);
-	arr[4] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
+	arr[3] = "R = " + CircuitElementSupport.getUnitText(sim, resistance, CirSim.ohmString);
+	arr[4] = "P = " + CircuitElementSupport.getUnitText(sim, getPower(), "W");
 	arr[5] = "T = " + ((int) temp) + " K";
     }
 

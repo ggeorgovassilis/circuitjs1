@@ -220,11 +220,11 @@ public class TriacElm extends CircuitElm {
 	double vac = volts[anode] - volts[cnode];
 	double vag = volts[anode] - volts[gnode];
 	double vgc = volts[gnode] - volts[cnode];
-	arr[1] = "Ia = " + CircuitElementSupport.getCurrentText(ia);
-	arr[2] = "Ig = " + CircuitElementSupport.getCurrentText(ig);
-	arr[3] = "Vac = " + CircuitElementSupport.getVoltageText(vac);
-	arr[4] = "Vag = " + CircuitElementSupport.getVoltageText(vag);
-	arr[5] = "Vgc = " + CircuitElementSupport.getVoltageText(vgc);
+	arr[1] = "Ia = " + CircuitElementSupport.getCurrentText(sim, ia);
+	arr[2] = "Ig = " + CircuitElementSupport.getCurrentText(sim, ig);
+	arr[3] = "Vac = " + CircuitElementSupport.getVoltageText(sim, vac);
+	arr[4] = "Vag = " + CircuitElementSupport.getVoltageText(sim, vag);
+	arr[5] = "Vgc = " + CircuitElementSupport.getVoltageText(sim, vgc);
     }
 
     void calculateCurrent() {

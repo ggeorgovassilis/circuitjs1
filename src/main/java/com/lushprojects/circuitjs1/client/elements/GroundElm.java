@@ -74,7 +74,7 @@ public class GroundElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "ground";
-	arr[1] = "I = " + CircuitElementSupport.getCurrentText(getCurrent());
+	arr[1] = "I = " + CircuitElementSupport.getCurrentText(sim, getCurrent());
     }
 
     public boolean hasGroundConnection(int n1) {

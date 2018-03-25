@@ -120,11 +120,11 @@ public class AudioOutputElm extends CircuitElm {
 
     public void getInfo(String arr[]) {
 	arr[0] = "audio output";
-	arr[1] = "V = " + CircuitElementSupport.getVoltageText(volts[0]);
+	arr[1] = "V = " + CircuitElementSupport.getVoltageText(sim, volts[0]);
 	int ct = (dataFull ? dataCount : dataPtr);
 	double dur = sampleStep * ct;
-	arr[2] = "start = " + CircuitElementSupport.getUnitText(dataFull ? sim.t - duration : dataStart, "s");
-	arr[3] = "dur = " + CircuitElementSupport.getUnitText(dur, "s");
+	arr[2] = "start = " + CircuitElementSupport.getUnitText(sim, dataFull ? sim.t - duration : dataStart, "s");
+	arr[3] = "dur = " + CircuitElementSupport.getUnitText(sim, dur, "s");
 	arr[4] = "samples = " + ct + (dataFull ? "" : "/" + dataCount);
     }
 

@@ -9,13 +9,13 @@ import com.lushprojects.circuitjs1.client.ui.Polygon;
 
 public class CircuitElementSupport {
 
-    public static String myGetUnitText(double v, String u, boolean sf) {
+    public static String myGetUnitText(CirSim sim, double v, String u, boolean sf) {
         NumberFormat s;
         String sp = "";
         if (sf)
-            s = CircuitElm.sim.shortFormat;
+            s = sim.shortFormat;
         else {
-            s = CircuitElm.sim.showFormat;
+            s = sim.showFormat;
             sp = " ";
         }
         double va = Math.abs(v);
@@ -39,30 +39,30 @@ public class CircuitElementSupport {
         return s.format(v * 1e-9) + sp + "G" + u;
     }
 
-    public static String getCurrentText(double i) {
-        return CircuitElementSupport.getUnitText(i, "A");
+    public static String getCurrentText(CirSim sim, double i) {
+        return CircuitElementSupport.getUnitText(sim, i, "A");
     }
 
-    public static String getCurrentDText(double i) {
-        return CircuitElementSupport.getUnitText(Math.abs(i), "A");
+    public static String getCurrentDText(CirSim sim, double i) {
+        return CircuitElementSupport.getUnitText(sim, Math.abs(i), "A");
     }
 
-    public static String getShortUnitText(double v, String u) {
-        return myGetUnitText(v, u, true);
+    public static String getShortUnitText(CirSim sim, double v, String u) {
+        return myGetUnitText(sim, v, u, true);
     }
 
     // IES - hacking
-    public static String getUnitText(double v, String u) {
-        return myGetUnitText(v, u, false);
+    public static String getUnitText(CirSim sim, double v, String u) {
+        return myGetUnitText(sim, v, u, false);
     }
 
-    public static String getVoltageText(double v) {
-        return getUnitText(v, "V");
+    public static String getVoltageText(CirSim sim, double v) {
+        return getUnitText(sim, v, "V");
     
     }
 
-    public static String getVoltageDText(double v) {
-        return getUnitText(Math.abs(v), "V");
+    public static String getVoltageDText(CirSim sim, double v) {
+        return getUnitText(sim, Math.abs(v), "V");
     }
 
     public static void drawThickCircle(Graphics g, int cx, int cy, int ri) {

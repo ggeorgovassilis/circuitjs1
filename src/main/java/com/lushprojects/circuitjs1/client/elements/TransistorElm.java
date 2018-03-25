@@ -313,12 +313,12 @@ public class TransistorElm extends CircuitElm {
 	else
 	    arr[1] = vbe * pnp > .2 ? "fwd active" : "cutoff";
 	arr[1] = CirSim.LS(arr[1]);
-	arr[2] = "Ic = " + CircuitElementSupport.getCurrentText(ic);
-	arr[3] = "Ib = " + CircuitElementSupport.getCurrentText(ib);
-	arr[4] = "Vbe = " + CircuitElementSupport.getVoltageText(vbe);
-	arr[5] = "Vbc = " + CircuitElementSupport.getVoltageText(vbc);
-	arr[6] = "Vce = " + CircuitElementSupport.getVoltageText(vce);
-	arr[7] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
+	arr[2] = "Ic = " + CircuitElementSupport.getCurrentText(sim, ic);
+	arr[3] = "Ib = " + CircuitElementSupport.getCurrentText(sim, ib);
+	arr[4] = "Vbe = " + CircuitElementSupport.getVoltageText(sim, vbe);
+	arr[5] = "Vbc = " + CircuitElementSupport.getVoltageText(sim, vbc);
+	arr[6] = "Vce = " + CircuitElementSupport.getVoltageText(sim, vce);
+	arr[7] = "P = " + CircuitElementSupport.getUnitText(sim, getPower(), "W");
     }
 
     public double getScopeValue(int x) {

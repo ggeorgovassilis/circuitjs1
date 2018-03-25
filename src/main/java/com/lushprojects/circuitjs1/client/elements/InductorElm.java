@@ -66,7 +66,7 @@ public class InductorElm extends CircuitElm {
 	setPowerColor(g, false);
 	drawCoil(g, 8, lead1, lead2, v1, v2);
 	if (sim.showValuesCheckItem.getState()) {
-	    String s = CircuitElementSupport.getShortUnitText(inductance, "H");
+	    String s = CircuitElementSupport.getShortUnitText(sim, inductance, "H");
 	    drawValues(g, s, hs);
 	}
 	doDots(g);
@@ -103,8 +103,8 @@ public class InductorElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "inductor";
 	getBasicInfo(arr);
-	arr[3] = "L = " + CircuitElementSupport.getUnitText(inductance, "H");
-	arr[4] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
+	arr[3] = "L = " + CircuitElementSupport.getUnitText(sim, inductance, "H");
+	arr[4] = "P = " + CircuitElementSupport.getUnitText(sim, getPower(), "W");
     }
 
     public EditInfo getEditInfo(int n) {

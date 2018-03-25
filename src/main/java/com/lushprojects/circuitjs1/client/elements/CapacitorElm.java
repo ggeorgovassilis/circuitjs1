@@ -115,7 +115,7 @@ public class CapacitorElm extends CircuitElm {
 	}
 	drawPosts(g);
 	if (sim.showValuesCheckItem.getState()) {
-	    String s = CircuitElementSupport.getShortUnitText(capacitance, "F");
+	    String s = CircuitElementSupport.getShortUnitText(sim, capacitance, "F");
 	    drawValues(g, s, hs);
 	}
     }
@@ -160,15 +160,15 @@ public class CapacitorElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "capacitor";
 	getBasicInfo(arr);
-	arr[3] = "C = " + CircuitElementSupport.getUnitText(capacitance, "F");
-	arr[4] = "P = " + CircuitElementSupport.getUnitText(getPower(), "W");
+	arr[3] = "C = " + CircuitElementSupport.getUnitText(sim, capacitance, "F");
+	arr[4] = "P = " + CircuitElementSupport.getUnitText(sim, getPower(), "W");
 	// double v = getVoltageDiff();
 	// arr[4] = "U = " + getUnitText(.5*capacitance*v*v, "J");
     }
 
     @Override
     public String getScopeText(int v) {
-	return CirSim.LS("capacitor") + ", " + CircuitElementSupport.getUnitText(capacitance, "F");
+	return CirSim.LS("capacitor") + ", " + CircuitElementSupport.getUnitText(sim, capacitance, "F");
     }
 
     public EditInfo getEditInfo(int n) {

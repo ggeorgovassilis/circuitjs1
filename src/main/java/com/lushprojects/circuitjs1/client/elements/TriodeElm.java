@@ -227,9 +227,9 @@ public class TriodeElm extends CircuitElm {
 	double vbc = volts[0] - volts[1];
 	double vbe = volts[0] - volts[2];
 	double vce = volts[1] - volts[2];
-	arr[1] = "Vbe = " + CircuitElementSupport.getVoltageText(vbe);
-	arr[2] = "Vbc = " + CircuitElementSupport.getVoltageText(vbc);
-	arr[3] = "Vce = " + CircuitElementSupport.getVoltageText(vce);
+	arr[1] = "Vbe = " + CircuitElementSupport.getVoltageText(sim, vbe);
+	arr[2] = "Vbc = " + CircuitElementSupport.getVoltageText(sim, vbc);
+	arr[3] = "Vce = " + CircuitElementSupport.getVoltageText(sim, vce);
     }
 
     // grid not connected to other terminals

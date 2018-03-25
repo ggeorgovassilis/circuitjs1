@@ -137,9 +137,9 @@ public class AnalogSwitchElm extends CircuitElm {
     public void getInfo(String arr[]) {
 	arr[0] = "analog switch";
 	arr[1] = open ? "open" : "closed";
-	arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(getVoltageDiff());
-	arr[3] = "I = " + CircuitElementSupport.getCurrentDText(getCurrent());
-	arr[4] = "Vc = " + CircuitElementSupport.getVoltageText(volts[2]);
+	arr[2] = "Vd = " + CircuitElementSupport.getVoltageDText(sim, getVoltageDiff());
+	arr[3] = "I = " + CircuitElementSupport.getCurrentDText(sim, getCurrent());
+	arr[4] = "Vc = " + CircuitElementSupport.getVoltageText(sim, volts[2]);
     }
 
     // we have to just assume current will flow either way, even though that
